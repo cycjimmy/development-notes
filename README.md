@@ -3,8 +3,8 @@ Development Notes (zh-chs)
 
 ## Notes list：
 ### markdown
-* [markdown syntax & local editor](./notes/maekdown/markdown.md)
+* [markdown syntax & local editor](./notes/markdown/markdown.md)
 
 ### git
-* [gitignore](./notes/maekdown/gitignore.md)
+* [gitignore](./notes/git/gitignore.md)
 
