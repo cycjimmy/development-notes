@@ -1,11 +1,14 @@
-## markdown local editor
-#### for mac
-[macdown](http://macdown.uranusjr.com)
+## markdown editor
+* local
+	* for mac [macdown](http://macdown.uranusjr.com)
+	* for win10 [MarkPad](http://code52.org/DownmarkerWPF/)
 
-#### for win10
-[MarkPad](http://code52.org/DownmarkerWPF/)
+* online[stackedit](https://stackedit.io) 
+
 
 ***
+
+
 ## markdown syntax
 ### title 标题
 # \# h1
@@ -61,3 +64,15 @@
 ### bold italic 黑体斜体
 
 ***\*\*\*bold italic\*\*\****
+
+***
+
+### code 代码片段\`\`\`javascript
+
+	var nickName = 'cycjimmy';
+  \`\`\`
+
+#####效果如下：
+
+```javascript
+	var nickName = 'cycjimmy';```
