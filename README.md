@@ -8,3 +8,5 @@ Development Notes (zh-chs)
 ### git
 * [gitignore](./notes/git/gitignore.md)
 
+### JavaScript
+* [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
