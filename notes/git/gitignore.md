@@ -1,8 +1,8 @@
 ## create .gitignore
 在git命令行中进入项目所在目录
 
-```git
->touch .gitignore
+```c
+touch .gitignore
 
 ```
 输入 touch .gitignore 在目录中就生成了一个“.gitignore”文件。
