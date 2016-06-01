@@ -1,4 +1,4 @@
-#  Sublime Text 3
+# Sublime Text 3
 
 [Download](http://www.sublimetext.com/)
 

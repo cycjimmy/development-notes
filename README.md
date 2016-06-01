@@ -14,4 +14,5 @@ Development Notes (zh-chs)
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 
 ### code editor
-* [Sublime Text 3](./notes/code_editor/Sublime_Text_3.md)
+* [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
+* [WebStorm](./notes/code_editor/Web_Storm.md)
