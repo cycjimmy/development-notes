@@ -15,4 +15,5 @@ Development Notes (zh-chs)
 
 ### code editor
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
+* [brackets](./notes/code_editor/brackets.md)
 * [WebStorm](./notes/code_editor/Web_Storm.md)
