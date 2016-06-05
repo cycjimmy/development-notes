@@ -89,6 +89,7 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 * SublimeCodeIntel 代码提示
 * Emmet 格式化
 * Pretty JSON 格式化JSON数据
+* ESlint JS检查
 
 
 
