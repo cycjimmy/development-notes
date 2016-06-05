@@ -17,3 +17,8 @@ Development Notes (zh-chs)
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
 * [brackets](./notes/code_editor/brackets.md)
 * [WebStorm](./notes/code_editor/Web_Storm.md)
+
+## extra
+* Common Software
+	* [For MAC](./extra/Common Software For MAC.md)
+* [Outside World](./extra/Outside World.md)
