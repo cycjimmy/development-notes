@@ -14,6 +14,9 @@ Development Notes (zh-chs)
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [Weex](./notes/javascript/weex.md)
 
+### CSS
+* [LESS](./notes/css/less.md)
+
 ### code editor
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
 * [brackets](./notes/code_editor/brackets.md)
