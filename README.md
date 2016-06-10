@@ -2,22 +2,23 @@
 Development Notes (zh-chs)
 
 ## Notes list：
-### markdown
+### Markdown
 * [markdown syntax & local editor](./notes/markdown/markdown.md)
 
-### git
+### Git
 * [git command 常用命令](./notes/git/git_command.md)
 * [gitignore](./notes/git/gitignore.md)
 * [github](./notes/git/github.md)
 
 ### HTML
-* [html5](./notes/html/html5.md)
+* [HTML5](./notes/html/html5.md)
 
 ### JavaScript
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [Weex](./notes/javascript/weex.md)
 
 ### CSS
+* [CSS](./notes/css/css.md)
 * [LESS](./notes/css/less.md)
 
 ### code editor
