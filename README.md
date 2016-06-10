@@ -10,6 +10,8 @@ Development Notes (zh-chs)
 * [gitignore](./notes/git/gitignore.md)
 * [github](./notes/git/github.md)
 
+### HTML
+* [html5](./notes/html/html5.md)
 
 ### JavaScript
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
