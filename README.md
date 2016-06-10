@@ -8,6 +8,7 @@ Development Notes (zh-chs)
 ### git
 * [git command 常用命令](./notes/git/git_command.md)
 * [gitignore](./notes/git/gitignore.md)
+* [github](./notes/git/github.md)
 
 
 ### JavaScript
