@@ -16,7 +16,11 @@ Development Notes (zh-chs)
 ### JavaScript
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [webGL](./notes/javascript/webgl.md)
+* Ajax
 * [Weex](./notes/javascript/weex.md)
+* AngularJS
+* Node.js
+* VelocityJS fekit
 * [BigPipe](./notes/javascript/BigPipe.md)
 
 ### CSS
