@@ -37,6 +37,8 @@ actual
 		* viewport
 		* keyframes_rule
 
+### [完整语法查看](https://cycjimmy.github.io/development-notes/learningcss/cssconf.html#10)
+
 ## CSS属性(语义)
 
 * properties
@@ -61,6 +63,9 @@ actual
 		* transition
 		* user-select
 		* ......
+
+### [完整属性查看](https://cycjimmy.github.io/development-notes/learningcss/cssconf.html#14)
+
 
 ## 用法
 
