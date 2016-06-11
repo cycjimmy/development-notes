@@ -17,6 +17,7 @@ Development Notes (zh-chs)
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [webGL](./notes/javascript/webgl.md)
 * [Weex](./notes/javascript/weex.md)
+* [BigPipe](./notes/javascript/BigPipe.md)
 
 ### CSS
 * [CSS](./notes/css/css.md)
