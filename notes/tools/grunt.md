@@ -64,3 +64,20 @@
 		```
 	
 	* Grunt的作用：build Tool | 自动化（减少像压缩、编译、单元测试、代码校验这种重复且无业务关联的工作）
+
+
+## Yeoman
+
+### 安装[Generator](http://yeoman.io/generators/)
+
+```node
+npm install -g -generator-[generator_name]
+```
+
+### 初始化Generator
+
+切换到项目目录
+
+```node
+yo [generator_name] [project_name]
+```
