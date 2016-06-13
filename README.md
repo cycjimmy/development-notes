@@ -27,6 +27,9 @@ Development Notes (zh-chs)
 * [CSS](./notes/css/css.md)
 * [LESS](./notes/css/less.md)
 
+### tools
+* [Grunt-beginner前端自动化工具](./notes/tools/grunt.md)
+
 ### code editor
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
 * [brackets](./notes/code_editor/brackets.md)
