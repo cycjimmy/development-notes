@@ -66,18 +66,227 @@
 	* Grunt的作用：build Tool | 自动化（减少像压缩、编译、单元测试、代码校验这种重复且无业务关联的工作）
 
 
-## Yeoman
+## Yeoman使用
 
-### 安装[Generator](http://yeoman.io/generators/)
+### 安装[Generator](http://yeoman.io/generators/)模板
 
 ```node
 npm install -g -generator-[generator_name]
+//例如npm install -g -generator-angular
 ```
 
 ### 初始化Generator
 
+* 切换到项目目录，初始化一个安装好的模板
+
+	```node
+	yo [generator_name] [project_name]
+	//例如yo angular demo1
+	```
+* 初始化后的项目中有一个**package.json**的文件
+
+	```json
+	{
+		"name": "demo1", //这个是刚刚初始化时候创建的project_name
+		"version": "0.0.0", //版本
+		"dependencies": {
+			//里面是运行环境需要依赖的node包
+		},
+		"devDependencies": {
+			//里面是开发环境用到的node包，例如
+			"grunt": "^0.4.1" //包名：版本号[^：比较宽松的版本限制，只限制主版本号][~:比较严格的版本显示，限制第二位的版本号]
+		},
+		"engines": {
+			//指定当前项目所需node的版本
+			"node": ">=0.10.0"
+		},
+		"scripts": {
+			//可以直接使用npm运行的脚本命令，例如
+			"test": "grunt test", //如果在该项目目录下使用 "npm test"命令，实际上是使用"grunt test"命令
+			"install": ""
+		}
+	}
+	```
+
+## Bower使用（包管理器）
+
+### 安装项目中需要用到的组件包
+
 切换到项目目录
 
 ```node
-yo [generator_name] [project_name]
+bower install [package_name] 
+//如bower i jquery
 ```
+
+### 如果我们需要的组件比较小众，没有在bower注册怎么办？
+
+bower提供了多种安装方式：
+
+1. 通过github的短写安装
+	
+	```node
+	bower install [GitHub shorthand]
+	//例如 bower install jquery/jquery
+	``` 
+2. 通过项目完整的github地址安装
+
+	```node
+	bower install [Git endpoint]
+	//例如 bower install https://github.com/jquery/jquery.git
+	``` 
+	
+3. 如果想使用的框架或组件没有在github上
+	* 直接通过URL安装
+
+		```node
+		bower install [url地址]
+		``` 
+		
+### [搜索在bower注册的包文件](https://bower.io/search/)
+
+### 如何生成bower两个配置文件：
+* bower.json 
+* .bowerrc
+	
+	```json
+	//bowerrc文件大致内容
+	{
+		"directory": "bower_components", //包文件目录
+		"proxy": "http://proxy.tencent.com:8080", //一些公司在开发环境下需要用到的代理
+		"https-proxy": "https://proxy.tencent.com:8080", //https的代理
+		"timeout": 60000 //设置过时时间，默认60000ms
+	}
+	```
+
+在当前项目目录输入
+
+```node
+bower init
+```
+
+根据步骤生成bower.json配置文件
+
+### 如何使用bower下载好的组件
+
+
+## Grunt
+* task
+* target
+* options
+
+### 初始化Grunt
+* 创建一个项目目录（或者切换到老项目）
+* 生成一个package.json配置
+
+	```node
+	npm init
+	```
+	
+	* 几种license：MIT BSD ISC Apache GPL（按照宽泛程度排序）
+* 引入grunt
+
+	```node
+	npm install grunt --save-dev
+	//加上--save-dev ，会把当前的引入存入package.json中的"devDependencies"中
+	```
+	
+	```node
+	//引入grunt插件load-grunt-tasks[整合任务]
+	npm install load-grunt-tasks --save-dev
+	```
+	
+	```node
+	//引入grunt插件time-grunt[查看grunt任务运行时间]
+	npm install time-grunt --save-dev
+	```
+	
+	```node
+	//引入grunt插件grunt-contrib-copy[文件拷贝]
+	npm install grunt-contrib-copy --save-dev
+	```
+	
+	```node
+	//引入grunt插件grunt-contrib-clean[文件删除]
+	npm install grunt-contrib-clean --save-dev
+	```
+* 配置gruntfile.js
+	* 在项目根目录新建一个gruntfile.js
+	* 在编辑器中打开gruntfile.js，在头部申明ES5的严格模式
+
+		```javascript
+		'use strict';
+		```
+		
+	* grunt的基本框架
+
+		```javascript
+		module.exports = function (grunt) {
+			//引入插件
+			require('load-grunt-tasks')(grunt); 
+			require('time-grunt')(grunt);
+			
+			//路径配置
+			var config = {
+				app: 'app',
+				dist: 'dist'
+			}
+			
+			//任务配置
+			grunt.initConfig({
+				config: config,
+				
+				//配置copy命令
+				copy: {
+					dist: {
+						files: [
+							{
+								expand: true,//表示需要处理动态的src到dest的文件映射
+								cwd: '<%= config.app %>/', //源文件夹设置
+								src: '**/*.js', //源文件夹下需要处理的文件
+								dest: '<%= config.dist %>/', //输出文件夹设置
+								ext: '.min.js', //修改输出后缀
+								extDot: 'first', //frist表示第一个点后开始输出后缀，last表示最后一个点后开始输出后缀
+								flatten: true, //表示将去除源文件中间各目录，直接在输出文件夹中生成文件
+								rename: function (dest, src) {
+									//rename函数将在最后调用，可以将目标更改目录，修改名称，例如
+									return dest + 'js/' + src;
+								}
+							}
+						]
+						
+						
+					
+					
+					
+					}
+				},
+				
+				//配置clean命令
+				clean: {
+					dist: {
+						src: ['<%= config.dist %>/**/*'],
+						//表示清除dist目录下所有文件和目录]
+						
+						//额外参数
+						filter: function (filepath) {
+							return(!grunt.file.isDir(filepath));
+							//这边过滤的是非项目目录
+						},
+						
+						dot: true, //true表示会匹配以点开头的文件
+						
+						matchBase: true
+						//matchBase表示只去匹配路径中的basename
+						//例如 a?b 现在无法匹配 XXX/abc/XXX 仍可匹配XXX/XXX/abc
+						
+					}
+				}
+				
+				
+				
+				
+			});
+		}
+		```
+
