@@ -85,7 +85,7 @@ npm install -g -generator-[generator_name]
 	```
 * 初始化后的项目中有一个**package.json**的文件
 
-	```json
+	```javascript
 	{
 		"name": "demo1", //这个是刚刚初始化时候创建的project_name
 		"version": "0.0.0", //版本
@@ -149,7 +149,7 @@ bower提供了多种安装方式：
 * bower.json 
 * .bowerrc
 	
-	```json
+	```javascript
 	//bowerrc文件大致内容
 	{
 		"directory": "bower_components", //包文件目录
@@ -254,11 +254,6 @@ bower init
 								}
 							}
 						]
-						
-						
-					
-					
-					
 					}
 				},
 				
@@ -279,13 +274,8 @@ bower init
 						matchBase: true
 						//matchBase表示只去匹配路径中的basename
 						//例如 a?b 现在无法匹配 XXX/abc/XXX 仍可匹配XXX/XXX/abc
-						
 					}
 				}
-				
-				
-				
-				
 			});
 		}
 		```
