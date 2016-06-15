@@ -280,3 +280,35 @@ bower init
 		}
 		```
 
+### grunt tasks - grunt serve
+在yo创建好的项目目录中输入
+
+```node
+grunt serve --allow-remote
+//--allow-remote表示允许远程调试，比如在手机上调试页面，可用本机ip访问站点
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
