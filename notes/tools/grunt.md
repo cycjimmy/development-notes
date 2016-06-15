@@ -280,17 +280,70 @@ bower init
 		}
 		```
 
-### grunt tasks - grunt serve
-在yo创建好的项目目录中输入
+### grunt tasks
 
-```node
-grunt serve --allow-remote
-//--allow-remote表示允许远程调试，比如在手机上调试页面，可用本机ip访问站点
-```
+* grunt serve
+	* 在yo创建好的项目目录中输入
 
+		```node
+		grunt serve --allow-remote
+		//--allow-remote表示允许远程调试，比如在手机上调试页面，可用本机ip访问站点
+		```
 
+	* 在yo创建好的项目目录中监听变化
 
+		```node
+		grunt watch
+		```
 
+* grunt test
+	* 在yo创建好的项目目录中输入
+
+		```node
+		grunt test
+		```
+	
+	* mocha框架
+
+* grunt build
+	* 在项目目录中输入
+
+		```node
+		grunt build
+		```
+
+* grunt - plugins 开发grunt插件
+	
+	* 在github上新建一个仓库，命名一般为grunt-[plugin_name]-[author]
+	* 在项目目录中安装Yeoman的gruntplugin模板
+		
+		```node
+		npm install -g generator-gruntplugin //在全局安装gruntplugin模板
+		```
+		
+		```node
+		yo gruntplugin [github的项目名] //在项目目录生成gruntplugin模板
+		```
+		
+	* 制作插件
+	* 上传插件到github
+	* 生成gh-pages，并将地址加入package.json文件的homepage中
+	* 更新编写一下readme里面的配置说明，上传并重新生成gh-pages
+	* 在[npmjs网站](https://www.npmjs.com)发布插件
+		* 将npm账号添加到本地
+			
+			```node
+			npm adduser
+			```
+			
+		* 复制github-gages中为我们自动生成的插件打包地址，并将其发布到npm上
+
+			```node
+			npm publish [插件打包地址]
+			```
+			
+
+	
 
 
 
