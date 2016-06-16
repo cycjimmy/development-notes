@@ -134,7 +134,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 
 ## 基本概念具体讲解
 
-### 1.MVC
+### 1 MVC
 
 * 为什么需要MVC
     * 代码规模越来越大，切分职责是大势所趋
@@ -156,7 +156,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
             * 一般来说，**Controller是不会互相调用的**，控制器之间的交互会通过事件进行
     * 复用Module
     * 利用directive实现View的复用
-    * **AngularJS中MVA是借助于$scope实现的**
+    * **AngularJS中MVC是借助于$scope实现的**
         * $scope充当MVC中Data-Model角色
         * $scope是一个POJO(Plain Old JavaScript Object)
         * $scope提供了一些工具方法$watch()/$apply()
@@ -182,7 +182,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
             * Mutation observation 观察者模式[观察模型有没有脏]
             * Scope destruction 销毁[自动销毁 or 手动销毁]
 
-### 2.模块化与依赖注入(路由、模块、依赖注入)
+### 2 模块化与依赖注入(路由、模块、依赖注入)
 
 * AngularJS的模块化实现
 * 一个完整的项目结构是什么样的
@@ -211,15 +211,105 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * 模块之间的依赖应该怎么做？ （依赖注入）
 
 
-### 3.双向数据绑定
+### 3 双向数据绑定
 * 取值表达式与ng-bind指令
     * 取值表达式 {{...}} 【在angularJS的库还没有加载到页面中的时候，会显示花括号形式源代码】
     * ng-bind="..." 【不会显示花括号形式代码，一般在index首屏使用】
 * 动态切换标签样式
 * ng-show和ng-hide
 * ng-class
+	* 可以接收表达式
 * ngAnimate
 
+### 4 路由
+#### 4.1 为什么要用路由
+* Ajax请求不会留下history记录
+* 用户无法直接通过URL进入应用中的指定页面（保存书签，链接分享给朋友）
+* Ajax对SEO是个灾难
+
+#### 4.2 用ngRoute进行视图之间的路由
+* 有多层嵌套路由时，可使用[UI-Router](https://github.com/angular-ui/ui-router)
+
+#### 4.3 前端路由的基本原理
+* 哈希#
+* HTML5中心的history API
+* 路由的核心是给应用定义“状态”
+* 使用路由机制会影响到应用的整体编码方式（需要预先定义好状态）
+* 考虑兼容性问题与“优雅降级”
+
+### 5 指令
+#### 5.1 最简单的指令hello
+* 匹配模式restrict
+	* 对应4种模式
+		* A 表示作为属性匹配（默认）
+	
+			```html
+			<div hello></div>
+			```
+			
+		* E 表示作为元素匹配
+	
+			```html
+			<hello></hello>
+			```
+			
+		* M 表示作为注释匹配
+	
+			```html
+			<!-- dircetive:hello -->
+			<div></div>
+			```
+			
+		* C 表示作为样式匹配
+	
+			```html
+			<div class="hello"></div>
+			```
+	* 推荐使用元素和属性的方式使用指令
+	* 当需要创建带有自己的模板的指令时，使用元素的方式创建指令
+	* 当需要为已有的HTML标签添加功能时，使用属性的方式创建指令
+		
+* 模板template
+	* 使用template，直接编写HTML
+	* 用templateUrl可以指定独立html模板路径，就不需要我们把HTML代码写在JS里了
+	* $templateCache用来缓存模板，以便于用在其他地方
+* replace transclude
+	* replace为true时，模板内容替换原内容
+	* transclude为true时，原内容会被放到模板中属性为ng-transclude的标签内[这是一个非常重要的配置项，可以实现指令互相嵌套]
+
+#### 5.2 comile与link(操作元素、添加CSS样式、绑定事件)
+* 三个阶段
+	* 加载阶段
+		* 加载angular.js，找到ng-app指令，确定应用边界
+	* 编译阶段
+		* 遍历DOM，找到所有指令
+		* 根据指令代码中的template、replace、transclude装换DOM结构
+		* 如果存在compile函数则调用
+	* 链接阶段
+		* 对每一条指令运行link函数
+		* link函数一般用来**操作DOM**，绑定事件监听器，绑定作用域
+* 几个注意点：
+	* compile函数用来对模板自身进行转换，而link函数负责在模型和视图之间进行动态关联
+	* 作用域在链接阶段才会被绑定到编译之后的link函数上
+	* compile可以返回preLink和postLink函数，而link函数只会返回postLink函数
+	* 如果需要修改DOM结构，应该在postLink中来做，如果在preLink中做会导致错误
+	* 大多数时候我们只要编写link函数即可
+
+#### 指令与控制器之间的交互
+
+
+
+#### 指令间的交互
+#### scope的类型与独立scope
+#### scope的绑定策略
+#### AngularJS内置指令
+#### 实例解析Expander
+#### 实例解析Accordion
+#### 指令运行原理：compile和link
+#### 总结：ERP类型的系统必备的UI组件
+#### 互联网/电商型系统必备的UI组件
+#### 第三方指令库angular-ui
+#### directive思想起源和原理概述
 
 
 
