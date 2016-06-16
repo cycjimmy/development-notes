@@ -1,6 +1,48 @@
 # AngularJS
 
-## 基本概念与用法实例
+## 简介
+* [https://angularjs.org/](https://angularjs.org/)
+* [http://www.apjs.net/](http://www.apjs.net/)
+* [http://www.angularjs.cn/](http://www.angularjs.cn/)
+
+### AngularJs核心特性
+* MVC(Model←→Controller←→View)
+    * Model: 数据模型层
+    * View: 视图层，负责展示
+    * Controller: 业务逻辑和控制逻辑
+    * 好处: 职责清晰，代码模块化
+* 模块化Module
+* 指令系统(指令的本质：类似于taglib)
+* 双向数据绑定
+
+## 前端开发环境
+* 代码编辑工具
+    * Sublime Text
+    * WebStorm
+* 断点调试工具
+    * chrome 插件 Batarang
+* 版本管理工具
+    * git
+* 代码合并和混淆工具
+    * grunt
+* 依赖管理工具
+    * bower
+* 单元测试工具
+    * karma
+    * jasmine
+        * describe(string, function) 这个函数表示分组，也就是一组测试用例
+        * it(string, function) 这个函数表示单个测试用例
+        * expect(espression) 表示期望expression这个表达式具有某个值或者具有某种行为
+        * to\*\*\*(arg) 这个函数表示匹配
+* 集成测试工具
+    * protractor
+        * 专门为AngularJS定制的一款集成测试工具
+        * 基于WebDriverJS
+        * [https://github.com/angular/protractor](https://github.com/angular/protractor)
+
+
+## 初探基本概念与用法实例
+
 先来一个hello world
 
 ```html
@@ -38,27 +80,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 ```
 
 * MVC：作为DataModel的$scope
-    * $scope充当MVC中Data-Model角色
-    * $scope是一个POJO(Plain Old JavaScript Object)
-    * $scope提供了一些工具方法$watch()/$apply()
-    * $scope是表达式的执行环境（作用域）
-    * **$scope是一个树形结构，与DOM标签平行**
-        * $scope以元素属性的形式被绑定在对应的HTML标签上
-
-            ```javascript
-            angular.element($0).scope()
-            ```
-            
-    * **子$scope对象会继承父$scope上的属性**
-    * 每一个Angular应用只有一个根$scope对象(一般位于ng-app上)
-    * **$scope可以传播事件，类似DOM事件，可以向上也可以向下**
-    * $scope的生命周期
-        * Creation 
-        * Watcher registration 注册事件
-        * Model mutation 
-        * Mutation observation 观察者模式
-        * Scope destruction 销毁
-* 依赖注入DI
+* 依赖注入DI(Dependency Injection)
     * 用构造器实现依赖注入
     * 除了自动注入$scope之外，还可以自动注入$location、$window等，包括自定义的service，都可以注入
     * 依赖注入一般用在controller和factory中
@@ -109,6 +131,100 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     * JTestDriver
     * Jasmine
 
+
+## 基本概念具体讲解
+
+### 1.MVC
+
+* 为什么需要MVC
+    * 代码规模越来越大，切分职责是大势所趋
+    * 为了复用：很多逻辑是一模一样的
+    * 为了后期维护方便：修改一块功能不影响其他功能
+    * **MVC只是手段，终极目标是模块化和复用**
+* 前端MVC的困难
+    * 浏览器运行脚本：浏览器加载脚本→加载完成之后JIT编译执行
+    * 操作DOM的代码必须等待整个页面全部加载完成
+    * 多个JS文件之间如果出现互相依赖，程序员必须自己解决
+    * JS的原型继承也给前端编程带来了很多困难
+* AngularJS语境下的MVC是如何实现的？
+    * AngularJS中的controller
+        * controller使用过程中的注意点
+            * 不要试图去复用Controller，一个控制器一般只负责一小块试图（公共的控制器功能放在service中，不要用一个通用的控制器继承）
+            * 不要在Controller中操作DOM，这不是控制器的职责
+            * 不要再Controller里面做数据格式化，ng有很好用的表单控件
+            * 不要在Controller里面做数据过滤操作，ng有$filter服务
+            * 一般来说，**Controller是不会互相调用的**，控制器之间的交互会通过事件进行
+    * 复用Module
+    * 利用directive实现View的复用
+    * **AngularJS中MVA是借助于$scope实现的**
+        * $scope充当MVC中Data-Model角色
+        * $scope是一个POJO(Plain Old JavaScript Object)
+        * $scope提供了一些工具方法$watch()/$apply()
+        * $scope是表达式的执行环境（作用域）
+        * $scope是一个树形结构，与**DOM标签平行**
+            * $scope以元素属性的形式被绑定在对应的HTML标签上
+
+                ```javascript
+                angular.element($0).scope()
+                ```
+
+        * 子$scope对象会继承父$scope上的**属性和方法**
+        * 每一个Angular应用只有一个根$scope对象(一般位于ng-app上)
+        * **$scope可以传播事件，类似DOM事件，可以向上也可以向下**
+            * $emit() 向上传播，影响同层及上层
+            * $broadcast 向下传播，影响同层及下层
+        * $scope不仅是MVC的基础，也是后面实现双向数据绑定的基础
+        * 可以用angular.element($0).scope()进行调试
+        * $scope的生命周期
+            * Creation 创建
+            * Watcher registration 注册监控
+            * Model mutation 检测模型变化
+            * Mutation observation 观察者模式[观察模型有没有脏]
+            * Scope destruction 销毁[自动销毁 or 手动销毁]
+
+### 2.模块化与依赖注入(路由、模块、依赖注入)
+
+* AngularJS的模块化实现
+* 一个完整的项目结构是什么样的
+    * root [folder]
+        * app [folder]
+            * css [folder]
+            * framework [folder]
+            * imgs [folder]
+            * js [folder]
+                * app.js | 作为启动点的js
+                * controllers.js
+                * directives.js
+                * filters.js
+                * services.js
+            * tpls [folder] | 放一些html模板片段
+            * index.html | 应用的主html文件
+        * node_modules [folder]
+        * package.json | npm配置项
+* 使用ngRoute进行视图之间的路由
+    * $routeProvider
+* ng官方推荐的模块切分方式是什么？
+    * 任何一个ng应用都是由控制器、指令、服务、路由、过滤器等有限的模块类型构成的
+    * 控制器、指令、服务、路由、过滤器分别放在一个模块里面（可借助于grunt合并）
+    * 用一个总的app模块作为入口点，它一栏其他所有模块
+* 一切都是从模块开始的
+* 模块之间的依赖应该怎么做？ （依赖注入）
+
+
+### 3.双向数据绑定
+* 取值表达式与ng-bind指令
+    * 取值表达式 {{...}} 【在angularJS的库还没有加载到页面中的时候，会显示花括号形式源代码】
+    * ng-bind="..." 【不会显示花括号形式代码，一般在index首屏使用】
+* 动态切换标签样式
+* ng-show和ng-hide
+* ng-class
+* ngAnimate
+
+
+
+
+
+
 ## 核心原理解析
 
 ### HTML Parser & Directives
@@ -136,6 +252,26 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     * 指令之间的交互
 
 ### Two way DataBinding
+* 脏值检测原理
+* 由于脏值检测，使用angular时需要注意一些问题：
+    * 监控的表达式不要过于复杂，表达式数量不要太多
+    * 监听函数内不要有DOM操作，那样会显著降低性能
+    * 不能互相监听对方会修改的属性，以免形成交叉引用
+    * 主席ng默认的TTL是10次
+    * **深拷贝式的脏值检测会消耗更多内存**（复杂的大型JSON数据尤其如此）
 
 ### Dependency Injection
+* 每一个angular应用都有一个injector
+* injector负责自动处理依赖关系、实例化对象
+* 对用户代码来说，injector是透明的
+* injector会自动分析函数签名，注入所需要的对象
+* 申明依赖关系的三种方式 [http://docs.angularjs.org/guide/di](http://docs.angularjs.org/guide/di)
+* DI可以用在不同的地方，主要用在controller和factory中
+
 ### Module & Controller & Service
+
+
+
+## ng控件开发
+
+## TDD和前端自动化测试
