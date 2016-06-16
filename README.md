@@ -18,7 +18,7 @@ Development Notes (zh-chs)
 * [webGL](./notes/javascript/webgl.md)
 * Ajax
 * [Weex](./notes/javascript/weex.md)
-* AngularJS
+* [AngularJS](./notes/javascript/AngularJS.md)
 * Node.js
 * VelocityJS fekit
 * [BigPipe](./notes/javascript/BigPipe.md)
@@ -29,6 +29,7 @@ Development Notes (zh-chs)
 
 ### tools
 * [Grunt-beginner前端自动化工具](./notes/tools/grunt.md)
+* [gulp](./notes/tools/gulp.md)
 
 ### code editor
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
