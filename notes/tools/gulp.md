@@ -1,4 +1,4 @@
-# gulp-in-action
+# gulp
 
 官网：[http://gulpjs.com/](http://gulpjs.com/)
 
