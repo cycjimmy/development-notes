@@ -464,7 +464,6 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 
 
 
-
 ### HTML Parser & Directives
 指令的目的是用来自定义HTML标签，指令时一种标记，用来告诉HTML Parser 这里需要编译
 
