@@ -295,175 +295,27 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* 如果需要修改DOM结构，应该在postLink中来做，如果在preLink中做会导致错误
 	* 大多数时候我们只要编写link函数即可
 
-#### 5.3 指令与控制器之间的交互
-* link函数的参数
-    * scope
-    * element
-    * attr
-        * 注意HTML里用驼峰法则写的属性在js attr调用的时候变为小写，不然会报错
-
-#### 5.4 指令间的交互
-
-#### 5.5 scope的类型与独立scope
-* 设定设置项 scope: {}, 就创建了独立的scope
-
-#### 5.6 scope的绑定策略
-* @ 
-    * 把当前属性作为**字符串**传递。
-    * 还可以绑定来自外层scope的值，在属性值中插入{{}}即可
-* = 
-    * 与父scope中的属性进行**双向绑定**
-* & 
-    * 传递一个来自父scope的**函数**，稍后调用
-    
-#### 5.7 AngularJS内置指令
-* a
-* form
-    * 原生form表单不能嵌套，angular的form可以嵌套
-    * angular为form扩展了自动校验，防止重复提交等功能
-    * angular对input元素的type进行了扩展，提供了以下几种类型
-        * text
-        * number
-        * url
-        * email
-        * radio
-        * checkbox
-        * hidden
-        * button
-        * submit
-        * reset
-    * angular为表单内置了几种css样式
-        * ng-valid
-        * ng-invalid
-        * ng-pristine
-        * ng-dirty
-    * angular内置校验器
-        * require
-        * minlength
-        * maxlength
-* ng-app 告诉angular入口在哪
-* ng-bind 数据模型的双向绑定
-* ng-事件
-* ng-include 可用来缓存模板
-* script
-
-#### 5.8 自定义指令和第三方指令库
-* 自定义指令：Expander
-* 第三方指令库：[angular-ui](http://angular-ui.github.io/)
-    * 常用组件：ng-grid
+#### 指令与控制器之间的交互
 
 
-### 6 Service和Provider
-#### 6.1 使用$http服务（angular内置的service，类似$ajax）
 
-    ```javascript
-    var myModule=angular.module("MyModule",[]);
-    myModule.controller('LoadDataCtrl', ['$scope','$http', function($scope,$http){
-        $http({
-            method: 'GET',
-            url: 'data.json'
-        }).success(function(data, status, headers, config) {
-            console.log("success...");
-            console.log(data);
-            $scope.users=data;
-        }).error(function(data, status, headers, config) {
-            console.log("error...");
-        });
-    }]);
-    ```
+#### 指令间的交互
+#### scope的类型与独立scope
+#### scope的绑定策略
+#### AngularJS内置指令
+#### 实例解析Expander
+#### 实例解析Accordion
+#### 指令运行原理：compile和link
+#### 总结：ERP类型的系统必备的UI组件
+#### 互联网/电商型系统必备的UI组件
+#### 第三方指令库angular-ui
+#### directive思想起源和原理概述
 
-#### 6.2 Service的特性
-* Service都是**单例**的
-* Service由$injector负责实例化（不需要自己去NEW实例）
-* Service在整个应用的生命周期中存在，可以用来**共享数据**
-* 在需要使用的地方利用**依赖注入**机制注入Service
-* 自定义的Service需要写在内置的Service后面
-* 内置Service的命名以$符号开头，自定义Service应该避免
 
-#### 6.3 Service、Factory、Provider本质上都是Provider
-* angular里三者只是参数的格式或数据不同，本质上都是Provider
-* Provider模式是“策略模式”+“抽象工厂模式”的混合体
-
-#### 6.4 使用$filter服务
-* $filter是用来进行数据格式化的专用服务
-* AngularJS内置了9个filter
-    * currency 货币
-    * date 日期
-    * filter
-    * json
-    * limitTo
-    * lowercase 小写
-    * number 
-    * orderBy 排序
-    * uppercase 大写
-* filter可以嵌套使用（用管道符号 | 分隔）
-* filter是可以传递参数的
-* 用户可以定义自己的filter
-    
-    ```javascript
-    var myModule=angular.module("MyModule",[]);
-    myModule.filter('filter1',function(){
-        return function(item){
-            //...
-        }
-    });  
-    ```
-
-#### 6.5 其他内置的Service介绍
-* $compile 编译服务
-* $filter 数据格式化工具
-* $interval
-* $timeout
-* $locale 国际化
-* $location 监控浏览器地址栏变化
-* $log 日志
-* $parse
-* $http 封装了Ajax
-
-### 7 实际工作流程
-* 界面原型设计
-* 切分功能模块并建立目录结构
-* 编写UI（可使用angular-ui、bootstrap等）
-    * UIRouter
-    * ngGrid
-    * 表单校验
-    * ...
-* 编写Controller
-* 编写Service
-* 编写Filter
-* ...
-* 单元测试和集成测试
 
 
 
 ## 核心原理解析
-### 1 AngularJS的启动过程分析
-* 启动过程概述
-    * 用自执行函数的形式让整个代码在加载完成之后立即执行
-    * 检查是不是多次导入Angular\[window.angular.bootstrap\]
-* 启动方式1：自动启动
-* 启动方式2：手动启动
-* 启动方式3：多个ng-app
-* 绑定jquery
-* 全局对象angular(injector方法)
-* publishExternalAPI(angular)
-* 调用setupModuleLoader(window)函数建立模块机制
-* 注册内核provider(两个最重要的provider：$parse与$rootScope)
-* angularInit：防止多次初始化ng-app
-* bootstrap：创建injector、拉起内核和启动模块、调用compile服务
-
-### 2 依赖注入原理分析：Provider与Injector
-
-### 3 指令的执行过程分析
-
-### 4 $scope与双向数据绑定分析
-
-
-
-
-
-
-
 
 ### HTML Parser & Directives
 指令的目的是用来自定义HTML标签，指令时一种标记，用来告诉HTML Parser 这里需要编译
