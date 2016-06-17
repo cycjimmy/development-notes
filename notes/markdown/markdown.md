@@ -3,7 +3,8 @@
 	* for mac [macdown](http://macdown.uranusjr.com)
 	* for win10 [MarkPad](http://code52.org/DownmarkerWPF/)
 
-* online[stackedit](https://stackedit.io) 
+* online
+[stackedit](https://stackedit.io) 
 
 
 ***
@@ -67,12 +68,47 @@
 
 ***
 
-### code 代码片段\`\`\`javascript
+### code 代码片段
+\`\`\`javascript
 
 	var nickName = 'cycjimmy';
-  \`\`\`
+  
+\`\`\`
 
-#####效果如下：
+##### 效果如下：
 
 ```javascript
-	var nickName = 'cycjimmy';```
+	var nickName = 'cycjimmy';
+```
+
+***
+
+### 流程图
+
+\`\`\`flow
+st=>start: Start:>https://www.zybuluo.com
+io=>inputoutput: verification
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+sub=>subroutine: Your Subroutine
+e=>end
+
+st->io->op->cond
+cond(yes)->e
+cond(no)->sub->io
+\`\`\`
+
+##### 效果如下：
+
+```flow
+st=>start: Start:>https://www.zybuluo.com
+io=>inputoutput: verification
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+sub=>subroutine: Your Subroutine
+e=>end
+
+st->io->op->cond
+cond(yes)->e
+cond(no)->sub->io
+```
