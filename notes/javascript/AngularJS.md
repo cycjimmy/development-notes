@@ -438,23 +438,106 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 
 ## 核心原理解析
 ### 1 AngularJS的启动过程分析
-* 启动过程概述
-    * 用自执行函数的形式让整个代码在加载完成之后立即执行
-    * 检查是不是多次导入Angular\[window.angular.bootstrap\]
-* 启动方式1：自动启动
-* 启动方式2：手动启动
-* 启动方式3：多个ng-app
-* 绑定jquery
-* 全局对象angular(injector方法)
-* publishExternalAPI(angular)
-* 调用setupModuleLoader(window)函数建立模块机制
-* 注册内核provider(两个最重要的provider：$parse与$rootScope)
-* angularInit：防止多次初始化ng-app
+* 用自执行函数的形式让整个代码在加载完成之后立即执行
+	* 在window上暴露一个唯一的全局对象angular
+* 检查是不是多次导入Angular\[window.angular.bootstrap\]
+	* 通过检查指定的元素上是否已经存在injector进行判断
+* 尝试绑定jQuery:bindJQuery()
+	* 如果发现导入了jQuery,则使用导入的jQuery,否则,使用Angular自己封装的JQLite
+* 发布ng提供的API:publishExternalAPI(angular)
+	* 工具函数拷贝到angular全局对象上
+	* 调用setupModuleLoader(window)函数建立模块机制和加载工具（挂在全局对象window.angular上）
+	* 构建内置模块ng
+	* 创建ng内置的directive和provider
+	* 两个重要的provider:\$parse和\$rootScope；
+* 查找ng-app:angularInit(document, bootstrap)
+	* 存在：自动开始启动
+	* 不存在：自己手动调用angular.bootstrap方法启动ng
+	* 防止多次初始化ng-app
+	* 三种启动方式
+		* 启动方式1：自动启动
+			* 直接将ng-app="myModule"绑定到html标签上
+		* 启动方式2：手动启动
+			* 在JS里手动启动，要注意要用ready函数等待文档初始化完成
+		
+				```javascript
+				angular.element(document).ready(function () {
+					angular.bootstrap(document, ['myModule']);
+				});
+				``` 
+				
+		* 启动方式3：多个ng-app（一般不会有这种情况出现，尽量避免）
+			* 首先这几个ng-app不能有嵌套关系
+			* 第一个ng-app可以被系统正常检测到自动启动起来
+			* 从第二个ng-app开始系统检测不到，需要用手动启动的方式启动
+
 * bootstrap：创建injector、拉起内核和启动模块、调用compile服务
 
 ### 2 依赖注入原理分析：Provider与Injector
+* 为什么要依赖注入
+* ng的三种注入方式
+	* 内联式注入：最推荐
+	
+		```javascript
+		var myModule = angular.module("MyModule", []);
+		
+		myModule.controller('MyCtrl', ['$scope',function($scope) {
+		        $scope.gameName = "XXXX"
+		    }
+		]);
+		```
+		
+	* 推断型注入：函数参数的名称必须要和被注入的对象相同
+	
+		```javascript
+		var myModule = angular.module("MyModule", []);
+		
+		var MyCtrl = function($scope) {
+		    $scope.gameName = "XXXXXX";
+		}
+		
+		myModule.controller('MyCtrl', MyCtrl);
+		```
+	* 声明型注入：函数参数的名称必须要和被注入的对象不同
+
+		```javascript
+		var myModule = angular.module("MyModule", []);
+
+		var MyCtrl = function(thisIsMyName) {
+		    thisIsMyName.gameName = "XXXXXX";
+		}
+		
+		MyCtrl.$inject = ['$scope'];
+		
+		myModule.controller('MyCtrl', MyCtrl);
+		```
+
+* 注射器$injector两种类型
+	* providerInjector
+	* instanceInjector
+* provider模式与ng实现
+	* provider模式是策略模式和工厂模式的综合体
+	* 核心目的是为了让接口和实现分离
+	* 在ng中，所有provider都可以用来进行注入
+		* provider
+		* factory
+		* service
+		* constant
+		* value
+		* 上面5个从上到下，灵活性越来越差
+		* provider是基础，其余都是调用provider函数实现的，只是参数不用
+	* 以下类型的函数可以接受注入
+		* controller
+		* directive
+		* filter
+		* service
+		* factory
+		* ...
+	* ng中的“依赖注入”是用过provider和injector这2个机制联合实现的
 
 ### 3 指令的执行过程分析
+* 自定义compile与link函数
+* compile与link的区别
 
 ### 4 $scope与双向数据绑定分析
 
