@@ -449,7 +449,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* 调用setupModuleLoader(window)函数建立模块机制和加载工具（挂在全局对象window.angular上）
 	* 构建内置模块ng
 	* 创建ng内置的directive和provider
-	* 两个重要的provider:\$parse和\$rootScope；
+	* 两个重要的provider:$parse和$rootScope；
 * 查找ng-app:angularInit(document, bootstrap)
 	* 存在：自动开始启动
 	* 不存在：自己手动调用angular.bootstrap方法启动ng
@@ -582,7 +582,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * 编译的结果是返回一个publicLinkFn函数；
 * 编译完成之后立即调用生成的publicLinkFn函数；
 
-### 4 \$scope与双向数据绑定分析
+### 4 $scope与双向数据绑定分析
 * ng是如何发现数据发生了变化
 	* 脏值检测原理
 	* 由于脏值检测，使用angular时需要注意一些问题：
@@ -595,7 +595,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* 一维结构：一对一
 	* 二维结构：例如表格
 	* Tree型结构
-		* 由于ng的\$digest机制和"对象深比较"机制，ng在处理Tree型结构方面性能非常差
+		* 由于ng的$digest机制和"对象深比较"机制，ng在处理Tree型结构方面性能非常差
 		* 建议不要对Tree型结构使用双向数据绑定
 * 绑定过程中可以使用表达式
 	* ng支持哪些形式的表达式
@@ -607,10 +607,10 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 		* 不支持if/for/while等控制逻辑
 * 实现双向数据绑定
 	* 如何把一个Model绑定到多个View（观察者模式）
-	* 如何才能知道Model发生了变化（脏治检测\$watch与\$digest）
+	* 如何才能知道Model发生了变化（脏治检测$watch与$digest）
 	* 如果Model是深层嵌套的结构，如何知道某个属性是不是变了（对象深比较）
 	* A和B两个方法互相watch对方的时候，如何避免发生“震荡”（TTL机制）
-	* 绑定过程中如何支持表达式（\$parser与\$eval自制JS版的编译器）
+	* 绑定过程中如何支持表达式（$parser与$eval自制JS版的编译器）
 
 
 ## 开发移动APP
