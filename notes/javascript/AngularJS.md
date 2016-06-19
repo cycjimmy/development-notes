@@ -474,7 +474,13 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * bootstrap：创建injector、拉起内核和启动模块、调用compile服务
 
 ### 2 依赖注入原理分析：Provider与Injector
-* 为什么要依赖注入
+* Dependency Injection
+	* 每一个angular应用都有一个injector
+	* injector负责自动处理依赖关系、实例化对象
+	* 对用户代码来说，injector是透明的
+	* injector会自动分析函数签名，注入所需要的对象
+	* 申明依赖关系的三种方式 [http://docs.angularjs.org/guide/di](http://docs.angularjs.org/guide/di)
+	* DI可以用在不同的地方，主要用在controller和factory中
 * ng的三种注入方式
 	* 内联式注入：最推荐
 	
@@ -536,18 +542,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* ng中的“依赖注入”是用过provider和injector这2个机制联合实现的
 
 ### 3 指令的执行过程分析
-* 自定义compile与link函数
-* compile与link的区别
-
-### 4 $scope与双向数据绑定分析
-
-
-
-
-
-
-
-### HTML Parser & Directives
+#### 3.1 HTML Parser & Directives
 指令的目的是用来自定义HTML标签，指令时一种标记，用来告诉HTML Parser 这里需要编译
 
 * 指令命名规则：推荐使用中划线分隔的写法，例如
@@ -571,27 +566,123 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     * 指令处理HTML元素
     * 指令之间的交互
 
-### Two way DataBinding
-* 脏值检测原理
-* 由于脏值检测，使用angular时需要注意一些问题：
-    * 监控的表达式不要过于复杂，表达式数量不要太多
-    * 监听函数内不要有DOM操作，那样会显著降低性能
-    * 不能互相监听对方会修改的属性，以免形成交叉引用
-    * 主席ng默认的TTL是10次
-    * **深拷贝式的脏值检测会消耗更多内存**（复杂的大型JSON数据尤其如此）
+#### 3.2 compile与link的区别
+* compile函数的作用是被指令的模板进行转换
+* link的作用是在模型和视图之间建立关联，包括在元素上注册事件监听
+* scope在链接阶段才会被绑定在元素上，因此**compile阶段操作scope会报错**
+* 对于用一个指令的多个实例，compile只会执行一次，而link对于指令的每个实例都会执行一次
+* 一般情况下我们只要编写link函数就够了
+* 如果你编写自定义的compile函数，自定义的link函数无效，因为compile函数应该返回一个link函数供后续处理
 
-### Dependency Injection
-* 每一个angular应用都有一个injector
-* injector负责自动处理依赖关系、实例化对象
-* 对用户代码来说，injector是透明的
-* injector会自动分析函数签名，注入所需要的对象
-* 申明依赖关系的三种方式 [http://docs.angularjs.org/guide/di](http://docs.angularjs.org/guide/di)
-* DI可以用在不同的地方，主要用在controller和factory中
+#### 3.3指令的执行过程
 
-### Module & Controller & Service
+* 从ng-app开始，递归子层DOM结构，收集指令
+* 如果有需要，为指令生成childScope；childScope绑定到元素的data属性上；
+* 调用每个指令自己的compile函数生成compositeLinkFn函数；
+* 编译的结果是返回一个publicLinkFn函数；
+* 编译完成之后立即调用生成的publicLinkFn函数；
+
+### 4 \$scope与双向数据绑定分析
+* ng是如何发现数据发生了变化
+	* 脏值检测原理
+	* 由于脏值检测，使用angular时需要注意一些问题：
+	    * 监控的表达式不要过于复杂，表达式数量不要太多
+	    * 监听函数内不要有DOM操作，那样会显著降低性能
+	    * 不能互相监听对方会修改的属性，以免形成交叉引用
+	    * 主席ng默认的TTL是10次
+	    * **深拷贝式的脏值检测会消耗更多内存**（复杂的大型JSON数据尤其如此）
+* 被绑定对象的结构
+	* 一维结构：一对一
+	* 二维结构：例如表格
+	* Tree型结构
+		* 由于ng的\$digest机制和"对象深比较"机制，ng在处理Tree型结构方面性能非常差
+		* 建议不要对Tree型结构使用双向数据绑定
+* 绑定过程中可以使用表达式
+	* ng支持哪些形式的表达式
+		* 数学运算: + 、 - 、 / 、 * 、 %
+		* 比较运算: == 、 != 、 \> 、 \< 、 \>= 、 \<=
+		* 布尔运算: && 、 || 、 !
+		* 位运算: ^ 、 & 、 |
+		* 对象和数组字面值: \[ \] 、 \{ \}
+		* 不支持if/for/while等控制逻辑
+* 实现双向数据绑定
+	* 如何把一个Model绑定到多个View（观察者模式）
+	* 如何才能知道Model发生了变化（脏治检测\$watch与\$digest）
+	* 如果Model是深层嵌套的结构，如何知道某个属性是不是变了（对象深比较）
+	* A和B两个方法互相watch对方的时候，如何避免发生“震荡”（TTL机制）
+	* 绑定过程中如何支持表达式（\$parser与\$eval自制JS版的编译器）
 
 
+## 开发移动APP
 
-## ng控件开发
+* Native APP
+	* 优点
+		* 运行效率高
+		* 可调用各种设备资源
+	* 缺点
+		* 人力成本高
+		* 发布速度慢（AppStore确认时间的很长）
+		* 更新版本的问题（用户就是不更新！）
+		* 实现图文混排等功能有各种坑
+		* Android平台版本众多，品牌众多，众多厂商，各种分辨率
+
+* WEB APP
+	* 致命缺陷：运行效率太差
+		* 操作流畅程度不够（转场动画、列表滚动）
+		* 运行性能差
+		* 设备API不够
+	* 用HTML5+CSS3+JS开发
+	* 通过打包工具，生成
+		* .ipa (iOS)
+			* npm安装Phonegap
+			* 升级iOS和XCode
+			* iOS账户和一大推配置
+			* Phonegap调用XCode打包
+		* .apk (android)
+			* npm安装Phonegap
+			* 下载ADT
+			* Phonegap调用ADT打包
+		* .xap (windows)
+	* 常用打包工具
+		* [phonegap](http://phonegap.com/)
+		* [Appcan](http://www.appcan.cn/)
+		* [appcelerator](http://www.appcelerator.com/)
+	* 设计开发打包一体化工具：Intel XDK
+	* 常见WEB APP框架对比
+		* jQuery mobile
+			* 优点：技术栈统一，学习成本低
+			* 缺点：低端安卓机存在性能问题
+		* Sencha Touch
+			* 优点：各项技术架构都非常完善
+			* 缺点：学习成本高（与Extjs内核相同）
+		* zepto.js
+			* 优点：衍生自jQuery，性能更高
+			* 缺点：有不少坑官方没有及时填起来
+		
+		| 框架名称       | 运行效率 | 学习成本 | 是否开源 | 备注                       |
+		| ------------- |:------:|:------:|:------:| --------------------------- |
+		| jQuery mobile |   低   |   低   |   是   | 低端安卓机很卡                  |
+		| zepto         |   高   |   低   |   是   | 体积小，只有10k，只有内核，没有UI |
+		| Sencha Touch  |   中   |   高   |   是   | ext-core内核，架构复杂          |
+		| GMU           |   中   |   高   |   是   | 来自百度                       |
+		| ionic         |   高   |   高   |   是   | 内核是AngularJS                |
+	
+* Hybird APP
+	* 优点
+		* 综合了开发效率和运行效率
+		* 发版本方便
+	* 缺点
+		* 运行效率中等（切换等交互效果）
+		* 需要写一点原生代码（至少需要实现2个平台 ）
+	* 关于Webkit与WebView
+	
+* 移动APP开发形式选择
+	* 如果公司不是很穷，请尽量开发原生APP，局部嵌入WebView
+	* 如果非常赶时间要给用户演示Demo，请用WebAPP的方式开发
+	* Hybrid App最本质的改进在于，使用了多个WebView实例（一个Activity里面嵌一个）
+	* WebApp本质上只使用了一个WebView实例（这也是为什么存WebAPP很卡的原因）
+	* 用WebAPP开发并不意味着一点原生代码都不用写（至少打包的时候还是需要原生环境的）
+	* HyBrid才是王道
+
 
 ## TDD和前端自动化测试
