@@ -694,110 +694,113 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
         * 基于WebDriverJS
         * [https://github.com/angular/protractor](https://github.com/angular/protractor)
         
+        
 ***
 
 ## 6 阿里懒懒交流会AngularJS专场部分内容
 
 ### 6.1 表单验证
-* 对于表单验证面临的问题
-    * 数据的绑定
-    * 验证Form中的Element，如：input、select、textarea
-    * 错误信息如何展示
-    * 异步校验
-* 在ng中使用表单验证
-    * 令原生HTML5验证失败
-    
+#### 6.1.1 对于表单验证面临的问题
+* 数据的绑定
+* 验证Form中的Element，如：input、select、textarea
+* 错误信息如何展示
+* 异步校验
+#### 6.1.2 在ng中使用表单验证
+* 令原生HTML5验证失败
+
+    ```html
+    <!-- 加上novalidate值令原生HTML5验证失败 -->
+    <form name="myForm" novalidate></form>
+
+    <!-- 或者 -->
+    <ng-form name="myForm" novalidate></ng-form>
+    ```
+
+* input表单域中添加的验证选项
+    * Required
+        * 布尔值
+        * 必填项：验证某个表单是否为空
+
         ```html
-        <!-- 加上novalidate值令原生HTML5验证失败 -->
-        <form name="myForm" novalidate></form>
-        
-        <!-- 或者 -->
-        <ng-form name="myForm" novalidate></ng-form>
+        <input type="text" Required>
         ```
-    
-    * input表单域中添加的验证选项
-        * Required
-            * 布尔值
-            * 必填项：验证某个表单是否为空
-            
-            ```html
-            <input type="text" Required>
-            ```
-            
-        * Minimum length
-            * {number}
-            * 最小长度，至少要有{number}个字符
-            
-            ```html
-            <input type="text" ng-minlength=2>
-            ```
-            
-        * Maximum length
-            * {number}
-            * 最大长度，最多有{number}个字符
-            
-            ```html
-            <input type="text" ng-maxlength=128>
-            ```
-            
-        * Matches a pattern
-            * 正则表达式
-            * 正则匹配，匹配某个正则表达式
-            
-            ```html
-            <input type="text" ng-pattern="/a-zA-Z/">
-            ```
-            
-        * Email
-            * 匹配email地址
-            
-            ```html
-            <input type="email" name="email" ng-model="entity.email">
-            ```
-            
-        * Number
-            * 验证表单项为数字
-            
-            ```html
-            <input type="number" name="age" ng-model="entity.age">
-            ```
-            
-        * Url
-            * 验证表单项为合法的URL地址
-            
-            ```html
-            <input type="url" name="homepage" ng-model="entity.weibo_url">
-            ```
-            
-        * **ng表单验证属性**
-        
+
+    * Minimum length
+        * {number}
+        * 最小长度，至少要有{number}个字符
+
+        ```html
+        <input type="text" ng-minlength=2>
+        ```
+
+    * Maximum length
+        * {number}
+        * 最大长度，最多有{number}个字符
+
+        ```html
+        <input type="text" ng-maxlength=128>
+        ```
+
+    * Matches a pattern
+        * 正则表达式
+        * 正则匹配，匹配某个正则表达式
+
+        ```html
+        <input type="text" ng-pattern="/a-zA-Z/">
+        ```
+
+    * Email
+        * 匹配email地址
+
+        ```html
+        <input type="email" name="email" ng-model="entity.email">
+        ```
+
+    * Number
+        * 验证表单项为数字
+
+        ```html
+        <input type="number" name="age" ng-model="entity.age">
+        ```
+
+    * Url
+        * 验证表单项为合法的URL地址
+
+        ```html
+        <input type="url" name="homepage" ng-model="entity.weibo_url">
+        ```
+
+    * **ng表单验证属性**
+
         | Property  | Class       | Description                   |
         |:---------:|:-----------:|:-----------------------------:|
         | $valid    | ng-valid    | {Boolean}当验证规则通过时为True  |
         | $invalid  | ng-invalid  | {Boolean}当验证规则不通过时为True |
         | $pristine | ng-pristine | {Boolean}当输入元素没被填写过     |
         | $dirty    | ng-dirty    | {Boolean}当输入元素被填写过      |
-        
-        * **访问表单的属性**
-            * To access the form：\[form name\].\[angular property\]
-            * To access an input：\[form name\].\[input name\].\[angular property\]
-    * demo:[http://runjs.cn/code/2u0zuhou](http://runjs.cn/code/2u0zuhou)
-        * demo的实现
-            * 对input的输入验证
-            * 表单的错误信息
-            * 自定义的样式
-            * 自动处理表单能否提交
-            * 自定义的异步校验组件
-* ng表单验证的不足
-    * 需要在HTML中编写处理错误的
-    * 大量相似的错误展示逻辑
-    * 错误信息出现的位置与方式(submit or blur)不够灵活
-    * 对键盘的支持(keydown,keypress)不好
-    * 缺少常用的验证组件(uniqueCheck,pwdRepeat)
+
+    * **访问表单的属性**
+        * To access the form：\[form name\].\[angular property\]
+        * To access an input：\[form name\].\[input name\].\[angular property\]
+* demo:[http://runjs.cn/code/2u0zuhou](http://runjs.cn/code/2u0zuhou)
+    * demo的实现
+        * 对input的输入验证
+        * 表单的错误信息
+        * 自定义的样式
+        * 自动处理表单能否提交
+        * 自定义的异步校验组件
+#### 6.1.3 ng表单验证的不足
+* 需要在HTML中编写处理错误的
+* 大量相似的错误展示逻辑
+* 错误信息出现的位置与方式(submit or blur)不够灵活
+* 对键盘的支持(keydown,keypress)不好
+* 缺少常用的验证组件(uniqueCheck,pwdRepeat)
 
 ### 6.2 基于公共组件的开发心得
 * 第三方库推荐
     * angular-ui/bootstrap
+        * 丰富的组件，官方支持
+        * 基于bootstrap，样式轻松搞定
     * angular-ui/ui-router
         * 在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置
         * 通过定义controller、template和view等属性，来定义指定位置的用户界面和界面行为
@@ -824,9 +827,110 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
         * 操作cookies
     * html2js
         * 将htnl打包成js文件
+* 一些重要的services
+    * Dialog
+        * 公共的service服务，利用config灵活定制dialog配置
+            * showDialog
+            * showDialogByUrl
+            * showMessageDialog
+            * showMessageDialogSimple
+    * $http
+        * 包装$http服务
+            * get请求默认添加timer阻止缓存
+            * sessionTimeout异常拦截
+            * 通过successMessage可以自动弹出growl message提醒用户操作成功
+            * 通过submitMessage提醒用户操作已经提交。这种情况适用于那种请求比较慢的场合
+            * 通过ignoreErrorHandler避免弹出错误信息对话框
+            * 通过注入sessionTimeout的key决定什么情况下提醒用户操作超时
+* 目前的开发方式（submodule）
+    * 更改一个组件不会导致全部控制台更新，所以每个控制台重新发布的时候，都要经过仔细的回归测试，很可能一个小修改，会导致一些控制台无法使用，submodule更新publish/tag
+    * 向前兼容
+    * 使用provider，将参数配置暴露出来
+    * 需要重构的时候果断重构，等待耦合更多的时候修改更佳麻烦
+    * 注意scope作用域的问题，写健壮的代码
+    * 每个公共组件都有详尽的注释
+    * 逐渐整理出基本的provider(service)，方便开发新组件
+    * review
+    
+### 6.3 动画指南ngAnimate
+* 简介
+    * 支持css和JS设置动画，JS支持回调
+    * 基本指令动画(nglf、ngRepeat、ngShow...)
+    * 可直接使用CSS定义动画效果
+    * 第三方动画CSS(ngAnimate)
+* 基本使用
+    * .class.ng-animate-class
+        * .ng-enter & .ng-leave 
+        
+            ```html
+            <div ng-if="show" class="fade"></div>
+            <button ng-click="show = !show">Toggle</button>
+            ```
+
+            ```css
+            div{width:160px;height:160px;background:red;}
+
+            //过渡
+            .fade{transition:1s linear all;}
+
+            //进入
+            .fade.ng-enter{opacity:0;}                  //进入的初始值
+            .fade.ng-enter.ng-enter-active{opacity:1;}  //进入的结束值
+
+            //离开
+            .fade.ng-leave{opacity:1;}                  //离开的初始值
+            .fade.ng-leave.ng-leave-active{opacity:0;}  //离开的结束值
+            ```
+
+            * enter执行顺序
+                * Directive Enter
+                * .ng-enter 
+                * .ng-enter-active
+                * default
+            * enter执行顺序
+                * default
+                * .ng-leave
+                * .ng-leave-active
+                * Directive Leave
+            * .ng-enter & .ng-leave 适用于
+                * ngIf
+                * ngView
+                * ngInclude 
+                * ngRepeat
+                    * ng-Repeat还支持.ng-move(.ng-move-active)
+                    * 在.ng-enter-stagger中使用transition-delay & transition-duration控制延迟
+                * ngSwitch
+        * .ng-show & .ng-hide
+            * Hide执行顺序
+                * .ng-hide-add
+                * .ng-hide-add-active
+                * Directive Hide
+            * Show执行顺序
+                * .ng-hide-remove
+                * .ng-hide-remove-active
+                * Directive Show
+            * 使用ngHide和ngShow时，需要为.ng-hide-add和.ng-hide-remove增加{display:block;!important}
+* 支持ngAnimate的基本指令
+    * ngIf 控制元素创建和销毁
+    * ngShow 显示
+    * ngHide 隐藏
+    * ngView 路由控制
+    * ngInclude 
+    * ngRepeat
+    * ngClass
+    * ngSwitch
+* 自定义动画
+    * .CLASS-add & .CLASS-remove
+        * add执行过程
+            * .CLASS-add
+            * .CLASS-add-active
+            * .CLASS
+        * remove执行过程
+            * .CLASS-remove
+            * .CLASS-add-active
+            * ~~.CLASS~~
     
 
-### 6.3 动画指南
 
 ### 6.4 执行流程
 
