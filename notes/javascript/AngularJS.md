@@ -1,11 +1,11 @@
 # AngularJS
 
-## 简介
+## 1 简介
 * [https://angularjs.org/](https://angularjs.org/)
 * [http://www.apjs.net/](http://www.apjs.net/)
 * [http://www.angularjs.cn/](http://www.angularjs.cn/)
 
-### AngularJs核心特性
+### 1.1 AngularJs核心特性
 * MVC(Model←→Controller←→View)
     * Model: 数据模型层
     * View: 视图层，负责展示
@@ -15,7 +15,7 @@
 * 指令系统(指令的本质：类似于taglib)
 * 双向数据绑定
 
-## 前端开发环境
+### 1.2 前端开发环境概述
 * 代码编辑工具
     * Sublime Text
     * WebStorm
@@ -30,18 +30,10 @@
 * 单元测试工具
     * karma
     * jasmine
-        * describe(string, function) 这个函数表示分组，也就是一组测试用例
-        * it(string, function) 这个函数表示单个测试用例
-        * expect(espression) 表示期望expression这个表达式具有某个值或者具有某种行为
-        * to\*\*\*(arg) 这个函数表示匹配
 * 集成测试工具
     * protractor
-        * 专门为AngularJS定制的一款集成测试工具
-        * 基于WebDriverJS
-        * [https://github.com/angular/protractor](https://github.com/angular/protractor)
 
-
-## 初探基本概念与用法实例
+### 1.3 初探基本概念与用法实例
 
 先来一个hello world
 
@@ -132,9 +124,9 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     * Jasmine
 
 
-## 基本概念具体讲解
+## 2 基本概念具体讲解
 
-### 1 MVC
+### 2.1 MVC
 
 * 为什么需要MVC
     * 代码规模越来越大，切分职责是大势所趋
@@ -182,7 +174,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
             * Mutation observation 观察者模式[观察模型有没有脏]
             * Scope destruction 销毁[自动销毁 or 手动销毁]
 
-### 2 模块化与依赖注入(路由、模块、依赖注入)
+### 2.2 模块化与依赖注入(路由、模块、依赖注入)
 
 * AngularJS的模块化实现
 * 一个完整的项目结构是什么样的
@@ -211,7 +203,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * 模块之间的依赖应该怎么做？ （依赖注入）
 
 
-### 3 双向数据绑定
+### 2.3 双向数据绑定
 * 取值表达式与ng-bind指令
     * 取值表达式 {{...}} 【在angularJS的库还没有加载到页面中的时候，会显示花括号形式源代码】
     * ng-bind="..." 【不会显示花括号形式代码，一般在index首屏使用】
@@ -221,24 +213,24 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* 可以接收表达式
 * ngAnimate
 
-### 4 路由
-#### 4.1 为什么要用路由
+### 2.4 路由
+#### 2.4.1 为什么要用路由
 * Ajax请求不会留下history记录
 * 用户无法直接通过URL进入应用中的指定页面（保存书签，链接分享给朋友）
 * Ajax对SEO是个灾难
 
-#### 4.2 用ngRoute进行视图之间的路由
+#### 2.4.2 用ngRoute进行视图之间的路由
 * 有多层嵌套路由时，可使用[UI-Router](https://github.com/angular-ui/ui-router)
 
-#### 4.3 前端路由的基本原理
+#### 2.4.3 前端路由的基本原理
 * 哈希#
 * HTML5中心的history API
 * 路由的核心是给应用定义“状态”
 * 使用路由机制会影响到应用的整体编码方式（需要预先定义好状态）
 * 考虑兼容性问题与“优雅降级”
 
-### 5 指令
-#### 5.1 最简单的指令hello
+### 2.5 指令
+#### 2.5.1 最简单的指令hello
 * 匹配模式restrict
 	* 对应4种模式
 		* A 表示作为属性匹配（默认）
@@ -277,7 +269,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* replace为true时，模板内容替换原内容
 	* transclude为true时，原内容会被放到模板中属性为ng-transclude的标签内[这是一个非常重要的配置项，可以实现指令互相嵌套]
 
-#### 5.2 comile与link(操作元素、添加CSS样式、绑定事件)
+#### 2.5.2 comile与link(操作元素、添加CSS样式、绑定事件)
 * 三个阶段
 	* 加载阶段
 		* 加载angular.js，找到ng-app指令，确定应用边界
@@ -295,19 +287,19 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* 如果需要修改DOM结构，应该在postLink中来做，如果在preLink中做会导致错误
 	* 大多数时候我们只要编写link函数即可
 
-#### 5.3 指令与控制器之间的交互
+#### 2.5.3 指令与控制器之间的交互
 * link函数的参数
     * scope
     * element
     * attr
         * 注意HTML里用驼峰法则写的属性在js attr调用的时候变为小写，不然会报错
 
-#### 5.4 指令间的交互
+#### 2.5.4 指令间的交互
 
-#### 5.5 scope的类型与独立scope
+#### 2.5.5 scope的类型与独立scope
 * 设定设置项 scope: {}, 就创建了独立的scope
 
-#### 5.6 scope的绑定策略
+#### 2.5.6 scope的绑定策略
 * @ 
     * 把当前属性作为**字符串**传递。
     * 还可以绑定来自外层scope的值，在属性值中插入{{}}即可
@@ -316,7 +308,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * & 
     * 传递一个来自父scope的**函数**，稍后调用
     
-#### 5.7 AngularJS内置指令
+#### 2.5.7 AngularJS内置指令
 * a
 * form
     * 原生form表单不能嵌套，angular的form可以嵌套
@@ -347,14 +339,14 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * ng-include 可用来缓存模板
 * script
 
-#### 5.8 自定义指令和第三方指令库
+#### 2.5.8 自定义指令和第三方指令库
 * 自定义指令：Expander
 * 第三方指令库：[angular-ui](http://angular-ui.github.io/)
     * 常用组件：ng-grid
 
 
-### 6 Service和Provider
-#### 6.1 使用$http服务（angular内置的service，类似$ajax）
+### 2.6 Service和Provider
+#### 2.6.1 使用$http服务（angular内置的service，类似$ajax）
 
     ```javascript
     var myModule=angular.module("MyModule",[]);
@@ -372,7 +364,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     }]);
     ```
 
-#### 6.2 Service的特性
+#### 2.6.2 Service的特性
 * Service都是**单例**的
 * Service由$injector负责实例化（不需要自己去NEW实例）
 * Service在整个应用的生命周期中存在，可以用来**共享数据**
@@ -380,11 +372,11 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * 自定义的Service需要写在内置的Service后面
 * 内置Service的命名以$符号开头，自定义Service应该避免
 
-#### 6.3 Service、Factory、Provider本质上都是Provider
+#### 2.6.3 Service、Factory、Provider本质上都是Provider
 * angular里三者只是参数的格式或数据不同，本质上都是Provider
 * Provider模式是“策略模式”+“抽象工厂模式”的混合体
 
-#### 6.4 使用$filter服务
+#### 2.6.4 使用$filter服务
 * $filter是用来进行数据格式化的专用服务
 * AngularJS内置了9个filter
     * currency 货币
@@ -409,7 +401,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     });  
     ```
 
-#### 6.5 其他内置的Service介绍
+#### 2.6.5 其他内置的Service介绍
 * $compile 编译服务
 * $filter 数据格式化工具
 * $interval
@@ -420,7 +412,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * $parse
 * $http 封装了Ajax
 
-### 7 实际工作流程
+### 2.7 实际工作流程
 * 界面原型设计
 * 切分功能模块并建立目录结构
 * 编写UI（可使用angular-ui、bootstrap等）
@@ -436,8 +428,8 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 
 
 
-## 核心原理解析
-### 1 AngularJS的启动过程分析
+## 3 核心原理解析
+### 3.1 AngularJS的启动过程分析
 * 用自执行函数的形式让整个代码在加载完成之后立即执行
 	* 在window上暴露一个唯一的全局对象angular
 * 检查是不是多次导入Angular\[window.angular.bootstrap\]
@@ -473,7 +465,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 
 * bootstrap：创建injector、拉起内核和启动模块、调用compile服务
 
-### 2 依赖注入原理分析：Provider与Injector
+### 3.2 依赖注入原理分析：Provider与Injector
 * Dependency Injection
 	* 每一个angular应用都有一个injector
 	* injector负责自动处理依赖关系、实例化对象
@@ -541,8 +533,8 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 		* ...
 	* ng中的“依赖注入”是用过provider和injector这2个机制联合实现的
 
-### 3 指令的执行过程分析
-#### 3.1 HTML Parser & Directives
+### 3.3 指令的执行过程分析
+#### 3.3.1 HTML Parser & Directives
 指令的目的是用来自定义HTML标签，指令时一种标记，用来告诉HTML Parser 这里需要编译
 
 * 指令命名规则：推荐使用中划线分隔的写法，例如
@@ -566,7 +558,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     * 指令处理HTML元素
     * 指令之间的交互
 
-#### 3.2 compile与link的区别
+#### 3.3.2 compile与link的区别
 * compile函数的作用是被指令的模板进行转换
 * link的作用是在模型和视图之间建立关联，包括在元素上注册事件监听
 * scope在链接阶段才会被绑定在元素上，因此**compile阶段操作scope会报错**
@@ -574,7 +566,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * 一般情况下我们只要编写link函数就够了
 * 如果你编写自定义的compile函数，自定义的link函数无效，因为compile函数应该返回一个link函数供后续处理
 
-#### 3.3指令的执行过程
+#### 3.3.3指令的执行过程
 
 * 从ng-app开始，递归子层DOM结构，收集指令
 * 如果有需要，为指令生成childScope；childScope绑定到元素的data属性上；
@@ -582,7 +574,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * 编译的结果是返回一个publicLinkFn函数；
 * 编译完成之后立即调用生成的publicLinkFn函数；
 
-### 4 $scope与双向数据绑定分析
+### 3.4 $scope与双向数据绑定分析
 * ng是如何发现数据发生了变化
 	* 脏值检测原理
 	* 由于脏值检测，使用angular时需要注意一些问题：
@@ -613,7 +605,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* 绑定过程中如何支持表达式（$parser与$eval自制JS版的编译器）
 
 
-## 开发移动APP
+## 4 开发移动APP
 
 * Native APP
 	* 优点
@@ -685,4 +677,163 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* HyBrid才是王道
 
 
-## TDD和前端自动化测试
+## 5 TDD和前端自动化测试
+* TDD(Test-Driven Development)
+    * 由测试驱动的开发
+    * 先写好测试用例再写功能
+* Unit Testing
+    * karma
+    * jasmine
+        * describe(string, function) 这个函数表示分组，也就是一组测试用例
+        * it(string, function) 这个函数表示单个测试用例
+        * expect(espression) 表示期望expression这个表达式具有某个值或者具有某种行为
+        * to\*\*\*(arg) 这个函数表示匹配
+* E2E Testing(End To End Testing)
+    * protractor
+        * 专门为AngularJS定制的一款集成测试工具
+        * 基于WebDriverJS
+        * [https://github.com/angular/protractor](https://github.com/angular/protractor)
+        
+***
+
+## 6 阿里懒懒交流会AngularJS专场部分内容
+
+### 6.1 表单验证
+* 对于表单验证面临的问题
+    * 数据的绑定
+    * 验证Form中的Element，如：input、select、textarea
+    * 错误信息如何展示
+    * 异步校验
+* 在ng中使用表单验证
+    * 令原生HTML5验证失败
+    
+        ```html
+        <!-- 加上novalidate值令原生HTML5验证失败 -->
+        <form name="myForm" novalidate></form>
+        
+        <!-- 或者 -->
+        <ng-form name="myForm" novalidate></ng-form>
+        ```
+    
+    * input表单域中添加的验证选项
+        * Required
+            * 布尔值
+            * 必填项：验证某个表单是否为空
+            
+            ```html
+            <input type="text" Required>
+            ```
+            
+        * Minimum length
+            * {number}
+            * 最小长度，至少要有{number}个字符
+            
+            ```html
+            <input type="text" ng-minlength=2>
+            ```
+            
+        * Maximum length
+            * {number}
+            * 最大长度，最多有{number}个字符
+            
+            ```html
+            <input type="text" ng-maxlength=128>
+            ```
+            
+        * Matches a pattern
+            * 正则表达式
+            * 正则匹配，匹配某个正则表达式
+            
+            ```html
+            <input type="text" ng-pattern="/a-zA-Z/">
+            ```
+            
+        * Email
+            * 匹配email地址
+            
+            ```html
+            <input type="email" name="email" ng-model="entity.email">
+            ```
+            
+        * Number
+            * 验证表单项为数字
+            
+            ```html
+            <input type="number" name="age" ng-model="entity.age">
+            ```
+            
+        * Url
+            * 验证表单项为合法的URL地址
+            
+            ```html
+            <input type="url" name="homepage" ng-model="entity.weibo_url">
+            ```
+            
+        * **ng表单验证属性**
+        
+        | Property  | Class       | Description                   |
+        |:---------:|:-----------:|:-----------------------------:|
+        | $valid    | ng-valid    | {Boolean}当验证规则通过时为True  |
+        | $invalid  | ng-invalid  | {Boolean}当验证规则不通过时为True |
+        | $pristine | ng-pristine | {Boolean}当输入元素没被填写过     |
+        | $dirty    | ng-dirty    | {Boolean}当输入元素被填写过      |
+        
+        * **访问表单的属性**
+            * To access the form：\[form name\].\[angular property\]
+            * To access an input：\[form name\].\[input name\].\[angular property\]
+    * demo:[http://runjs.cn/code/2u0zuhou](http://runjs.cn/code/2u0zuhou)
+        * demo的实现
+            * 对input的输入验证
+            * 表单的错误信息
+            * 自定义的样式
+            * 自动处理表单能否提交
+            * 自定义的异步校验组件
+* ng表单验证的不足
+    * 需要在HTML中编写处理错误的
+    * 大量相似的错误展示逻辑
+    * 错误信息出现的位置与方式(submit or blur)不够灵活
+    * 对键盘的支持(keydown,keypress)不好
+    * 缺少常用的验证组件(uniqueCheck,pwdRepeat)
+
+### 6.2 基于公共组件的开发心得
+* 第三方库推荐
+    * angular-ui/bootstrap
+    * angular-ui/ui-router
+        * 在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置
+        * 通过定义controller、template和view等属性，来定义指定位置的用户界面和界面行为
+    * **bindonce**
+        * 把不需要双向绑定的属性用bo-*的形式代替ng-*，加快运行效率
+            * bo-text
+            * bo-html
+            * bo-if
+            * bo-title
+            * bo-show
+            * bo-hide
+            * ...
+    * angular-sanitize
+        * $sce(Strict Contextual Escaping)service支持 过滤html
+    * angular-animate
+        * 动画支持
+    * angular-growl
+        * 简单的消息提醒
+    * angular-base64
+        * angular的base64实现
+    * angular-translate
+        * angular多语言的支持
+    * angular-cookies
+        * 操作cookies
+    * html2js
+        * 将htnl打包成js文件
+    
+
+### 6.3 动画指南
+
+### 6.4 执行流程
+
+### 6.5 基于AngularJS的复杂业务系统的代码架构探索
+
+### 6.6 The $q in AngularJS
+
+### 6.7 AngularJS and testing
+
+
