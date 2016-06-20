@@ -929,6 +929,25 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
             * .CLASS-remove
             * .CLASS-add-active
             * ~~.CLASS~~
+    * javascript Animation
+        
+        ```javascript
+        app.animation('.CLASS-NAME',function () {
+            return {
+                'HANDLE': function(element, className, done){
+                    
+                    jQuery(element).animate({
+                        'color':'#666',
+                        'background':'#AAA'
+                    }, done);
+                    
+                    return function(cancelled) {
+                        //callback...
+                    }
+                }
+            }
+        });
+        ```
     
 
 
