@@ -1051,6 +1051,23 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 	* 外包团队
 
 ### 6.5 AngularJS and testing
-
+* 单元测试
+    * 什么样的代码适合单元测试
+        * 最小的片段，核心代码
+        * 可分隔开的，解耦
+        * 有一个运行目的
+    * 框架
+        * Jasmine
+* E2E测试
+* CI系统 & 自动测试
+    * 为什么要用CI系统
+        * 保存每次测试数据
+        * 团队信息共享
+        * 不是只为前端团队定制
+        * 自动化固定时间测试
+    * 框架
+        * Jenkins
+        * Toast
+    
 
 
