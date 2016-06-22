@@ -16,7 +16,7 @@ Development Notes (zh-chs)
 ### JavaScript
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [webGL](./notes/javascript/webgl.md)
-* Ajax
+* [Ajax](./notes/javascript/Ajax.md)
 * [Weex](./notes/javascript/weex.md)
 * [AngularJS](./notes/javascript/AngularJS.md)
 * Node.js
