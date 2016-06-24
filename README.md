@@ -17,6 +17,7 @@ Development Notes (zh-chs)
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [webGL](./notes/javascript/webgl.md)
 * [Ajax](./notes/javascript/Ajax.md)
+* [Canvas](./notes/javascript/Canvas.md)
 * Node.js
 
 ### CSS
