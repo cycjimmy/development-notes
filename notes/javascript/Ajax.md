@@ -1,6 +1,6 @@
 # Ajax
 
-## 1 基本概念介绍
+## 1 Ajax基本概念介绍
 ### 1.1 Ajax简介
 * Ajax的全称
     * Asynchronous Javascript and XML
@@ -91,13 +91,131 @@ var request = new XMLHttpRequest();
             } 
         }
     ```
+    
+#### 1.3.4 Ajax+php创建一个简单实例
+##### 实例简介
+* 纯html页面，用来实现员工查询和新建页面
+* php页面，用来实现查询员工和新建员工的后台接口
 
+##### php简介
+* php是一种创建动态交互性站点的**服务器端脚本语言**
+    * 开源
+    * 免费
+    * 使用广泛
+    * 入门简单
+* php能够生成动态页面内容
+* php能够创建、打开、读取、写入、删除以及关闭服务器上的文件
+* php能够接收表单数据
+* php能够发送并取回cookies
+* php能够添加、删除、修改数据库中的数据
+* php能够限制用户访问网站中的某些页面
+* ...
+* php开发环境：[XAMPP](https://www.apachefriends.org/)
 
+### 1.4 JSON
+#### 1.4.1 JSON基本概念
+* JSON：JavaScript对象表示法(JavaScript Object Notation)
+* JSON是储存和交换文本信息的语法，类似XML。采用键值对的方式来组织，易于人们阅读和编写，同时也易于机器解析和生成
+* JSON是独立于语言的，也就是说不管什么语言，都可以解析JSON，只需要按照JSON的规则来就行
 
+#### 1.4.2 JSON与XML比较
+* JSON的长度比XML格式小
+* JSON读写的速度更快
+* JSON可以使用JavaScript内建的方法直接进行解析，转换成JavaScript对象，非常方便
 
+#### 1.4.3 JSON语法
+* JSON数据的书写格式是:名称/值对
+    * 例如："name": "郭靖"
+* JSON的值可以是下面这些类型：
+    * 数字（整数或浮点数）
+    * 字符串（在双引号中）
+    * 逻辑值（true或false）
+    * 数组（在方括号中）
+    * 对象（在花括号中）
+    * null
+* 示例：
 
+    ```json
+    {
+        "staff": [
+            {"name": "洪七", "age": 70},
+            {"name": "郭靖", "age": 35},
+            {"name": "黄蓉", "age": 30}
+        ]
+    }
+    ```
 
+#### 1.4.4 JSON解析
+* eval
+    * 在代码中使用eval是很危险的，eval会执行json中的函数，特别是用它执行第三方json数据时，其中可能包含恶意代码
+* JSON.parse
+    * JSON.parse只解析字符串本身，不会执行其中函数，还可以捕获JSON中的语法错误，推荐使用
+    
+#### 1.4.5 JSON校验
+* [JSONLint](http://jsonlint.com/)
 
+## 2 用jquery实现Ajax
+* jQuery.ajax([settings])
+    * type: 类型,"POST"或"GET",默认为"GET"
+    * url: 发送请求的地址
+    * data: 是一个对象，连同请求发送到服务器的数据
+    * dataType: 预期服务器返回的数据类型。如果不指定，jQuery将自动根据HTTP包MIME信息来智能判断，－般我们采用json格式，可以设置为"json"
+    * success: 是－个方法,请求成功后的回调函数。传入返回后的数据，以及包含成功代码的字符串
+    * error: 是－个方法，请求失败时调用此函数，传入XMLHttpRequest对象
+* 示例
+
+    ```javascript
+    $("#save").click(function(){ 
+		$.ajax({ 
+		    type: "POST", 	
+			url: "serverjson.php",
+			data: {
+				name: $("#staffName").val(), 
+				number: $("#staffNumber").val(), 
+				sex: $("#staffSex").val(), 
+				job: $("#staffJob").val()
+			},
+			dataType: "json",
+			success: function(data){
+				if (data.success) { 
+					$("#createResult").html(data.msg);
+				} else {
+					$("#createResult").html("出现错误：" + data.msg);
+				}  
+			},
+			error: function(jqXHR){     
+			   alert("发生错误：" + jqXHR.status);  
+			},     
+		});
+	});
+    ```
+
+## 3 跨域
+### 3.1 什么是跨域
+* 一个域名地址的组成：以 http://www.abc.com:8080/scripts/jquery.js 为例
+    * 协议(http://)
+    * 子域名(www)
+    * 主域名(abc.com)
+    * 端口号(8080)
+    * 请求资源地址(scripts/jquery.js)
+* 当协议、子域名、主域名、端口号中任意一个不同，都算作不同域
+* 不同域之间相互请求组员，就算作“跨域”
+* JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象。简单的理解就是因为JavaScript同源策略的限制，a.com域名下的js无法操作b.com或是c.a.com域名下的对象。
+
+### 3.2 处理跨域的方法
+#### 3.2.1 代理
+* 通过在同域名的web服务器端创建一个代理（后端处理）
+
+#### 3.2.2 JSONP
+* JSONP可用于解决主流浏览器的跨域数据访问问题
+* 局限性：只对GET请求有效，不支持POST请求
+
+#### 3.2.3 XHR2
+* HTMLS提供的XMLHttpRequest Level2已经实现了跨域访问以及其他的－些新功能
+* IElO以下的版本都不支持
+* 在服务器端做－些小小的改造即可(php)
+    * header('Access-Control-Allow-Origin:*'); 
+    * header('Access-Control-Allow-Methods:POST,GET');
 
 
 
