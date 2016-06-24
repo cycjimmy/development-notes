@@ -17,15 +17,17 @@ Development Notes (zh-chs)
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [webGL](./notes/javascript/webgl.md)
 * [Ajax](./notes/javascript/Ajax.md)
-* [Weex](./notes/javascript/weex.md)
-* [AngularJS](./notes/javascript/AngularJS.md)
 * Node.js
-* VelocityJS fekit
-* [BigPipe](./notes/javascript/BigPipe.md)
 
 ### CSS
 * [CSS](./notes/css/css.md)
 * [LESS](./notes/css/less.md)
+
+### framework
+* [AngularJS](./notes/framework/AngularJS.md)
+* [BigPipe](./notes/framework/BigPipe.md)
+* [Weex](./notes/framework/weex.md)
+* VelocityJS fekit
 
 ### tools
 * [Grunt-beginner前端自动化工具](./notes/tools/grunt.md)
