@@ -336,7 +336,7 @@ bower init
 			npm adduser
 			```
 			
-		* 复制github-gages中为我们自动生成的插件打包地址，并将其发布到npm上
+		* 复制github-pages中为我们自动生成的插件打包地址，并将其发布到npm上
 
 			```node
 			npm publish [插件打包地址]

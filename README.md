@@ -19,6 +19,7 @@ Development Notes (zh-chs)
 * [Ajax](./notes/javascript/Ajax.md)
 * [Canvas](./notes/javascript/Canvas.md)
 * Node.js
+* typescript
 
 ### CSS
 * [CSS](./notes/css/css.md)
