@@ -26,6 +26,7 @@ Development Notes (zh-chs)
 * [LESS](./notes/css/less.md)
 
 ### framework
+* [requireJS](./notes/framework/requireJS.md)
 * [AngularJS](./notes/framework/AngularJS.md)
 * [BigPipe](./notes/framework/BigPipe.md)
 * [Weex](./notes/framework/weex.md)
