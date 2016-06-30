@@ -211,8 +211,8 @@ alert(message); //错误！
 
 #### 3.5.8 条件操作符
 
-```javascript
-variable= boolean_express1on ? true_value : false_value;
+```
+variable= boolean_express1on ? true_value : false_value
 ```
 
 这行代码的含义就是基于对boolean_expression求值的结果，结果为true，则给变量variable赋true_value的值，如果求值结果为false,则给变量variable赋false_value值
@@ -228,10 +228,111 @@ variable= boolean_express1on ? true_value : false_value;
     ```
 
 ### 3.6 语句
+#### 3.6.1 if语句（略）
+#### 3.6.2 do-while语句（略）
+#### 3.6.3 while语句（略）
+#### 3.6.4 for语句（略）
+#### 3.6.5 for-in语句
+* for-in语句是一种精准的迭代语句，可以用来枚举对象的属性。以下是for-in语句的语法：
+
+    ```
+    for (property in expression) statement
+    ```
+
+    ```javascript
+    //使用for-in循环来显示BOM中window对象的所有属性
+    for (var propName in window) {
+    document.write(propName);
+    }
+    ```
+
+* ECMAScript对象的属性没有顺序，通过for-in循环输出的属性名的顺序是不可预测的
+* 如果表示要迭代的对象的变量值为null或undefined,for-in语句会抛出错误。ECMAScript5更正了这一行为：对这种情况不再抛出错误，而只是不执行循环体。为了保证最大限度的兼容性，建议在使用for-in循环之前，先检测确认该对象的值不是null或undefined。
+#### 3.6.6 label语句
+* 使用label语句可以在代码中添加标签，以便将来使用。以下是label语句的语法：
+
+    ```
+    label: statement
+    ```
+
+* 定义的label语句可以在由break或continue语句引用
+* 加标签的语句一般都与for语句等循环语句配合使用
+
+#### 3.6.7 break和continue语句
+* break和continue语句用于在循环中精确地控制代码的执行
+    * break语句会立即退出循环，强制继续执行循环后面的语句
+    * continue语句虽然也是立即退出循环，但退出循环后会从循环的顶部继续执行
+* break和continue语句和label语句联合使用
+
+    ```javascript
+    var num = 0;
+    outermost: for (var i = 0; i < 10; i++) {
+        for (var j = 0; j < 10; j++) {
+            if (i == 5 && j == 5) {
+                break outermost;
+            }
+            num++;
+        }
+    }
+    alert(num);  //55
+    ```
+
+    在这个例子中， outermost标签表示外部的for语句。如果每个循环正常执行10次， 则num++语句就会正常执行100次。num的值应该是100。但内部循环中的break语句带了一个参数(要返回到的标签),添加这个标签的结果将导致break语句不仅会退出内部的for语句（即使用变量j的循环），而且也会退出外部的for语句（即使用变量i的循环）。为此，当变量i和j都等于5时，num的值正好是55。同样，continue语句也可以像这样与label语句联用。
+
+* 联用break、continue和label语句能够执行复杂的操作，但如果使用过度，也会给调试带来麻烦。建议如果使用label语句，一定要使用**描述性**的标签，同时不要嵌套过多的循环。
+
+#### 3.6.8 with语句
+* 在开发大型应用程序时，不建议使用with语句。
+#### 3.6.9 switch语句（略）
+
+### 3.7 函数
+* 返回值
+    * 要么让函数始终都返回一个值，要么永远都不要返回值，否则会给调试代码带来不便
+* 严格模式对函数有一些限制：
+    * 不能把函数命名为eval或arguments
+    * 不能把参数命名为eval或arguments
+    * 不能出现两个命名参数同名的情况
+
+## 4 变量、作用域和内存问题
+### 4.1 基本类型和引用类型的值
+* 5种基本数据类型（Undefined、Null、Boolean、Number、String）是按值访问的，可以操作保存在变量中的实际的值
+* 引用类型的值是保存在内存中的对象，引用类型的值是按引目访问的，在操作对象时，实际上是在操作对象的引用而不是实际的对象
+* 动态的属性
+    * 可以给一个引用类型的值增加属性
+    * 无法给基本类型的值添加属性
+* 复制变量值
+    * 从一个变量向另一个变量复制基本类型的值，会在变量对象上创建一个新值，然后把该值复制到新变量的位置上，这两个变量可以参与任何操作而不会相互影响
+    * 从一个变量向另一个变量复制引用类型的值时，同样也会将存储在变量对象中的值复制一份放到为新变量分配的空间中，这个值的副本实际上是一个指针，指向存储在堆中的同一个对象，改变一个变量，会影响到另一个变量
+* 传递参数
+    * ECMAScript中所有函数的参数都是按值传递的（把函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样）
+        * 向参数传递基本类型的值时，被传递的值会被复制给一个局部变量(即命名参数)
+        * 向参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部
+* 检测类型
+    * instanceof操作符，其语法如下所示：
+
+        ```
+        result = variable instanceof constructor
+        ```
+
+        如果变量是给定引用类型（根据它的原裂链来识别）的实例，那么 instanceof操作符就会返回true，例如：
+
+        ```javascript
+        alert(person instanceof Object);   //变量person是Object吗？
+        alert(colors instanceof Array);    //变量colors是Array吗？
+        alert(pattern instanceof RegExp);  //变量pattern是RegExp吗？
+        ```
+
+### 4.2 执行环境及作用域
+### 4.3 垃圾收集
+
+
+
 
 
 
 ***
+
+
 更新中……
 
 
