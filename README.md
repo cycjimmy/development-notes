@@ -41,6 +41,9 @@ Development Notes (zh-chs)
 * [brackets](./notes/code_editor/brackets.md)
 * [WebStorm](./notes/code_editor/Web_Storm.md)
 
+## reading notes
+* [JavaScript高级程序设计(第三版)](./readingNotes/JavaScript高级程序设计.md)
+
 ## extra
 * Common Software
 	* [For MAC](./extra/Common Software For MAC.md)
