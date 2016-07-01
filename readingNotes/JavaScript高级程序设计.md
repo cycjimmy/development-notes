@@ -28,8 +28,6 @@
 
 script标签属性defer和async只适用于外部脚本：defer表示延迟，async表示异步
 
-***
-
 ## 3 基本概念
 
 ### 3.1 语法（严格模式）
@@ -296,7 +294,8 @@ variable= boolean_express1on ? true_value : false_value
 ## 4 变量、作用域和内存问题
 ### 4.1 基本类型和引用类型的值
 * 5种基本数据类型（Undefined、Null、Boolean、Number、String）是按值访问的，可以操作保存在变量中的实际的值
-* 引用类型的值是保存在内存中的对象，引用类型的值是按引目访问的，在操作对象时，实际上是在操作对象的引用而不是实际的对象
+* 引用类型的值是保存在内存中的对象，保存在推内存中，是按引目访问的
+* 包含引用类型值的变量实际上包含的并不是对象本身，而是一个指向该对象的指针
 * 动态的属性
     * 可以给一个引用类型的值增加属性
     * 无法给基本类型的值添加属性
@@ -308,7 +307,8 @@ variable= boolean_express1on ? true_value : false_value
         * 向参数传递基本类型的值时，被传递的值会被复制给一个局部变量(即命名参数)
         * 向参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部
 * 检测类型
-    * instanceof操作符，其语法如下所示：
+    * 确定一个值是哪种基本类型可以使用typeof操作符
+    * 确定一个值是哪种引用类型可以使用instanceof操作符，其语法如下所示：
 
         ```
         result = variable instanceof constructor
@@ -323,7 +323,214 @@ variable= boolean_express1on ? true_value : false_value
         ```
 
 ### 4.2 执行环境及作用域
+* 执行环境（execution context）
+    * 每个执行环镜都有一个与之关联的变量对象（variable object），保存了该环绕中定义的所有变量和函数
+    * 每个函数都有自己的执行环境，当执行流进入一个函数时．函数的环境就会被推入一个环境栈中，而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境
+* 作用域链（scope chain）
+    * 当代码在一个环境中执行时，会创建变量对象的一个作用域链
+    * 作用域链保证对执行环境有权访问的所有变量和函数有序的访问
+    * 作用域链的前端，始终都是当前执行的代码所在环境的变量对象
+    * 作用域链中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境
+    * 全局执行环境的变量对象始终都是作用域链中的最后一个对象
+* JavaScript没有块级作用域，作用域用ECMAScript的话来讲，就是它们自己的执行环境
+    * if语句、for语句等，变量声明会将变量添加到当前的执行环境中，而不是只存在if执行体或者for的循环体中。
+    * 声明变量
+        * 使用var声明的变量会自动被添加到最接近的环境中
+    * 查询标识符
+        * 当在某个环境中为了读取或写入而引用一个标识符时，必须通过搜索来确定该标识符实际代表什么
+        * 搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符。
+
+            ```javascript
+            var color= 'blue';
+            function getColor () {
+                var color = 'red';
+                return color;
+            }
+            alert(getColor());       //'red'
+            ```
+
+* 变量的执行环境有助于确定应该何时释放内存
+
 ### 4.3 垃圾收集
+> JavaScript具有自动垃圾收集机制，执行环境会负责管理代码执行过程中使用的内存（离开作用域的值将被自动标记为可以回收，将在垃圾收集期间被删除），开发人员一般不必操心内存管理的问题，但是系统分配给Web浏览器的可用内存数量通常要比分配给桌面应用程序的少（防止运行JavaScript的网页耗尽全部系统内存而导致系统崩溃），所以应该确保占用最少的内存可以让页面获得更好的性能。
+
+* **优化内存占用的最佳方式：为执行中的代码只保存必畏的数据**
+    * 解除引用（dereferencing）:为了确保有效地回收内存，应该及时解除不再使用的全局对象、全局对象属性以及循环引用变量的引用
+        * 一旦数据不再有用，通过将其值设置为null来释放其引用
+        * 适用于大多数全局变量和全局对象的属性
+        * 局部变量会在它们离开执行环境时自动被解除引用
+
+## 5 引用类型
+### 5.1 Object类型
+* 主要用来存储和传输数据
+
+### 5.2 Array类型
+> ECMAScript数组的每一项可以保存任何类型的数据，大小是可以动态调整
+
+#### 5.2.1 检测数组
+* `Array.isArray()`
+
+#### 5.2.2 转换方法
+* `toLocaleString()`
+* `toString()`
+* `valueOf()`
+
+#### 5.2.3 栈方法
+* 栈是一种LIFO(Last-In-First-Out 后进先出）的数据结构
+* 栈中项的插入和移除，只发生在栈的顶部
+* ECMAScript为数组专门提供了`push()`和`pop()`方法，以便实现类似栈的行为
+    * `push()`方法可以接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度
+    * `pop()`方法从数组末尾移除最后一项，减少数组的length值，然后返回移除的项
+
+#### 5.2.4 队列方法
+* 队列数据结构的访问规则是FIFO(First-In-First-Out 先进先出）
+* 队列在列表的末端添加项，从列表的前端移除项
+* 实现这一操作的数组方法是结合`push()`和`shift()`
+    * `push()`方法在上面栈方法已经讲过
+    * `shift()`方法移除数组中的第一个项并返回该项，同时将数组长度减1
+* ECMAScript还为数组提供了一个`unshift()`方法，在数组前端添加任意个项并返回新数组的长度
+
+#### 5.2.5 重排序方法
+*  `reverse()`方法反转数组项的顺序
+*  `sort()`方法按各项**字符串**升序排列数组项，即使各项都是数值，也并不是按照实际数值大小进行排列
+* 但可以给`sort()`方法传一个比较参数（不转化为字符串排序）
+
+    ```javascript
+    //设定一个比较函数
+    function compare (value1, value2) {
+        if (value1 < value2) {
+          return -1;
+        } else if (value1 > value2) {
+          return 1;
+        } else {
+          return 0;
+        }
+    }
+
+    var values = [10, 1, 5, 10, 15];
+    values.sort(compare);                 //将比较函数以参数形式传给sort方法
+    alert(values);                        //0,1,5,10,15
+    ```
+
+#### 5.2.6 操作方法
+* `concat()`方法先创建当前数组一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组
+* `slice()`方法基于当前数组中的一个或多个项创建一个新数组
+    * 可以接受一个或两个参数，即要返回项的起始和结束位置。
+    * 在只有一个参数的情况下，方法返回从该参数指定位置开始到当前数组末尾的所有项
+    * 如果有两个参数，返回起始和结束位置之间的项（不包括结束位置的项）
+
+        ```javascript
+        var colors = ['red', 'green', 'blue', 'yellow', 'purple'];
+        var colors2 = colors.slice(1);
+        var colors3 = colors.slice(1,4);
+        alert(colors2);      //green,blue,yellow,purple
+        alert(colors3);      //green,blue,yellow
+        ```
+
+* `splice()`方法有很多种用法，主要用途是向数组的中部插入项，始终都会返回一个从原始数组中删除项组成的数组（如果没有删除任何项，则返回一个空数组）
+    * 删除：可以删除任意数量的项，2个参数，起始位置、要删除的项数
+    * 插入：可以向指定位置插入任意数量的项，3+个参数，起始位置、0（要删除的项数）、要插入的项
+    * 替换：可以向指定位置插入任意数量的项，且同时删除任意数量的项，指定3+个参数，起始位置、要删除的项数、要插入的任意数量的项
+
+        ```javascript
+        var colors = ['red', 'green', 'blue'];
+        var removed = colors.splice(0,1);                  //删除第一项
+        alert(colors);                                     //green.blue
+        alert(removed);                                    //red，返回的敛组中只包含一项
+
+        removed = colors.splice(1,0,'yellow', 'orange');   //从位置1开始插入两项
+        alert(colors);                                     //green,yellow,orange,blue
+        alert(removed);                                    //返回的是一个空数组
+
+        removed = colors.splice(1,1,'red', 'purple');      //插入两项，删除一项
+        alert(colors);                                     //green,red,purple,orange,blue
+        alert(removed);                                    //yellow，返回的数组中有一项
+        ```
+
+#### 5.2.7 位置方法
+* `indexOf()`和`lastindexOf()`
+    * 两个参数：要查找的项、表示查找起点位置的索引（可选）
+    * 返回要查找的项在数组中的位置，在没找到的情况下返回-1
+    * 在比较第一个参数 与数组中的每一项时，会使用金等操作符
+    * `indexOf()`从数组的开头（位置0）开始向后查找
+    * `lastindexOf()`从数组的末尾开始向前查找
+
+#### 5.2.8 迭代方法
+ECMAScript5为数组定义了5个迭代方法，每个方法都接收两个参数：要在每一项上运行的函数、运行该函数的作用域对象（可选，影响this的值）
+
+传入这些方法中的函数会接收三个参数：数组项的值、该项在数组中的位置、数组对象本身
+
+* `every()`：对数组中的每一项运行给定函数，如果该函数对每一项都返回true，则返回true
+
+    ```javascript
+    var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+    var everyResult = numbers.every(function (item, index, array) {
+      return (item> 2);
+    });
+    alert(everyResult);   //false
+    ```
+
+* `filter()`：对数组中的每一项运行给定函数，返回该函数会返回true的项组成的数组
+
+    ```javascript
+    var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+    var everyResult = numbers.filter(function (item, index, array) {
+      return (item> 2);
+    });
+    alert(everyResult);   //[3, 4, 5, 4, 3]
+    ```
+
+* `forEach()`：对数组中的每一项运行给定函数，这个方法没有返回值，本质上与使用for循环迭代数组一样
+
+    ```javascript
+    var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+    var everyResult = numbers.forEach(function (item, index, array) {
+      //执行某些操作
+    });
+    ```
+
+* `map()`：对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组
+
+   ```javascript
+       var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+       var everyResult = numbers.map(function (item, index, array) {
+         return item * 2;
+       });
+       alert(everyResult);   //[2, 4, 6, 8, 10, 8, 6, 4, 2]
+   ```
+
+* `some()`：对数组中的每一项运行给定函数，如果该函数对任一项返回true，则返回true
+
+   ```javascript
+    var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+    var everyResult = numbers.some(function (item, index, array) {
+      return (item> 2);
+    });
+    alert(everyResult);   //true
+    ```
+
+#### 5.2.9 缩小方法
+* `reduce()`和`reduceRight()`这两个方法都会迭代数组的所有项，然后构建一个最终返回的值，都接收两个参数：在每一项上调用的函数、作为缩小基础的初始值（可选）
+
+* 传给`reduce()`和`reduceRight()`的函数接收4个参数：前一个值、当前值、项的索引、数组对象，这个函数返回的任何值都会作为第一个参数自动传给下一项，第一次迭代发生在数组的第二项上
+* `reduce()`方法从数组的第一项开始，逐个遍历到最后
+* `reduceRight()`从数组的最后一项开始．向前遍历到第一项
+
+    ```javascript
+    //使用reduce()方法执行求和的操作
+    var values = [1, 2, 3, 4, 5];
+    var sum = values.reduce(function (prev, cur, index, array) {
+        return prev + cur;
+    });
+    alert(sum);   //15
+    ```
+
+### 5.3 Date类型
+### 5.4 RegExp类型
+### 5.5 Function类型
+### 5.6 基本包装类型
+### 5.7 单体内置对象
+
 
 
 
