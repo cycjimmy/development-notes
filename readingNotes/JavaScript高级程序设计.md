@@ -514,7 +514,7 @@ ECMAScript5为数组定义了5个迭代方法，每个方法都接收两个参�
 
 * 传给`reduce()`和`reduceRight()`的函数接收4个参数：前一个值、当前值、项的索引、数组对象，这个函数返回的任何值都会作为第一个参数自动传给下一项，第一次迭代发生在数组的第二项上
 * `reduce()`方法从数组的第一项开始，逐个遍历到最后
-* `reduceRight()`从数组的最后一项开始．向前遍历到第一项
+* `reduceRight()`从数组的最后一项开始，向前遍历到第一项
 
     ```javascript
     //使用reduce()方法执行求和的操作
@@ -527,6 +527,48 @@ ECMAScript5为数组定义了5个迭代方法，每个方法都接收两个参�
 
 ### 5.3 Date类型
 ### 5.4 RegExp类型
+```
+var expression = /pattern/flags;
+```
+
+* pattern是正则表达式
+* flags标明正则表达式的匹配模式
+    * g：全局（global）模式
+    * i：不区分大小写（case-insensitive）模式
+    * m：多行（multiline）模式
+* 正则表达式中的元字符都有特殊用途，如果想要匹配字符串中包含的这些字符，就必须对它们进行转义
+* 使用正则表达式字面量必须像直接调用RegExp构造函数一样，每次都创建新的RegExp实例
+
+#### 5.4.1 RegExp实例属性
+* RegExp的每个实例都具有下列属性
+    * global：布尔值，表示是否设置了g标志
+    * ignoreCase：布尔值，表示是否设置了i标志
+    * lastIndex：整数，表示开始搜索下一个匹配项的字符位置（从0算起）
+    * multiline：布尔值，表示是否设置了m标志
+    * source：正则表达式的**字面量形式**所用的**字符串**
+
+```javascript
+var pattern1 = /\[bc\]at/i;
+alert(pattern1.global);        //false
+alert(pattern1.ignoreCase);    //true
+alert (pattern1.multiline);    //false
+alert (pattern1.lastIndex);    //0
+alert (pattern1.source);      //'\[bc\]at'
+
+var pattern2 = new RegExp('\\[bc\\]at', 'i');
+alert (pattern2.source);      //'\[bc\]at'
+//pattern1和pattern2表示的正则表达式其实是一样的
+```
+
+#### 5.4.2 RegExp实例方法
+* `exec()`
+    * 接受一个参数(要应用模式的字符串)
+    * 返回包含一个匹配项信息的数组（虽然是Array的实例，但包含两个额外的属性：index和input）
+        * index表示匹配项在字符串中的位置
+        * input表示应用正则表达式的字符串
+    * 在没有匹配项的情况下返回null
+#### 5.4.3 RegExp构造函数属性
+#### 5.4.4 模式的局限性
 ### 5.5 Function类型
 ### 5.6 基本包装类型
 ### 5.7 单体内置对象
