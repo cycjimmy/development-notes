@@ -526,6 +526,106 @@ ECMAScript5为数组定义了5个迭代方法，每个方法都接收两个参�
     ```
 
 ### 5.3 Date类型
+Date类型使用从UTC(Coordinated Universal Time 国际协调时间）1970年1月1日午夜（零时）开始经过的毫秒数来保存日期。
+
+* 使用new操作符和Date构造函数创建一个日期对象
+    * 不传递参数的情况下，新创建的对象自动获得当前日期和时间
+    
+    ```javascript
+    var now= new Date();
+    ```
+
+* `Date.parse()`
+    * 接收一个表示日期的字符串参数，根据这个字符串返回相应日期的毫秒数
+
+    ```js
+    //创建一个日期对象:2004年5月25日
+    var someDate1 = new Date(Date.parse('May 25, 2004'));
+    //可直接写成下面的形式
+    var someDate2 = new Date('May 25, 2004');
+    ```
+
+* `Date.UTC()`
+    * 接收参数：年份（必须项）、基于0的月份（一月是0，二月是1，以此类推，必须项）、月中的哪一天 (1到31)、小时数（O到23）、 分钟、秒、毫秒数
+    * 返回表示日期的毫秒数
+
+    ```js
+    //GMT时间2005年5月5日下午5:55:55
+    var allfives1 = new Date(Date.UTC(2005, 4, 5, 17, 55,55));
+    //本地时间2005年5月5日下午5:55:55(注意区别：日期和时间基于本地时区而非GMT来创建)
+    var allfives2 = new Date(2005, 4, 5, 17, 55,55);
+    ```
+
+* `Data.now()`
+    * 返回调用这个方法时的日期和时间的毫秒数
+
+    ```js
+    //取得开始时间
+    var start = Date.now();
+    //调用函数
+    doSomething();
+    //取得停止时间
+    var stop = Date.now(),
+        result = stop -start;
+    ```
+
+#### 5.3.1 继承的方法
+* `valueOf()`返回日期的毫秒
+    * 由此特性，可以方便使用比较操作符来比较日期值
+
+    ```js
+    var date1 = new Date(2007, 0, 1);
+    var date2 = new Date(2007, 1, 1);
+    alert(date1 < date2);               //true
+    alert(date1 > date2);               //false
+    ```
+
+#### 5.3.2 日期格式化方法
+* `toDateString()` 以特定于实现的格式显示星期几、月、日、年
+* `toTimeString()` 以特定于实现的格式显示时、分、秒、时区
+* `toLocaleDateString()` 以特定于地区的格式显示星期几、月、日、年
+* `toLocaleTimeString()` 以特定于实现的格式显示时、分、秒
+* `toUTCString ()` 以特定于实现的格式完整的UTC日期
+
+**以上这些字符串格式方法的输出因浏览器而异**
+
+#### 5.3.3 日期/时间组件方法
+|方法|说明|
+|---|---|
+| `getTime()` | 返回表示日期的毫秒数，与`valueOf()`方法返回的值相同 |
+| `setTime(毫秒)` | 以毫秒数设置日期，会改变整个日期 |
+| `getFullYear()` | 取得4位数的年份 |
+| `getUTCFullYear()` | 返回UTC的4位数年份 |
+| `setFullYear(年)` | 设置年份 |
+| `setUTCFullYear(年)` | 设置UTC年份 |
+| `getMonth()` | 返回月份，其中0表示一月，11表示十二月 |
+| `getUTCMonth()` | 返回UTC月份，其中0表示一月，11表示十二月 |
+| `setMonth(月)` | 设置月份，0表示一月，11表示十二月 |
+| `setUTCMonth(月)` | 设置UTC月份，0表示一月，11表示十二月 |
+| `getDate()` | 取得天数（1到31) |
+| `getUTCDate()` | 返回UTC天数（1到31) |
+| `setDate(日)` | 设置天数（1到31)，如果传入的值超过了该月中应有的天数，则增加月份 |
+| `setUTCDate(日)` | 设置UTC天数（1到31)，如果传入的值超过了该月中应有的天数，则增加月份  |
+| `getDay()` | 返回星期（0表示星期日，6表示星期六） |
+| `getUTCDay()` | 返回UTC日期的星期（0表示星期日，6表示星期六） |
+| `getHours()` | 返回小时数（0到23）  |
+| `getUTCHours()` | 返回UTC小时数（0到23） |
+| `setHours(时)` | 设置小时数，传入的值超过23则增加天数 |
+| `setUTCHours(时)` | 设置UTC小时数，传入的值超过23则增加天数 |
+| `getMinutes()` | 返回分钟数（0到59） |
+| `getUTCMinutes()` | 返回UTC分钟数（0到59） |
+| `setMinutes(年)` | 设置分钟数，传入的值超过59则增加小时数 |
+| `setUTCMinutes(年)` | 设置UTC分钟数，传入的值超过59则增加小时数 |
+| `getSeconds()` | 返回秒数（0到59） |
+| `getUTCSeconds()` | 返回UTC秒数（0到59） |
+| `setSeconds(秒)` | 设置秒数，传入的值超过59则增加分钟数 |
+| `setUTCSeconds(秒)` | 设置UTC秒数，传入的值超过59则增加分钟数 |
+| `getMilliseconds()` | 返回毫秒数 |
+| `getUTCMilliseconds()` | 返回UTC毫秒数 |
+| `setMilliseconds(毫秒)` | 设置毫秒数 |
+| `setUTCMilliseconds(毫秒)` | 设置UTC毫秒数 |
+| `getTimezoneOffset()` | 返回本地时间与UTC时间相差的分钟数 |
+
 ### 5.4 RegExp类型
 ```
 var expression = /pattern/flags;
@@ -567,8 +667,55 @@ alert (pattern2.source);      //'\[bc\]at'
         * index表示匹配项在字符串中的位置
         * input表示应用正则表达式的字符串
     * 在没有匹配项的情况下返回null
+
+    ```js
+    var text= 'mon and dad and baby';
+    var pattern = /mom( and dad (and baby)?)?/gi;
+    var matches = pattern.exec(text);
+    alert (matches.index);       //0
+    alert(matches.input);        //'mon and dad and baby'
+    alert(matches[0]);           //'mon and dad and baby'
+    alert(matches[1]);           //'and dad and baby'
+    alert(matches[2]);           //'and baby'
+    ```
+
+* `test()`
+    * 接受一个字符串参数
+    * 在模式与该参数匹配的情况下返回true，否则返回false
+    * 经常被用在if语句中
+
+    ```js
+    var text = '000-00-0000';
+    var pattern = /\d{3}-\d{2}-\d{4}/;
+    if (pattern.test(text)) {
+        alert('The pattern was matched.');
+    }
+    ```
+
+* 继承的方法
+    * RegExp实例继承的`toLocaleString()`和`toString（）`方法都会返回正则表达式的字面量，与创建正则表达式的方式无关
+    * 正则表达式的`valueOf()`方法返回正则表达式本身
+
+    ```js
+    var pattern= new RegExp('\\[bc\\]at', 'gi');
+    alert(pattern.toString());              // /\[bc\]at/gi
+    alert(pattern.toLocaleString());        // /\[bc\]at/gi
+    ```
+
 #### 5.4.3 RegExp构造函数属性
+RegExp构造函数包含的属性适用于作用域中的所有正则表达式，并且基于所执行的最近一次正则表达式操作而变化，属性可以通过两种方式访问
+
+|长属性名|短属性名|说明|
+|---|:---:|---|
+|input|$_|最近一次要匹配的字符串|
+|lastMatch|$&|最近一次的匹配项|
+|lastParen|$＋|最近一次匹配的捕获组|
+|leftContext|$`|input字符串中lastMatch之前的文本|
+|multiline|$*|布尔值，表示是否所有表达式都使用多行模式|
+|rightContext|$'|input字符串中lastMatch之后的文本|
+
 #### 5.4.4 模式的局限性
+
 ### 5.5 Function类型
 ### 5.6 基本包装类型
 ### 5.7 单体内置对象
