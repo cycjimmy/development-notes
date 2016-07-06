@@ -707,17 +707,103 @@ RegExp构造函数包含的属性适用于作用域中的所有正则表达式�
 
 |长属性名|短属性名|说明|
 |---|:---:|---|
-|input|$_|最近一次要匹配的字符串|
-|lastMatch|$&|最近一次的匹配项|
-|lastParen|$＋|最近一次匹配的捕获组|
-|leftContext|$`|input字符串中lastMatch之前的文本|
-|multiline|$*|布尔值，表示是否所有表达式都使用多行模式|
-|rightContext|$'|input字符串中lastMatch之后的文本|
+|input| $_ | 最近一次要匹配的字符串|
+|lastMatch| $& | 最近一次的匹配项|
+|lastParen| $+ | 最近一次匹配的捕获组|
+|leftContext| $` | input字符串中lastMatch之前的文本|
+|multiline| $* | 布尔值，表示是否所有表达式都使用多行模式|
+|rightContext| $' | input字符串中lastMatch之后的文本|
+
+```js
+var text = 'this has been a short summer';
+var pattern = /(.)hort/g;
+
+if (pattern.test(text)) {
+    alert(RegExp.input);          //this has been a short summer
+    alert(RegExp.leftContext);    //this has been a
+    alert(RegExp.rightContext);   //summer
+    alert(RegExp.lastMatch) ;     //short
+    alert(RegExp.lastParen);      //s
+    alert(RegExp.multiline);      //false
+}
+```
+
+* 用于存储捕获组的构造函数属性
+    * `RegExp.$1`、`RegExp.$2`…`RegExp.$9`，分别用于储存第一、第二…第九个匹配的捕获组
+    * 调用`exec()`或`test()`方法时被自动填充
+
+```JS
+var text = 'this has been a short summer';
+var pattern= /(..)or(.)/g;
+
+if (pattern.test(text)) {
+    alert(RegExp.$1);    //sh
+    alert(RegExp.$2);    //t
+}
+```
 
 #### 5.4.4 模式的局限性
+* ECMAScript正则表达式不支持的特性
+    * 匹配字符串开始和结尾的\A和\Z锚，但支持以插入符号(^)和美元符号($)来匹配字符串的开始和结尾
+    * 向后查找(lookbehind)，但完全支持向前查找(lookahead)
+    * 并集和交集类
+    * 原子组(atomic grouping)
+    * Unicode支持(单个字符除外，如\uFFFF)
+    * 命名的捕获组，但支持编号的捕获组
+    * s(single 单行)和x(free-spacing 无间隔)匹配模式
+    * 条件匹配
+    * 正则表达式注释
 
 ### 5.5 Function类型
+#### 5.5.1 没有重载(深入理解)
+* **将函数名想象为指针**
+
+#### 5.5.2 函数声明与函数表达式
+解析器在向执行环境中加载数据时，会率先读取函数声明，并使其在执行任何代码之前可用，函数表达式则必须等到解析器执行到它所在的代码行，才会真正被解释执行。
+
+```js
+//使用函数申明
+alert(sum(10, 10));            // 20
+function sum (num1, num2) {
+    return num1 + num2;
+}
+```
+
+```js
+//使用函数表达式
+alert(sum(10, 10));        //err:'unexpected identifier' 意外标识符
+var sum = function (num1, num2) {
+    return num1 + num2;
+};
+```
+
+#### 5.5.3 作为值的函数
+ECMAScript中的函数名本身就是变量，所以函数也可以作为值来使用，不仅可以像传递参数一样把一个函数传递给另一个函数，还可以将一个函数作为另一个函数的结果返回。
+
+#### 5.5.4 函数内部属性
+在函数内部，有两个特殊的对象：arguments和this。
+
+* arguments的主要用途是保存函数参数，它有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数
+
+    ```js
+    //下面是一个定义阶乘的递归函数
+    function factorial (num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * arguments.callee(num-1);
+            //这边的 arguments.callee(num-1) 其实就指向的是factorial(num-1)
+            //为了防止这个函数的执行与函数名factorial耦合在一起
+        }
+    }
+    ```
+
+* this引用的是函数据以执行的环境对象
+
+#### 5.5.5 函数属性和方法
+
 ### 5.6 基本包装类型
+
 ### 5.7 单体内置对象
 
 
