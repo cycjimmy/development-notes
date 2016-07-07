@@ -800,9 +800,88 @@ ECMAScript中的函数名本身就是变量，所以函数也可以作为值来�
 
 * this引用的是函数据以执行的环境对象
 
+    ```js
+    window.color = 'red';
+    var o = {color: 'blue'};
+    function sayColor () {
+        alert(this.color);
+    }
+    sayColor();                  //'red'
+    o.sayColor = sayColor;
+    o.sayColor();                //'blue'
+    ```
+
+* ECMAScript5规范化了函数对象的属性：caller
+    * caller保存调用当前函数的函数的引用
+    * 在全局作用域中调用函数，caller值为null
+
+    ```js
+    function outer () {
+      inner();
+    }
+    function inner () {
+      alert(arguments.callee.caller);
+    }
+    outer();                          //警告框中显示outer()函数的源代码
+    ```
+
+* 为了安全性在严格模式下：
+    * 访问`arguments.callee`会导致错误
+    * 不能为函数的caller属性赋值
+
 #### 5.5.5 函数属性和方法
+* length属性表示函数希望接收的命名参数的个数
+
+    ```js
+    function sayName(name){
+        alert(name);
+    }
+
+    function sum(num1, num2){
+        return num1 + num2;
+    }
+
+    function sayHi(){
+        alert("hi");
+    }
+
+    alert(sayName.length);  //1
+    alert(sum.length);      //2
+    alert(sayHi.length);    //0
+    ```
+
+* prototype属性用来保存所有实例方法
+    * 诸如`toString()`和`valueOf()`等方法实际上都保存在prototype名下，只不过是通过各自对象的实例访问罢了
+    * ECMAScript5中，prototype属性不可枚举，因此使用for-in无法发现
+
+* `apply()`和`call()`：每个函数都包含这两个非继承而来的方法，用途都是在特定的作用域中调用函数，实际上是设置函数体内this对象的值（能够扩充函数赖以运行的作用域）
+    * `apply()`方法接收两个参数
+        * 在其中运行函数的作用域
+        * 参数数组（可以是Array的实例，也可以是arguments对象）
+    * `call()`方法接收多个参数
+        * 在其中运行函数的作用域
+        * 其余参数为传递给函数的参数（必须逐个列举出来）
+    * 使用`apply()`或`call()`来扩充作用域的最大好处，就是对象不需要与方法有任何耦合关系
+* `bind()`方法会创建一个函数的实例，其this值会被绑定到传给`bind()`函数的值
 
 ### 5.6 基本包装类型
+为了便于操作基本类型值，ECMAScript还提供了3个特殊的引用类型(基本包装类型)：Boolean、Number和String
+
+引用类型与基本包装类型的主要区别就是对象的生存期。自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。
+
+#### 5.6.1 Boolean类型
+* 建议不要使用Boolean对象
+
+#### 5.6.2 Number类型
+* `toString()` 传递一个表示基数的参数，告诉它返回几进制数值的字符串形式
+* `toFixed()` 按照指定的小数位返回数值的字符串表示
+* `toExponential()` 返回以指数表示法（e表示法）表示的数值字符串形式，接收一个参数，指定输出结果中的小数位数
+* `toPrecision()` 可能会返回固定大小（fixed）格式，也可能返回指数 (exponential）格式
+* 不建议直接实例化Number类型
+
+#### 5.6.3 String类型
+* String类型的每个实例都有一个length属性，表示字符串中包含多个字符
+
 
 ### 5.7 单体内置对象
 
