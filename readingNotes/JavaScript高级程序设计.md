@@ -361,8 +361,10 @@ variable= boolean_express1on ? true_value : false_value
         * 局部变量会在它们离开执行环境时自动被解除引用
 
 ## 5 引用类型
+引用类型与传统面向对象程序设计中的类相似，但实现不同
 ### 5.1 Object类型
 * 主要用来存储和传输数据
+* Object是一个基础类型，其他所有引用类型都从Object继承了基本的行为
 
 ### 5.2 Array类型
 > ECMAScript数组的每一项可以保存任何类型的数据，大小是可以动态调整
@@ -526,6 +528,8 @@ ECMAScript5为数组定义了5个迭代方法，每个方法都接收两个参�
     ```
 
 ### 5.3 Date类型
+Date类型提供了有关日期和时间的信息，包指当前日期和时间以及相关的计算功能
+
 Date类型使用从UTC(Coordinated Universal Time 国际协调时间）1970年1月1日午夜（零时）开始经过的毫秒数来保存日期。
 
 * 使用new操作符和Date构造函数创建一个日期对象
@@ -627,6 +631,8 @@ Date类型使用从UTC(Coordinated Universal Time 国际协调时间）1970年1�
 | `getTimezoneOffset()` | 返回本地时间与UTC时间相差的分钟数 |
 
 ### 5.4 RegExp类型
+RegExp类型是ECMAScript支持正则表达式的一个接口，提供了最基本的和一些高级的正则表达式功能
+
 ```
 var expression = /pattern/flags;
 ```
@@ -755,6 +761,8 @@ if (pattern.test(text)) {
     * 正则表达式注释
 
 ### 5.5 Function类型
+函数实际上是Function类型的实例，因此函数也是对象，所以函数也拥有方法，可以用来增强其行为。
+
 #### 5.5.1 没有重载(深入理解)
 * **将函数名想象为指针**
 
@@ -881,9 +889,451 @@ ECMAScript中的函数名本身就是变量，所以函数也可以作为值来�
 
 #### 5.6.3 String类型
 * String类型的每个实例都有一个length属性，表示字符串中包含多个字符
+* 字符方法
+    * `charAt()`和`charCodeAt()`接收一个参数(基于0的字符位置)
+        * `charAt()`以单字符字符串形式返回给定位置的字符
+        * `charCodeAt()`返回给定位置的字符编码
+        * 可以使用方括号加数字索引来访问字符串中的特定字符
 
+        ```js
+        var stringValue = "hello world";
+        alert(stringValue.charAt(1));        //"e"
+        alert(stringValue.charCodeAt(1));    //"101"
+        alert(stringValue[1]);               //"e"
+        ```
+
+* 字符串操作方法
+    * `concat()` 用于将一个或多个字符串拼接起来
+
+    ```js
+    var stringValue = 'hello';
+    var result = stringValue.concat('world', '!');
+    alert(result);                 //'hello world !'
+    alert(stringValue);            //'hello'
+    ```
+
+    * `slice()`、`substr()`和`substring()` 这三个方法都会返回被操作字符串的一个子字符串
+        * `slice()` 第一个参数为字符串的开始位置，第二个参数为子字符串最后一个字符后面的位置
+        * `substring()` 第一个参数为字符串的开始位置，第二个参数为子字符串最后一个字符后面的位置
+        * `substr()` 第一个参数为字符串的开始位置，第二个参数为返回的字符个数
+
+        ```js
+        var stringValue = "hello world";
+        alert(stringValue.slice(3));        //"lo world"
+        alert(stringValue.substring(3));    //"lo world"
+        alert(stringValue.substr(3));       //"lo world"
+        alert(stringValue.slice(3, 7));     //"lo w"
+        alert(stringValue.substring(3,7));  //"lo w"
+        alert(stringValue.substr(3, 7));    //"lo worl"
+
+        alert(stringValue.slice(-3));         //"rld"
+        alert(stringValue.substring(-3));     //"hello world"
+        alert(stringValue.substr(-3));        //"rld"
+        alert(stringValue.slice(3, -4));      //"lo w"
+        alert(stringValue.substring(3, -4));  //"hel"
+        alert(stringValue.substr(3, -4));     //"" (empty string)
+        ```
+
+* 字符串位置方法`indexOf()`和`lastIndexOf()`
+    * 这两个方法都是从一个字符串中搜索给定的子字符串，然后返子字符帘的位置（如果没有找到该子字符串，则返回-1）
+    * `indexOf()`从字符串的开头向后搜索子字符串，而`lastIndexOf()`从末尾向前搜索
+    * 两个方法都可以接收可选的第二个参数，从字符串中的哪个位置开始搜索。
+
+    ```js
+    //在使用第二个参数的情况下，可以通过循环调用indexOf()或lastIndexOf()来找到所有匹配的子字符串
+    var stringValue = "Lorem ipsum dolor sit amet, consectetur adipisicing elit";
+    var positions = new Array();
+    var pos = stringValue.indexOf("e");
+
+    while(pos > -1){
+    positions.push(pos);
+    pos = stringValue.indexOf("e", pos + 1);
+    }
+
+    alert(positions);    //"3,24,32,35,52"
+    ```
+
+* `trim()`方法创建一个字符串的副本，删除前置及后缀的所有空格，然后返回结果
+
+```js
+var stringValue = '  hello world  ';
+var trimmedStringValue = stringValue.trim();
+alert(stringValue);                  //'  hello world  '
+alert (trimmedStringValue);          //'hello world'
+```
+
+* 字符串大小写转换方法
+    * `toLowerCase()` 转化为小写
+    * `toUpperCase()` 转化为大写
+    * `toLocaleLowerCase()`和`toLocaleUpperCase()`是针对特定地区的实现
+
+* 字符串的模式匹配方法
+    * `match()`
+        * 本质上与调用RegExp的`exec()`方法相同
+        * 接受一个参数，字符串或RegExp对象指定的一个正则表达式
+
+        ```js
+        var text = "cat, bat, sat, fat";
+        var pattern = /.at/;
+
+        var matches = text.match(pattern);
+        alert(matches.index);        //0
+        alert(matches[0]);           //"cat"
+        alert(pattern.lastIndex);    //0
+        ```
+
+    * `search()`
+        * 接受一个参数，字符串或RegExp对象指定的一个正则表达式
+        * 返回字符串中第一个匹配项的索引，如果没有找到匹配项，则返回-1
+
+        ```js
+        var text = "cat, bat, sat, fat";
+        var pos = text.search(/at/);
+        alert(pos);   //1
+        ```
+
+    * `replace()`
+        * 接受两个参数：第一个参数是一个RegExp对象或者一个字符串（这个字符串不会被转换成正则表达式），第二个参数是一个字符串或者一个函数
+            * 第二个参数是字符串，那么还可以使用一些特殊的字符序列，将正则表达式操作得到的值插入到结果字符串中
+
+            |字符序列|替换文本|
+            |---|---|
+            | $$ | $ |
+            | $& | 匹配整个模式的子字符串，与RegExp.lastMatch的值相同 |
+            | $' | 匹配的子字符串之前的子字符串，与RegExp.leftContext的值相同 |
+            | $` | 匹配的子字符串之后的子字符串，与RegExp.rightContext的值相同 |
+            | $n | 匹配第n个捕获组的子字符串，其中n等于0-9. 例如，$1是匹配第一个捕获组的子字符串， $2是匹配第二个捕获组的子字符串，以此类推。如果正则表达式中没有定义捕获组，则使用空字符串 |
+            | $nn | 匹配第n个捕获组的子字符串，其中n等于01-99. 例如，$01是匹配第一个捕获组的子字符串， $02是匹配第二个捕获组的子字符串，以此类推。如果正则表达式中没有定义捕获组，则使用空字符串 |
+
+            * 第二个参数是函数的情况
+                * 传递给函数的参数依次是模式的匹配项、\[第一个捕获组的匹配项、第二个捕获组的匹配项……\]（在只有一个匹配项的时候省略），模式的匹配项在字符串中的位置和原始字符串
+                * 函数返回一个字符串
+
+            ```js
+            function htmlEscape(text){
+                return text.replace(/[<>"&]/g, function(match, pos, originalText){
+                    switch(match){
+                        case "<":
+                            return "&lt;";
+                        case ">":
+                            return "&gt;";
+                        case "&":
+                            return "&amp;";
+                        case "\"":
+                            return "&quot;";
+                    }
+                });
+            }
+
+            alert(htmlEscape("<p class=\"greeting\">Hello world!</p>"));
+            //&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;
+            ```
+
+    * `split()` 基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组中
+        * 分隔符可以是字符串，也可以是一个RegExp对象（这个方法不会将字符串看成正则表达式）
+        * 可以接受可选的第二个参数，用于指定数组的大小，以便确保返回的数组不会超过既定大小
+
+        ```js
+        var colorText = "red,blue,green,yellow";
+        var colors1 = colorText.split(",");      //["red", "blue", "green", "yellow"]
+        var colors2 = colorText.split(",", 2);   //["red", "blue"]
+        var colors3 = colorText.split(/[^\,]+/); //["", ",", ",", ",", ""]
+        ```
+
+* `localeCompare()`
+    * 比较两个字符净，并返回下列值中的一个
+        * 如果字符串在字母表中应该排在字符串参数之前，则返回一个负数（大多数情况下是-1，具体的值要视实现而定）
+        * 如果字符串等于字符串参数，则返回0
+        * 如果字符串在字母表中应该排在字符串参数之后，则返回一个正数（大多数情况下是1，具体的值要视实现而定）
+
+    ```js
+    //preferred technique for using localeCompare()
+    function determineOrder(value) {
+        var result = stringValue.localeCompare(value);
+        if (result < 0){
+            alert("The string 'yellow' comes before the string '" + value + "'.");
+        } else if (result > 0) {
+            alert("The string 'yellow' comes after the string '" + value + "'.");
+        } else {
+            alert("The string 'yellow' is equal to the string '" + value + "'.");
+        }
+    }
+
+    determineOrder("brick");
+    determineOrder("yellow");
+    determineOrder("zoo");
+    ```
+
+* `fromCharCode()` 接收一个或多个字符编码，然后将它们转换成一个字符串
+    * 本质上与实例方法`charCodeAt()`执行的是相反的操作
+
+    ```js
+    alert(String.fromCharCode(104, 101, 108, 108, 111)); //"hello"
+    ```
 
 ### 5.7 单体内置对象
+内置对象：由ECMAScript实现提供的、不依赖于宿主环境的对象，这些对象在ECMAScript程序执行之前就已经存在了
+
+#### 5.7.1 Global对象
+不属于任何其他对象的属性和方法，最终都是Global对象的属性和方法
+
+* URI编码方法
+    * `encodeURI()`和`encodeURIComponent()`方法对URI(Uniform Resource Identifiers 通用资源标识符)进行编码，以便发送给浏览器有效的URI中不包含某些字符
+        * `encodeURI()`不会对本身属于URI的特殊字符进行编码，例如冒号、正斜杠、问号和井字号
+        * `encodeURIComponent()`会对发现的任何非标准字符选行编码，更常用
+
+        ```js
+        var uri = "http%3A%2F%2Fwww.wrox.com%2Fillegal%20value.htm%23start";
+
+        //http%3A%2F%2Fwww.wrox.com%2Fillegal value.htm%23start
+        alert(decodeURI(uri));
+
+        //http://www.wrox.com/illegal value.htm#start
+        alert(decodeURIComponent(uri));
+        ```
+
+    * `decodeURI()`和`decodeURIComponent()`
+        * 对应`encodeURI()`和`encodeURIComponent()`的解码
+
+* `eval()`
+    * 接受一个参数：要执行的ECMAScript(或JavaScript)字符串
+    * 在严格模式下，为eval赋值会导致错误
+    *  `eval()`非常强大，但也非常危险，不推荐使用
+
+* Global对象属性
+
+    |属性|说明|
+    |---|---|
+    | undefined | 特殊值undefined |
+    | NaN | 特殊值NaN |
+    | Infinity | 特殊值Infinity |
+    | Object | 构造函数Object |
+    | Array | 构造函数Array |
+    | Function | 构造函数Function |
+    | Boolean | 构造函数Boolean |
+    | String | 构造函数String |
+    | Number | 构造函数Number |
+    | Date | 构造函数Date |
+    | RegExp | 构造函数RegExp |
+    | Error | 构造函数Error |
+    | EvalError | 构造函数EvalError |
+    | RangeError | 构造函数RangeError |
+    | ReferenceError | 构造函数ReferenceError |
+    | SyntaxError | 构造函数SyntaxError |
+    | TypeError | 构造函数TypeError |
+    | URIError | 构造函数URIError |
+
+* window对象
+
+    ECMAScript虽然没有指出如何直接访问Global对象，但Web浏览器都是将这个全局对象作为window对象的一部分加以实现的。因此，在全局作用域中声明的所有变量和函数，就都成为了window对象的属性。
+
+#### 5.7.2 Math对象
+与JavaScript直接编写的计算功能相比，Math对象提供的计算功能执行起来要快得多。
+
+* Math对象的属性
+
+    |属性|说明|
+    |---|---|
+    | Math.E | 自然对数的底数，即常量e的值 |
+    | Math.LN10 | 10的自然对数 |
+    | Math.LN2 | 2的自然对数 |
+    | Math.LOG2E | 以2为底e的对数 |
+    | Math.LOG10E | 以10为底e的对数 |
+    | Math.PI | π的值 |
+    | Math.SQRT1_2 | 1/2的平方根(即2的平方根的倒数） |
+    | Math.SQRT2 | 2的平方根 |
+
+* `min()`和`max()`方法
+    * 用于确定一组数值中的最小值和最大值，可以接收任意多个数值参数
+    * 这两个方法经常用于避免多余的循环和在if语句中确定一组数的最大值
+    * 要找到数组中的最大或最小值，可以使用`apply()`方法
+
+    ```js
+    var max = Math.max(3, 54, 32, 16);
+    alert(max);    //54
+
+    var min = Math.min(3, 54, 32, 16);
+    alert(min);    //3
+
+    var values= [1, 2, 3, 4, 5, 6, 7, 8];
+    var maxNum= Math.max.apply(Math, values);
+    //把Math对象作为apply（）的第一个参数，从而正确地设置this值
+    ```
+
+* 舍入方法
+    * `Math.ceil()` 执行向上舍入，即它总是将数值向上舍入为最接近的整数
+    * `Math.floor()` 执行向下舍入，即它总是将数值向下舍入为最接近的整数
+    * `Math.round()` 执行标准舍入，即它总是将数值四舍五入为最接近的整数
+
+* `random()`方法
+    * 返回介于0和1之间一个随机数，不包括0和1
+
+    ```js
+    function selectFrom(lowerValue, upperValue) {
+        var choices = upperValue - lowerValue + 1;
+        return Math.floor(Math.random() * choices + lowerValue);
+    }
+
+    var num = selectFrom(2, 10);
+    alert(num);   //number between 2 and 10 (inclusive)
+
+    var colors = ["red", "green", "blue", "yellow", "black", "purple", "brown"];
+    var color = colors[selectFrom(0, colors.length-1)];
+    alert(color);  //any of the strings in the array
+    ```
+
+* 其他方法
+
+    |方法|说明|
+    |---|---|
+    | Math.abs(num) | 返回num的绝对值 |
+    | Math.exp(num) | 返回Math.E的num次幂 |
+    | Math.log(num) | 返回num的自然对数 |
+    | Math.pow(num, power) | 返回num的power次幂 |
+    | Math.sqrt(num) | 返问num的平方根 |
+    | Math.acos(x) | 返回x的反余弦值 |
+    | Math.asin(x) | 返回x的反正弦值 |
+    | Math.atan(x) | 返回x的反正切值 |
+    | Math.atan2(y,x) | 返回y/x的反正切值 |
+    | Math.cos(x) | 返回x的余弦值 |
+    | Math.sin(x) | 返回x的正弦值 |
+    | Math.tan(x) | 返回x的正切值 |
+
+## 6 面向对象的程序设计
+ECMA-262把对象定义为：无序属性的集合，其属性可以包含基本值、对象或者函数
+
+### 6.1 理解对象
+#### 6.1.1 属性类型
+* 数据属性
+    * 数据属性包含一个数据值的位置，在这个位置可以读取和写入值
+    * 有4个描述其行为的特性
+        * \[ \[Configurable\] \]：表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。
+        * \[ \[Enumerable\] \]：表示能否通过for-in循环返回属性
+        * \[ \[writable\] \]：表示能否修改属性的值
+        * \[ \[Value\] \]：包含这个属性的数据值。读取属性值的时候，从这个位置读；写入属性值的时候，把新值保存在这个位置。这个特性的默认值为undefined
+    * 使用`Object.defineProperty()`修改属性默认的特性
+        * 接收三个参数：属性所在的对象、属性的名字、描述符对象（描述符对象的属性必须是configurable、enumerable、writable和value其中的一个或多个）
+
+        ```js
+        var person = {};
+        Object.defineProperty(person, "name", {
+            writable: false,
+            value: "Nicholas"
+        });
+
+        alert(person.name);             //"Nicholas"
+        person.name = "Michael";
+        alert(person.name);             //"Nicholas"
+        ```
+
+* 访问器属性
+    * 访问器属性不包含数据值，它包含一对getter和setter函数（这两个函数都不是必需的）。
+    * 在读取访问器属性时，调用getter函数负责返回有效的值
+    * 在写入访问器属性时，调用setter函数处理数据并传入新值
+    * 访问器属性有如下4个特性：
+        * \[ \[Configurable\] \]：表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性
+        * \[ \[Enumerable\] \]：表示能否通过for-in循环返回属性
+        * \[ \[Get\] \]：在读取属性时调用的函数，默认值为undefined
+        * \[ \[Set\] \]：在写人属性时调用的函数，默认值为undefined
+    * 访问器属性不能直接定义，必须使用`Object.defineProperty()`来定义
+
+        ```js
+        var book = {
+            _year: 2004,
+            edition: 1
+        };
+
+        Object.defineProperty(book, "year", {
+            get: function(){
+                return this._year;
+            },
+            set: function(newValue){
+
+                if (newValue > 2004) {
+                    this._year = newValue;
+                    this.edition += newValue - 2004;
+
+                }
+            }
+        });
+
+        book.year = 2005;
+        alert(book.edition);   //2
+        ```
+
+#### 6.1.2 定义多个属性
+`defineProperties()`方法可以通过描述符一次定义多个属性。
+
+* 接收两个对象参数：
+    * 第一个对象是要添加和修改其属性的对象
+    * 第二个对象的属性与第一个对象中要添加或修改的属性一一对应
+
+    ```js
+    var book = {};
+
+    Object.defineProperties(book, {
+        _year: {
+            value: 2004
+        },
+
+        edition: {
+            value: 1
+        },
+
+        year: {
+            get: function(){
+                return this._year;
+            },
+
+            set: function(newValue){
+                if (newValue > 2004) {
+                    this._year = newValue;
+                    this.edition += newValue - 2004;
+                }
+            }
+        }
+    });
+
+    book.year = 2005;
+    alert(book.edition);   //2
+
+    //在book对外上定义了两个数据属性（_year和edition）和一个访问器属性（year）
+    //最终的对象与上一节中定义的对象相同
+    //唯一的区别是这里的属性都是在同一时间创建的
+    ```
+
+#### 6.1.3 读取属性的特性
+`Object.getOwnPropertyDescriptor()`可以取得给定属性的描述符
+
+* 这个方法接收两个参数：属性所在的对象和要读取其描述符的属性名称
+
+### 6.2 创建对象
+#### 6.2.1 工厂模式
+#### 6.2.2 构造函数模式
+#### 6.2.3 原型模式
+#### 6.2.4 组合使用构造函数模式和原型模式
+#### 6.2.5 动态原型模式
+#### 6.2.6 寄生构造函数模式
+#### 6.2.7 稳妥构造函数模式
+### 6.3 继承
+#### 6.3.1 原型链
+#### 6.3.2 借用构造函数
+#### 6.3.3 组合继承
+#### 6.3.4 原型式继承
+#### 6.3.5 寄生式继承
+#### 6.3.6 寄生组合式继承
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
