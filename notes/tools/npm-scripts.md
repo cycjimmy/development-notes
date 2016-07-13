@@ -4,7 +4,7 @@
 
 ***
 
-状态：写到一半觉得还是不足以满足自己的实际要求，转而研究gulp中
+**状态：写到一半觉得还是不足以满足自己的实际要求，转而研究gulp中**
 
 ***
 
@@ -16,11 +16,13 @@
     * js/
     * sass/
     * css/
+    * media/
 * dist/
     * index.html
     * images/
     * js/
     * css/
+    * media/
 * package.json
 
 ### 需求
@@ -28,7 +30,8 @@
 2. typescript自动编译成js
 3. js代码检查
 4. 自动压缩(html、css、js、图片)
-5. web服务器
+5. 复制文件到相应目录
+6. web服务器
 
 *** 
 
@@ -58,7 +61,7 @@ npm init
     npm i eslint -D 
     ```
 
-* 压缩 JavaScript files
+* 压缩 JavaScript files [uglify-js](https://github.com/mishoo/UglifyJS2)
 
     ```node
     npm i uglify-js -D
@@ -67,6 +70,11 @@ npm init
 * 压缩图片
     ```node
     npm i imagemin-cli -D
+    ```
+
+* 复制文件
+    ```node
+    npm install -D copy
     ```
 
 * BrowserSync(开启一个本地服务器，自动更新文件，自动在浏览器中同步点击，滚动效果)
@@ -92,7 +100,7 @@ npm init
 
 * 把src/sass下的所有scss文件都编译成css，放在src/style下面
 
-    ```javascripy
+    ```javascript
     "scripts": {
         ...,
         "sass": "node-sass src/sass -o src/style --indent-type tab",
@@ -101,7 +109,7 @@ npm init
     ```
     
 * 把src/style下的所有css 以'> 5%'为参数适配浏览器
-    ```javascripy
+    ```javascript
     "scripts": {
         ...,
         "autoprefixer": "postcss -u autoprefixer -r src/style/*",

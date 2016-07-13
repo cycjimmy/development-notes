@@ -2,6 +2,8 @@
 
 官网：[http://gulpjs.com/](http://gulpjs.com/)
 
+[Gulp新手入门教程](http://www.w3ctrain.com/2015/12/22/gulp-for-beginners/)
+
 * 安装gulp
 
 	```node
