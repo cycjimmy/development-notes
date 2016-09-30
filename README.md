@@ -26,8 +26,10 @@ Development Notes (zh-chs)
 * [LESS](./notes/css/less.md)
 
 ### framework
+* angular 
+    * [AngularJS](./notes/framework/AngularJS.md)
+    * [Angular2](./notes/framework/Angular2.md)
 * [requireJS](./notes/framework/requireJS.md)
-* [AngularJS](./notes/framework/AngularJS.md)
 * [BigPipe](./notes/framework/BigPipe.md)
 * [Weex](./notes/framework/weex.md)
 * VelocityJS fekit
