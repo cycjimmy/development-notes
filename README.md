@@ -35,6 +35,7 @@ Development Notes (zh-chs)
 * VelocityJS fekit
 
 ### tools
+* [node & npm 自用前端实用工具总结](./motes/tools/node(front-end).md)
 * [Grunt-beginner前端自动化工具](./notes/tools/grunt.md)
 * [gulp](./notes/tools/gulp.md)
 
