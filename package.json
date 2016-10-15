@@ -1,0 +1,20 @@
+{
+  "name": "development-notes",
+  "version": "0.1.0",
+  "description": "Development Notes (zh-chs)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cycjimmy/development-notes.git"
+  },
+  "keywords": [],
+  "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cycjimmy/development-notes/issues"
+  },
+  "homepage": "https://github.com/cycjimmy/development-notes#readme"
+}
