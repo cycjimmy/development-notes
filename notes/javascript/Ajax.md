@@ -60,29 +60,29 @@ var request = new XMLHttpRequest();
 ```
 
 #### 1.3.2 XMLHttpRequest发送请求的几个方法
-* open(method, url, async)
+* `open(method, url, async)`
     * method:发送请求的方法 GET/POST
     * url:请求地址
     * async:请求异步 默认为true，可以不填写
-* send(string)
+* `send(string)`
     * get请求的string参数可以不填写（在Url中）
-* setRequestHeader()
+* `setRequestHeader()`
     * setRequestHeader方法一定要写在open和send之间
 
 #### 1.3.3 XMLHttpRequest取得响应的几个方法
-* responseText: 获得字符串形式的响应数据
-* responseXML: 获得XML形式的响应数据
-* status: 以数字形式返回HTTP状态码
-* statusText: 以文本形式返回HTTP状态码
-* getAllResponseHeader(): 获取所有的响应报头
-* getResponseHeader(string): 查询响应报头中某个字段的值
-* onreadystatechange(fn): 监听readyState属性的变化
-    * readyState属性
-        * 0: 请求为初始化，open还没有调用
-        * 1: 服务器连接已建立，open已经调用了
-        * 2: 请求已接收，也就是接收到头信息了
-        * 3: 请求处理中，也就是接收到响应主体了
-        * 4: 请求已完成，且响应已就绪，也就是响应完成了
+* `responseText`: 获得字符串形式的响应数据
+* `responseXML`: 获得XML形式的响应数据
+* `status`: 以数字形式返回HTTP状态码
+* `statusText`: 以文本形式返回HTTP状态码
+* `getAllResponseHeader()`: 获取所有的响应报头
+* `getResponseHeader(string)`: 查询响应报头中某个字段的值
+* `onreadystatechange(fn)`: 监听`readyState`属性的变化
+    * `readyState`属性
+        * `0`: 请求为初始化，`open`还没有调用
+        * `1`: 服务器连接已建立，`open`已经调用了
+        * `2`: 请求已接收，也就是接收到头信息了
+        * `3`: 请求处理中，也就是接收到响应主体了
+        * `4`: 请求已完成，且响应已就绪，也就是响应完成了
 
     ```javascript
         request.onreadystatechange = function() {
@@ -125,7 +125,7 @@ var request = new XMLHttpRequest();
 
 #### 1.4.3 JSON语法
 * JSON数据的书写格式是:名称/值对
-    * 例如："name": "郭靖"
+    * 例如：`"name": "郭靖"`
 * JSON的值可以是下面这些类型：
     * 数字（整数或浮点数）
     * 字符串（在双引号中）
@@ -155,13 +155,13 @@ var request = new XMLHttpRequest();
 * [JSONLint](http://jsonlint.com/)
 
 ## 2 用jquery实现Ajax
-* jQuery.ajax([settings])
-    * type: 类型,"POST"或"GET",默认为"GET"
-    * url: 发送请求的地址
-    * data: 是一个对象，连同请求发送到服务器的数据
-    * dataType: 预期服务器返回的数据类型。如果不指定，jQuery将自动根据HTTP包MIME信息来智能判断，－般我们采用json格式，可以设置为"json"
-    * success: 是－个方法,请求成功后的回调函数。传入返回后的数据，以及包含成功代码的字符串
-    * error: 是－个方法，请求失败时调用此函数，传入XMLHttpRequest对象
+* `jQuery.ajax([settings])`
+    * `type`: 类型,"POST"或"GET",默认为"GET"
+    * `url`: 发送请求的地址
+    * `data`: 是一个对象，连同请求发送到服务器的数据
+    * `dataType`: 预期服务器返回的数据类型。如果不指定，jQuery将自动根据HTTP包MIME信息来智能判断，－般我们采用json格式，可以设置为"json"
+    * `success`: 是－个方法,请求成功后的回调函数。传入返回后的数据，以及包含成功代码的字符串
+    * `error`: 是－个方法，请求失败时调用此函数，传入XMLHttpRequest对象
 * 示例
 
     ```javascript
@@ -185,7 +185,7 @@ var request = new XMLHttpRequest();
 			},
 			error: function(jqXHR){     
 			   alert("发生错误：" + jqXHR.status);  
-			},     
+			} 
 		});
 	});
     ```
@@ -214,8 +214,8 @@ var request = new XMLHttpRequest();
 * HTMLS提供的XMLHttpRequest Level2已经实现了跨域访问以及其他的－些新功能
 * IElO以下的版本都不支持
 * 在服务器端做－些小小的改造即可(php)
-    * header('Access-Control-Allow-Origin:*'); 
-    * header('Access-Control-Allow-Methods:POST,GET');
+    * `header('Access-Control-Allow-Origin:*')`
+    * `header('Access-Control-Allow-Methods:POST,GET')`
 
 
 

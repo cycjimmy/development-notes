@@ -21,14 +21,14 @@
 	* 官方站点：[http://yeoman.io](http://yeoman.io)
 	* 安装指令：
 	
-		```node
-		npm install -g yo
+		```shell
+		$ npm install -g yo
 		```
 		
 	* 验证方法：
 
-		```node
-		yo -v
+		```shell
+		$ yo -v
 		```
 		
 	* Yeoman的作用：在web项目的立项阶段，使用Yeoman来生成项目的文件、代码结构，Yeoman自动将最佳实践和工具整合进来，大大加速和方便了我们后续的开发。
@@ -37,14 +37,14 @@
 	* 官方站点：[http://bower.io](http://bower.io)
 	* 安装指令：
 	
-		```node
-		npm install -g bower
+		```shell
+		$ npm install -g bower
 		```
 		
 	* 验证方法：
 
-		```node
-		bower -v
+		```shell
+		$ bower -v
 		```
 	
 	* Bower的作用：web的包管理器，web站点由框架、库、公共部分等组成，Bower能用来追踪管理这些。
@@ -53,14 +53,14 @@
 	* 官方站点：[http://gruntjs.com](http://gruntjs.com)
 	* 安装指令：
 	
-		```node
-		npm install -g grunt-cli
+		```shell
+		$ npm install -g grunt-cli
 		```
 		
 	* 验证方法：
 
-		```node
-		grunt
+		```shell
+		$ grunt
 		```
 	
 	* Grunt的作用：build Tool | 自动化（减少像压缩、编译、单元测试、代码校验这种重复且无业务关联的工作）
@@ -70,18 +70,18 @@
 
 ### 安装[Generator](http://yeoman.io/generators/)模板
 
-```node
-npm install -g -generator-[generator_name]
-//例如npm install -g -generator-angular
+```shell
+$ npm install -g -generator-[generator_name]
+# 例如npm install -g -generator-angular
 ```
 
 ### 初始化Generator
 
 * 切换到项目目录，初始化一个安装好的模板
 
-	```node
-	yo [generator_name] [project_name]
-	//例如yo angular demo1
+	```shell
+	$ yo [generator_name] [project_name]
+	# 例如yo angular demo1
 	```
 * 初始化后的项目中有一个**package.json**的文件
 
@@ -114,9 +114,9 @@ npm install -g -generator-[generator_name]
 
 切换到项目目录
 
-```node
-bower install [package_name] 
-//如bower i jquery
+```shell
+$ bower install [package_name] 
+# 如bower i jquery
 ```
 
 ### 如果我们需要的组件比较小众，没有在bower注册怎么办？
@@ -124,23 +124,23 @@ bower install [package_name]
 bower提供了多种安装方式：
 
 1. 通过github的短写安装
+	```shell
+	$ bower install [GitHub shorthand]
+	# 例如 bower install jquery/jquery
+	```
 	
-	```node
-	bower install [GitHub shorthand]
-	//例如 bower install jquery/jquery
-	``` 
 2. 通过项目完整的github地址安装
 
-	```node
-	bower install [Git endpoint]
-	//例如 bower install https://github.com/jquery/jquery.git
+	```shell
+	$ bower install [Git endpoint]
+	# 例如 bower install https://github.com/jquery/jquery.git
 	``` 
 	
 3. 如果想使用的框架或组件没有在github上
 	* 直接通过URL安装
 
-		```node
-		bower install [url地址]
+		```shell
+		$ bower install [url地址]
 		``` 
 		
 ### [搜索在bower注册的包文件](https://bower.io/search/)
@@ -161,14 +161,13 @@ bower提供了多种安装方式：
 
 在当前项目目录输入
 
-```node
-bower init
+```shell
+$ bower init
 ```
 
 根据步骤生成bower.json配置文件
 
 ### 如何使用bower下载好的组件
-
 
 ## Grunt
 * task
@@ -179,37 +178,38 @@ bower init
 * 创建一个项目目录（或者切换到老项目）
 * 生成一个package.json配置
 
-	```node
-	npm init
+	```shell
+	$ npm init
 	```
 	
 	* 几种license：MIT BSD ISC Apache GPL（按照宽泛程度排序）
 * 引入grunt
 
-	```node
-	npm install grunt --save-dev
-	//加上--save-dev ，会把当前的引入存入package.json中的"devDependencies"中
+	```shell
+	$ npm install grunt --save-dev
+	# 加上--save-dev ，会把当前的引入存入package.json中的"devDependencies"中
 	```
 	
-	```node
-	//引入grunt插件load-grunt-tasks[整合任务]
-	npm install load-grunt-tasks --save-dev
+	```shell
+	# 引入grunt插件load-grunt-tasks[整合任务]
+	$ npm install load-grunt-tasks --save-dev
 	```
 	
-	```node
-	//引入grunt插件time-grunt[查看grunt任务运行时间]
-	npm install time-grunt --save-dev
+	```shell
+	# 引入grunt插件time-grunt[查看grunt任务运行时间]
+	$ npm install time-grunt --save-dev
 	```
 	
-	```node
-	//引入grunt插件grunt-contrib-copy[文件拷贝]
-	npm install grunt-contrib-copy --save-dev
+	```shell
+	# 引入grunt插件grunt-contrib-copy[文件拷贝]
+	$ npm install grunt-contrib-copy --save-dev
 	```
 	
-	```node
-	//引入grunt插件grunt-contrib-clean[文件删除]
-	npm install grunt-contrib-clean --save-dev
+	```shell
+	# 引入grunt插件grunt-contrib-clean[文件删除]
+	$ npm install grunt-contrib-clean --save-dev
 	```
+	
 * 配置gruntfile.js
 	* 在项目根目录新建一个gruntfile.js
 	* 在编辑器中打开gruntfile.js，在头部申明ES5的严格模式
@@ -285,22 +285,22 @@ bower init
 * grunt serve
 	* 在yo创建好的项目目录中输入
 
-		```node
-		grunt serve --allow-remote
-		//--allow-remote表示允许远程调试，比如在手机上调试页面，可用本机ip访问站点
+		```shell
+		$ grunt serve --allow-remote
+		# --allow-remote表示允许远程调试，比如在手机上调试页面，可用本机ip访问站点
 		```
 
 	* 在yo创建好的项目目录中监听变化
 
-		```node
-		grunt watch
+		```shell
+		$ grunt watch
 		```
 
 * grunt test
 	* 在yo创建好的项目目录中输入
 
-		```node
-		grunt test
+		```shell
+		$ grunt test
 		```
 	
 	* mocha框架
@@ -308,8 +308,8 @@ bower init
 * grunt build
 	* 在项目目录中输入
 
-		```node
-		grunt build
+		```shell
+		$ grunt build
 		```
 
 * grunt - plugins 开发grunt插件
@@ -317,12 +317,14 @@ bower init
 	* 在github上新建一个仓库，命名一般为grunt-[plugin_name]-[author]
 	* 在项目目录中安装Yeoman的gruntplugin模板
 		
-		```node
-		npm install -g generator-gruntplugin //在全局安装gruntplugin模板
+		```shell
+		$ npm install -g generator-gruntplugin 
+		# 在全局安装gruntplugin模板
 		```
 		
-		```node
-		yo gruntplugin [github的项目名] //在项目目录生成gruntplugin模板
+		```shell
+		$ yo gruntplugin [github的项目名] 
+		# 在项目目录生成gruntplugin模板
 		```
 		
 	* 制作插件
@@ -332,36 +334,14 @@ bower init
 	* 在[npmjs网站](https://www.npmjs.com)发布插件
 		* 将npm账号添加到本地
 			
-			```node
-			npm adduser
+			```shell
+			$ npm adduser
 			```
 			
 		* 复制github-pages中为我们自动生成的插件打包地址，并将其发布到npm上
 
-			```node
-			npm publish [插件打包地址]
+			```shell
+			$ npm publish [插件打包地址]
 			```
 			
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			

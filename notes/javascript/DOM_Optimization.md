@@ -4,7 +4,7 @@ DOM访问和操作是现代网页应用中很重要的一部分。但每次你�
 
 ***
 
-### 1.Minimize DOM access, and try to work as much as possible in JavaScript. (最小化DOM访问，在javascript端做尽可能多的事。)
+## 1.Minimize DOM access, and try to work as much as possible in JavaScript. (最小化DOM访问，在javascript端做尽可能多的事。)
 
 ```javascript
 //slower
@@ -25,7 +25,7 @@ function innerHTMLLoop2() {
 ```
 ***
 
-### 2.Use local variables to store DOM references you'll access repeatedly. (在反复访问的地方使用局部变量存放DOM引用。)
+## 2.Use local variables to store DOM references you'll access repeatedly. (在反复访问的地方使用局部变量存放DOM引用。)
 
 一般来说，对于任何类型的**DOM**访问，如果同一个**DOM属性或方法**被访问**一次以上**，最好使用一个**局部变量**缓存此**DOM**成员。
 
@@ -87,19 +87,19 @@ function collectionNodesLocal() {
 
 ***
 
-### 3.Be careful when dealing with HTMLcollections because theyrepresent the live, underlying document. Cache the collection lengthinto a variable and use it when iterating, and make a copy of the collection into an array for heavy work on collections.   (小心地处理HTML集合，因为他们表现出“存在性”，总是对底层文档重新查询。将集合length属性缓存到一个变量中，在迭代中使用这个变。如果经常操作这个集合，可以将集体拷贝到数组中。)
+## 3.Be careful when dealing with HTMLcollections because theyrepresent the live, underlying document. Cache the collection lengthinto a variable and use it when iterating, and make a copy of the collection into an array for heavy work on collections.   (小心地处理HTML集合，因为他们表现出“存在性”，总是对底层文档重新查询。将集合length属性缓存到一个变量中，在迭代中使用这个变。如果经常操作这个集合，可以将集体拷贝到数组中。)
 
-#### HTML集合有：
-* document.getElementsByName()  
-* document.getElementsByClassName()  
-* document.getElementsByTagName_r()  
-* document.images --> 页面中所有的\<img\>元素
-* document.links --> 所有的\<a\>元素
-* document.forms --> 所有表单
-* document.forms[0].elements --> 页面中第一个表单的所有字段
+### HTML集合有：
+* `document.getElementsByName()`
+* `document.getElementsByClassName()`  
+* `document.getElementsByTagName_r()` 
+* `document.images` --> 页面中所有的`<img>`元素
+* `document.links` --> 所有的`<a>`元素
+* `document.forms` --> 所有表单
+* `document.forms[0].elements` --> 页面中第一个表单的所有字段
 
 这些方法和属性返回**HTMLCollection对象**，是一种类似数组的列表。
-它们不是数组（因为它们没有诸如**push()**或**slice()**之类的方法），但是提供了一个**length**属性，和数组一样你可以使用索引访问列表中的元素。例如，**document.images[1]**返回集合中的第**2**个元素。
+它们不是数组（因为它们没有诸如`push()`或`slice()`之类的方法），但是提供了一个`length`属性，和数组一样你可以使用索引访问列表中的元素。例如，`document.images[1]`返回集合中的第**2**个元素。
 
 
 ```javascript
@@ -109,7 +109,7 @@ for (var i = 0; i < alldivs.length; i++) {
 }  
 ```
 这段代码看上去只是简单地倍增了页面中div元素的数量。它遍历现有div，每次创建一个新的div 并附加到body上面。
-但实际上这是个死循环，因为循环终止条件**alldivs.length**在每次迭代中都会增加，它反映出底层文档的当前状态。
+但实际上这是个死循环，因为循环终止条件`alldivs.length`在每次迭代中都会增加，它反映出底层文档的当前状态。
 
 正确的做法：将一个HTML集合拷贝给一个数组。
 
@@ -137,7 +137,7 @@ function loopCollection () {
 	for (var count = 0; count < coll.length; count++) { 
 		//code
 	}
-}；
+};
 
 
 //faster
@@ -146,7 +146,7 @@ function loopCopiedArray () {
 	for (var count = 0; count < arr.length; count++) { 
 		//code
 	} 
-}；
+};
 
 
 //faster
@@ -157,18 +157,16 @@ function loopCacheLengthCollection () {
 	for (var count = 0; count < len; count++) {
 		//code
 	}
-}；
-
-
+};
 ```
 
 
 ***
 
-### 4.Use faster APIs when available, such as querySelectorAll() and firstElementChild.  可能的话，使用速度更快的API，诸如querySelectorAll()和firstElementChild。
-识别DOM中的元素时，开发者经常需要更精细的控制，而不仅是**getElementById()**和**getElementsByTagName_r()**之类的函数。有时你结合这些函数调用并迭代操作它们返回的节点，以获取所需要的元素，这一精细的过程可能造成效率低下.
+## 4.Use faster APIs when available, such as `querySelectorAll()` and `firstElementChild`.  可能的话，使用速度更快的API，诸如`querySelectorAll()`和`firstElementChild`。
+识别DOM中的元素时，开发者经常需要更精细的控制，而不仅是`getElementById()`和`getElementsByTagName_r()`之类的函数。有时你结合这些函数调用并迭代操作它们返回的节点，以获取所需要的元素，这一精细的过程可能造成效率低下.
 
-另一方面，使用**CSS选择器**是一个便捷的确定节点的方法，因为开发者已经对CSS很熟悉了。许多JavaScript库为此提供了API，而且最新的浏览器提供了一个名为**querySelectorAll()**的原生浏览器DOM函数。显然这种方法比使用JavaScript和DOM迭代并缩小元素列表的方法要快。
+另一方面，使用**CSS选择器**是一个便捷的确定节点的方法，因为开发者已经对CSS很熟悉了。许多JavaScript库为此提供了API，而且最新的浏览器提供了一个名为`querySelectorAll()`的原生浏览器DOM函数。显然这种方法比使用JavaScript和DOM迭代并缩小元素列表的方法要快。
 
 如下所示：
 
@@ -177,25 +175,25 @@ var elements = document.querySelectorAll('#menu a');
 
 ```
 
-elements的值将包含一个引用列表，指向那些具有id="menu"属性的元素。函数**querySelectorAll()**接收一个CSS选择器字符串参数并返回一个**NodeList**——由符合条件的节点构成的类数组对象。
+elements的值将包含一个引用列表，指向那些具有`id="menu"`属性的元素。函数`querySelectorAll()`接收一个CSS选择器字符串参数并返回一个`NodeList`——由符合条件的节点构成的类数组对象。
 
-此函数**不返回HTML集合**，所以返回的节点不呈现文档的“存在性结构”。这就避免了本章前面提到的HTML集合所固有的性能问题（以及潜在的逻辑问题）。***【第四点废话了这么多句话，这边才是重点，一句话能用querySelectorAll()就用呗】***
+此函数**不返回HTML集合**，所以返回的节点不呈现文档的“存在性结构”。这就避免了本章前面提到的HTML集合所固有的性能问题（以及潜在的逻辑问题）。***【第四点废话了这么多句话，这边才是重点，一句话能用`querySelectorAll()`就用呗】***
 
-如果不使用**querySelectorAll()**，达到同样的目标的代码会冗长一些：
+如果不使用`querySelectorAll()`，达到同样的目标的代码会冗长一些：
 
 ```javascript
 var elements = document.getElementById('menu').getElementsByTagName_r('a');
-
 ```
-这种情况下elements将是一个**HTML集合**，所以如果想得到与**querySelectorAll()**同样的返回值类型的话,你还需要将它拷贝到一个数组中。
+
+这种情况下elements将是一个**HTML集合**，所以如果想得到与`querySelectorAll()`同样的返回值类型的话,你还需要将它拷贝到一个数组中。
 
 ***
 
-### 5.Be mindful of repaints and reflows; batch style changes, manipulate the DOM tree "offline," and cache and minimize access to layout information.  注意重绘和重排版；批量修改风格，离线操作DOM树，缓存并减少对布局信息的访问。
+## 5.Be mindful of repaints and reflows; batch style changes, manipulate the DOM tree "offline," and cache and minimize access to layout information.  注意重绘和重排版；批量修改风格，离线操作DOM树，缓存并减少对布局信息的访问。
 
 当浏览器下载完所有页面HTML标记，JavaScript，CSS，图片之后，它解析文件并创建两个内部数据结构：一棵DOM树（表示页面结构），一棵渲染树（表示DOM节点如何显示）。
 
-#### 重排版的情况：
+### 重排版的情况：
 * 添加或删除可见的DOM元素
 * 元素位置改变
 * 元素尺寸改变（因为边距，填充，边框宽度，宽度，高度等属性改变）
@@ -295,27 +293,26 @@ if (myElement.offsetLeft >= 500) {
 }  
   
 //优化后 
-current++  
+current++;
 myElement.style.left = current + 'px';  
 myElement.style.top = current + 'px';  
 if (current >= 500) {  
 stopAnimation();  
 }  
-
 ```
 
 
 ***
 
-### 6.Position absolutely during animations, and use drag and drop proxies. 动画中使用绝对坐标，使用拖放代理。
+## 6.Position absolutely during animations, and use drag and drop proxies. 动画中使用绝对坐标，使用拖放代理。
 
 ***
 
-### 7.Use event delegation to minimize the number of event handlers.  使用事件托管技术最小化事件句柄数量
+## 7.Use event delegation to minimize the number of event handlers.  使用事件托管技术最小化事件句柄数量
 
 事件托管技术，就是采用冒泡方式，尽量将事件挂载到元素的**父节点**，然后在**父节点统一处理**，减少事件的挂载量。
 
-当页面中存在大量元素，而且每个元素有一个或多个事件句柄与之挂接（例如onclick）时，可能会影响性能。连接每个句柄都是有代价的，无论其形式是加重了页面负担（更多的页面标记和JavaScript代码）还是表现在运行期的运行时间上。你需要访问和修改更多的DOM节点，程序就会更慢，特别是因为事件挂接过程都发生在**onload**（或**DOMContentReady**）事件中，对任何一个富交互网页来说那都是一个繁忙的时间段。挂接事件占用了处理时间，另外，浏览器需要保存每个句柄的记录，占用更多内存。当这些工作结束时，这些事件句柄中的相当一部分根本不需要（因为并不是100%的按钮或者链接都会被用户点到），所以很多工作都是不必要的。
+当页面中存在大量元素，而且每个元素有一个或多个事件句柄与之挂接（例如`onclick`）时，可能会影响性能。连接每个句柄都是有代价的，无论其形式是加重了页面负担（更多的页面标记和JavaScript代码）还是表现在运行期的运行时间上。你需要访问和修改更多的DOM节点，程序就会更慢，特别是因为事件挂接过程都发生在`onload`（或`DOMContentReady`）事件中，对任何一个富交互网页来说那都是一个繁忙的时间段。挂接事件占用了处理时间，另外，浏览器需要保存每个句柄的记录，占用更多内存。当这些工作结束时，这些事件句柄中的相当一部分根本不需要（因为并不是100%的按钮或者链接都会被用户点到），所以很多工作都是不必要的。
 
 每个事件发生时会经历**捕获**，**到达目标**，**冒泡**，三个阶段。例如：
 
@@ -334,14 +331,12 @@ stopAnimation();
 </html>
 ```
 
-当用户点击了“menu #1”链接，点击事件首先被\<a\>元素收到。然后它沿着DOM树冒泡，被\<li\>元素收到，然后是\<ul\>，接着是\<div\>，等等，一直到达文档的顶层，甚至window。如果需要在每个li上加监听事件，那么可以加到ul上，因为每次点击li都会冒泡到ul上。
-
-
+当用户点击了`menu #1`链接，点击事件首先被`<a>`元素收到。然后它沿着DOM树冒泡，被`<li>`元素收到，然后是`<ul>`，接着是`<div>`，等等，一直到达文档的顶层，甚至`window`。如果需要在每个`li`上加监听事件，那么可以加到`ul`上，因为每次点击`li`都会冒泡到`ul`上。
 
 ***
 
 
-#####说明：
+##说明：
 * *原文来自网络*
 * *经过[cycjimmy](https://github.com/cycjimmy)整合改编 [根据本人理解改编，其中难免有理解偏差，如发现问题请大家指正，谢过]*
 

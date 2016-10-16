@@ -7,12 +7,12 @@
 
 ### 1.2 管理 nodeJs 版本
 1. 安装 n 模块
-    ```c
+    ```shell
     $ sudo npm install -g n
     ```
 
 2. 升级 nodeJs
-    ```c
+    ```shell
     # Use or install the latest official release:
     $ n latest
     
@@ -24,7 +24,7 @@
     ```
 
 3. 切换 nodeJs 版本
-    ```c
+    ```shell
     $ n
     
       4.6.0
@@ -32,7 +32,7 @@
     ```
     
 4. 删除 nodeJs 版本
-    ```c
+    ```shell
     $ n rm 0.9.4
     ```
 
@@ -43,19 +43,19 @@
     * win10自带的 Ubuntu bash 代码行也可以试一下（未测试过）
 
 ### 1.3 MAC系统 npm 需要管理员权限问题(未测试)
-```bash
+```shell
 $ sudo chown -R $USER /usr/local   
 ```
 
 ## 2 管理 npm 模块管理器
 ### 2.1 升级 npm 的版本 
 * 通用
-    ```c
+    ```shell
     $ npm install npm@latest -g
     ```
     
 * windows 平台插件： [npm-windows-upgrade](https://github.com/felixrieseberg/npm-windows-upgrade)
-    ```c
+    ```shell
     $ npm i -g npm-windows-upgrade
     $ npm-windows-upgrade
     ```
@@ -63,17 +63,17 @@ $ sudo chown -R $USER /usr/local
 ### 2.2 升级 npm 依赖包
 [npm-check](https://github.com/dylang/npm-check)是用来检查npm依赖包是否有更新、错误以及是否在使用的，可以方便的使用npm-check进行包的更新
 1. 安装npm-check
-    ```c
+    ```shell
     $ npm install -g npm-check
     ```
 
 2. 检查全局的 npm 包是否可升级
-    ```c
+    ```shell
     $ npm-check -u -g
     ```
 
 ### 2.3 npm 个人常用命令
-```
+```shell
 # 查看 npm 的版本
 $ npm -v
 

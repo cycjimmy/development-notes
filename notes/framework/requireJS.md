@@ -29,7 +29,7 @@
 ## 3 在入口文件一开始中编写文件
 * requirejs.config
 
-    ```javascript
+    ```javaScript
     requirejs.config({
         //By default load any module IDs from js/lib
         baseUrl: 'js/lib',
@@ -46,7 +46,7 @@
 
 * 引入文件，写主程序
 
-    ```javascript
+    ```javaScript
     // Start the main app logic.
     requirejs(['jquery', 'canvas', 'app/sub'],
     function   ($, canvas, sub) {

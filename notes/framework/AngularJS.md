@@ -39,20 +39,26 @@
 
 ```html
 <!DOCTYPE html>
+
 <html ng-app>
 <!--ng-app告诉angular引擎从这里开始是它应该管理的内容-->
+
     <body>
         <div ng-controller="helloAngular">
+        
         <!--ng-controller设置控制器Controller-->
             <p>{{greeting.text}},angular</p>
+            
         </div>
     </body>
+    
     <script src="angular-1.0.3/angular.min.js"></script>
     <script src="helloAngular.js"></script>
+    
 </html>
 ```
 
-```javascript
+```javaScript
 function helloAngular ($scope) { 
 //helloAngular是controller
 //Angular会使用$injector自动注入$scope对象
@@ -105,7 +111,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
     * 内置的Service都以$符号开头，自定义的Service最好规避$符号
     * 如果你需要某个service，你只要申明即可，angular会帮你**自动注入**，angular使用**构造器注入**的方式：
         
-        ```javascript
+        ```javaScript
         var MyController = function ($location) {...};
         MyController.$inject = ['$location'];
         myModule.controller('MyController', MyController);
@@ -156,7 +162,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
         * $scope是一个树形结构，与**DOM标签平行**
             * $scope以元素属性的形式被绑定在对应的HTML标签上
 
-                ```javascript
+                ```javaScript
                 angular.element($0).scope()
                 ```
 
@@ -348,7 +354,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 ### 2.6 Service和Provider
 #### 2.6.1 使用$http服务（angular内置的service，类似$ajax）
 
-    ```javascript
+    ```javaScript
     var myModule=angular.module("MyModule",[]);
     myModule.controller('LoadDataCtrl', ['$scope','$http', function($scope,$http){
         $http({
@@ -392,7 +398,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * filter是可以传递参数的
 * 用户可以定义自己的filter
     
-    ```javascript
+    ```javaScript
     var myModule=angular.module("MyModule",[]);
     myModule.filter('filter1',function(){
         return function(item){
@@ -452,7 +458,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 		* 启动方式2：手动启动
 			* 在JS里手动启动，要注意要用ready函数等待文档初始化完成
 		
-				```javascript
+				```javaScript
 				angular.element(document).ready(function () {
 					angular.bootstrap(document, ['myModule']);
 				});
@@ -476,7 +482,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 * ng的三种注入方式
 	* 内联式注入：最推荐
 	
-		```javascript
+		```javaScript
 		var myModule = angular.module("MyModule", []);
 		
 		myModule.controller('MyCtrl', ['$scope',function($scope) {
@@ -487,7 +493,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 		
 	* 推断型注入：函数参数的名称必须要和被注入的对象相同
 	
-		```javascript
+		```javaScript
 		var myModule = angular.module("MyModule", []);
 		
 		var MyCtrl = function($scope) {
@@ -498,7 +504,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
 		```
 	* 声明型注入：函数参数的名称必须要和被注入的对象不同
 
-		```javascript
+		```javaScript
 		var myModule = angular.module("MyModule", []);
 
 		var MyCtrl = function(thisIsMyName) {
@@ -931,7 +937,7 @@ myModule.controller("helloAngularController", ['$scope', function helloAngular (
             * ~~.CLASS~~
     * javascript Animation
         
-        ```javascript
+        ```javaScript
         app.animation('.CLASS-NAME',function () {
             return {
                 'HANDLE': function(element, className, done){

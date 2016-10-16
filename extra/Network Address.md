@@ -3,7 +3,7 @@
 ***
 
 ## 查看mac地址
-* 在命令行界面输入“ipconfig /all”命令
+* 在命令行界面输入`ipconfig /all`命令
 
 ***
 

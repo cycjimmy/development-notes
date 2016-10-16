@@ -91,7 +91,8 @@
                 {p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:"white"},
                 {p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:"black"},
                 {p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:"gray"},
-            ]
+            ];
+          
             window.onload=function(){
                 var canvas=document.getElementById("canvas");
                 canvas.width=800;
@@ -102,6 +103,7 @@
                     //draw函数
                     draw(tangram[i],context);
                 }
+              
             function draw(piece,cxt){
                 cxt.beginPath();
                 cxt.moveTo(piece.p[0].x, piece.p[0].y);
@@ -124,31 +126,31 @@
     ```
 
 * context内置API：矩形
-    * context.rect(x, y, width, height);
+    * `context.rect(x, y, width, height)`
         * 只规划矩形的路径
-    * context.fillRect(x, y, width, height);
+    * `context.fillRect(x, y, width, height)`
         * 规划矩形的路径，并用设定好的fillStyle进行填充
-    * context.strokeRect(x, y, width, height);
+    * `context.strokeRect(x, y, width, height)`
         * 规划矩形的路径，并用设定好的strokeStyle进行描边
 
 ### 2.2 线条的属性
-* lineWidth 线条宽度
-* lineCap 线条两端的形状
-    * butt (default)
-    * round 圆头
-    * square 方头
-* lineJoin 线条相接点的形状
-    * miter (default)
-    * bevel 斜接
-    * round 圆角
-* miterLimit
-    * 当使用lineJoin为miter时，所产生的内角与外角之间距离的最大值，默认值为10
-    * 一旦超过设定值lineJoin就会以bevel(斜接)方式呈现
+* `lineWidth` 线条宽度
+* `lineCap` 线条两端的形状
+    * `butt` (default)
+    * `round` 圆头
+    * `square` 方头
+* `lineJoin` 线条相接点的形状
+    * `miter` (default)
+    * `bevel` 斜接
+    * `round` 圆角
+* `miterLimit`
+    * 当使用`lineJoin`为`miter`时，所产生的内角与外角之间距离的最大值，默认值为10
+    * 一旦超过设定值`lineJoin`就会以`bevel`(斜接)方式呈现
     
 
 
 ### 2.3 绘制弧线
-* context.arc函数
+* `context.arc`函数
 
     ``` javascript
     context.arc(
@@ -175,13 +177,13 @@
     ```
     
 ### 2.4 其他上下文函数
-* context.clearRect(x, y, width, height)
+* `context.clearRect(x, y, width, height)`
     * 对画布指定区域进行清除操作
-* context.canvas
+* `context.canvas`
     * 找到上下文绘图环境所对应的画布，从而调用画布的其他属性
-        * canvas.width
-        * canvas.height
-        * canvas.getContext('2d')
+        * `canvas.width`
+        * `canvas.height`
+        * `canvas.getContext('2d')`
     
     
     

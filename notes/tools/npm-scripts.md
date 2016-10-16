@@ -38,69 +38,69 @@
 ## 创建 package.json
 在项目目录中
 
-```node 
-npm init
+```shell 
+$ npm init
 ```
 
 ## 安装npm包
 * [node-sass](https://github.com/sass/node-sass) (SCSS => CSS)
 
-    ```node
-    npm i node-sass -D
+    ```shell
+    $ npm i node-sass -D
     ```
 
 * [Autoprefix](https://www.npmjs.com/package/autoprefixer) CSS with PostCSS (自动扩展css)
 
-    ```node
-    npm i postcss-cli autoprefixer -D 
+    ```shell
+    $ npm i postcss-cli autoprefixer -D 
     ```
 
 * eslint
 
-    ```node
-    npm i eslint -D 
+    ```shell
+    $ npm i eslint -D 
     ```
 
 * 压缩 JavaScript files [uglify-js](https://github.com/mishoo/UglifyJS2)
 
-    ```node
-    npm i uglify-js -D
+    ```shell
+    $ npm i uglify-js -D
     ```
     
 * 压缩图片
-    ```node
-    npm i imagemin-cli -D
+    ```shell
+    $ npm i imagemin-cli -D
     ```
 
 * 复制文件
-    ```node
-    npm install -D copy
+    ```shell
+    $ npm install -D copy
     ```
 
 * BrowserSync(开启一个本地服务器，自动更新文件，自动在浏览器中同步点击，滚动效果)
 
-    ```node
-    npm i browser-sync -D
+    ```shell
+    $ npm i browser-sync -D
     ```
 
 * 监听文件的变动
 
-    ```node
-    npm i onchange -D
+    ```shell
+    $ npm i onchange -D
     ```
 
 * parallelshell(允许同时执行多个任务)
 
-    ```node
-    npm i parallelshell -D
+    ```shell
+    $ npm i parallelshell -D
     ```
 
 ## 在package.json中创建scripts
-在scripts中创建的任务都能用 ```npm run [taskname]``` 执行
+在scripts中创建的任务都能用 `$ npm run [taskname]` 执行
 
 * 把src/sass下的所有scss文件都编译成css，放在src/style下面
 
-    ```javascript
+    ```json
     "scripts": {
         ...,
         "sass": "node-sass src/sass -o src/style --indent-type tab",
@@ -109,7 +109,7 @@ npm init
     ```
     
 * 把src/style下的所有css 以'> 5%'为参数适配浏览器
-    ```javascript
+    ```json
     "scripts": {
         ...,
         "autoprefixer": "postcss -u autoprefixer -r src/style/*",
@@ -117,15 +117,7 @@ npm init
     }
     ```
 
-
-    
-...
-
-
-
-
-
-
+（未完）
 
 
 

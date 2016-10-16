@@ -8,17 +8,16 @@
 
 ### 安装 Weex 命令行
 
-‘’‘c
-npm install -g weex-toolkit
-’‘’
+```shell
+$ npm install -g weex-toolkit
+```
 
 ### 查看帮助
+```shell
+$ weex --help
+```
 
-‘’‘c
-weex --help
-’‘’
-
-‘’‘c
+```shell
 Usage: weex foo/bar/we_file_or_dir_path  [options]
 Usage: weex create [name]  [options]
 
@@ -38,16 +37,16 @@ Options:
   -f, --force   [for create sub cmd]force to replace exsisting file(s) [boolean]
   --help        Show help                                              [boolean]
   -h, --host                                              [default: "127.0.0.1"]
-’‘’
+```
 
 
 ### 新建.we文件
 
 进入相应目录
 
-‘’‘c
-weex create [name]
-'''
+```shell
+$ weex create [name]
+```
 
 回车即新建了一个名为\[name\].we的文件
 
@@ -56,9 +55,9 @@ weex create [name]
 
 编写完.we后，在命令行输入
 
-’‘’c
-weex [name].we
-‘’‘
+```shell
+$ weex [name].we
+```
 
 运行\[name\].we，并生成一个二维码，通过Weex Playground的二维码扫描功能对页面进行加载
 
