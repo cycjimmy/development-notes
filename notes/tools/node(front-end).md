@@ -62,12 +62,15 @@ $ sudo chown -R $USER /usr/local
 
 ### 2.2 升级 npm 依赖包
 [npm-check](https://github.com/dylang/npm-check)是用来检查npm依赖包是否有更新、错误以及是否在使用的，可以方便的使用npm-check进行包的更新
+
 1. 安装npm-check
+
     ```shell
     $ npm install -g npm-check
     ```
 
 2. 检查全局的 npm 包是否可升级
+
     ```shell
     $ npm-check -u -g
     ```
