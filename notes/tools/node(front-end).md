@@ -75,7 +75,20 @@ $ sudo chown -R $USER /usr/local
     $ npm-check -u -g
     ```
 
-### 2.3 npm 个人常用命令
+### 2.3 淘宝NPM镜像`cnpm`
+1. 安装`cnpm`
+
+    ```shell
+    $ npm install -g cnpm --registry=https://registry.npm.taobao.org
+    ```
+  
+2. 用cnpm安装模块
+
+    ```shell
+    $ cnpm install [name]
+    ```
+
+### 2.4 npm 个人常用命令
 ```shell
 # 查看 npm 的版本
 $ npm -v
