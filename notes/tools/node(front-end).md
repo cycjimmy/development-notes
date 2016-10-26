@@ -47,6 +47,25 @@
 $ sudo chown -R $USER /usr/local   
 ```
 
+### 1.4 win使用`nvm-windows`安装&管理node版本
+1. 安装[nvm-windows](https://github.com/coreybutler/nvm-windows)
+2. 在命令行输入nvm验证安装成功
+3. 常用命令
+
+    ```shell
+    # 查看已安裝的Node版本
+    $ nvm list
+    
+    # 查看提供哪些Node版本
+    $ nvm list available
+    
+    # 安裝指定的Node版本
+    $ nvm install [version]
+    
+    # 指定使用Node版本
+    $ nvm use [version]
+    ```
+
 ## 2 管理 npm 模块管理器
 ### 2.1 升级 npm 的版本 
 * 通用
