@@ -94,7 +94,7 @@ $ sudo chown -R $USER /usr/local
     $ npm-check -u -g
     ```
 
-### 2.3 淘宝NPM镜像`cnpm`
+### 2.3 淘宝NPM镜像`cnpm` (不推荐，用yarn代替)
 1. 安装`cnpm`
 
     ```shell
@@ -127,14 +127,16 @@ $ npm ls --depth=0
 
 # npm install默认会安装dependencies字段和devDependencies字段中的所有依赖包
 $ npm i
+# 针对国内可以加上参数
+$ npm --registry=https://registry.npm.taobao.org i 
 
 # 安装依赖包
 # –save：添加到dependencies，可简化为-S
 # –save-dev: 添加到devDependencies，可简化为-D
-$ sudo npm i -g <package name>
-$ npm i <package name>
-$ npm i <package name> -S
-$ npm i <package name> -D
+$ sudo npm i -g [package name]
+$ npm i [package name]
+$ npm i [package name] -S
+$ npm i [package name] -D
 
 # 更新依赖包
 # -S表示保存新的依赖包版本号到package.json
@@ -143,12 +145,53 @@ $ npm update <package name> -S
 $ npm --depth 9999 update
 
 # 卸载依赖包
-$ npm uninstall <package name>
-$ npm uninstall <package name> -global
+$ npm uninstall [package name]
+$ npm uninstall [package name] -global
 
 # 执行任务
-$ npm run <task name>
+$ npm run [task name]
 ```
 
 [其他比较详细的npm命令查看 ](http://javascript.ruanyifeng.com/nodejs/npm.html)
+
+### 2.5 用yarn取代npm
+[Yarn](https://yarnpkg.com/) is a package manager for your code.
+
+1. 安装yarn
+
+    ```shell
+    npm install -g yarn
+    ```
+    
+2. yarn常用命令
+    ```shell
+    # npm init =>
+    yarn init
+    
+    # npm install =>
+    yarn install 
+    yarn install --force     #强制所有包重新下载
+    
+    # npm install --save [package] =>
+    yarn add [package]
+    
+    # npm install --save-dev [package] =>
+    yarn add [package] --dev
+    
+    # npm install --global [package] =>
+    yarn global add [package]
+    
+    # rm -rf node_modules && npm install =>
+    yarn upgrade [package]
+    
+    # npm uninstall --save [package] =>
+    # npm uninstall --save-dev [package] =>
+    yarn remove [package]
+    
+    # npm cache clean =>
+    yarn cache clean
+    
+    # 针对国内的设置
+    yarn config set registry https://registry.npm.taobao.org
+    ```
 
