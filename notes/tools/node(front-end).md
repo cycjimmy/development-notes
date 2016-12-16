@@ -160,38 +160,44 @@ $ npm run [task name]
 1. 安装yarn
 
     ```shell
-    npm install -g yarn
+    $ npm install -g yarn
     ```
     
 2. yarn常用命令
     ```shell
     # npm init =>
-    yarn init
+    $ yarn init
     
     # npm install =>
-    yarn install 
-    yarn install --force     #强制所有包重新下载
+    $ yarn install 
+    $ yarn install --force     #强制所有包重新下载
     
     # npm install --save [package] =>
-    yarn add [package]
+    $ yarn add [package]
     
     # npm install --save-dev [package] =>
-    yarn add [package] --dev
+    $ yarn add [package] --dev
     
     # npm install --global [package] =>
-    yarn global add [package]
+    $ yarn global add [package]
     
     # rm -rf node_modules && npm install =>
-    yarn upgrade [package]
+    $ yarn upgrade [package]
     
     # npm uninstall --save [package] =>
     # npm uninstall --save-dev [package] =>
-    yarn remove [package]
+    $ yarn remove [package]
     
     # npm cache clean =>
-    yarn cache clean
+    $ yarn cache clean
     
     # 针对国内的设置
-    yarn config set registry https://registry.npm.taobao.org
+    $ yarn config set registry https://registry.npm.taobao.org
     ```
 
+### 2.6 国内抓取node-sass失败的解决方案
+
+```shell
+# 使用淘宝镜像
+$ SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+```
