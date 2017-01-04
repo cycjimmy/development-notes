@@ -52,4 +52,7 @@ Development Notes (zh-chs)
 	* [For MAC](./extra/Common Software For MAC.md)
 * [Outside World](./extra/Outside World.md)
 * [Network Address](./extra/Network Address.md)
-* [Android 7.0 Background Ignore](./extra/Android 7.0 Background Ignore.md)
+* Android Optimization
+  * [Android 7.0 Background Ignore](extra/Android Optimization/Android 7.0 Background Ignore.md)
+  * [Hidden System Program](extra/Android Optimization/Hidden System Program.md)
+  
