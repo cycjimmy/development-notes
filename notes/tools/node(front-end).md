@@ -200,4 +200,7 @@ $ npm run [task name]
 ```shell
 # 使用淘宝镜像
 $ SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+
+# 或者使用淘宝镜像cnpm
+$ cnpm install node-sass 
 ```
