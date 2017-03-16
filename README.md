@@ -43,6 +43,7 @@ Development Notes (zh-chs)
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
 * [brackets](./notes/code_editor/brackets.md)
 * [WebStorm](./notes/code_editor/Web_Storm.md)
+* [Visual Studio](./notes/code_editor/Visual_Studio.md)
 
 ### Linux
 * [Linux shell](./notes/Linux/Linux_shell.md)
