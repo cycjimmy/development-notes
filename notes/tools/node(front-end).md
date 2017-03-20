@@ -197,6 +197,7 @@ $ npm config delete strict-ssl
     
     # rm -rf node_modules && npm install =>
     $ yarn upgrade [package]
+    $ yarn upgrade [package] --ignore-engines  #忽略引擎
     
     # npm uninstall --save [package] =>
     # npm uninstall --save-dev [package] =>
