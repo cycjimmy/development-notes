@@ -20,6 +20,7 @@ Development Notes (zh-chs)
 * [Canvas](./notes/javascript/Canvas.md)
 * Node.js
 * typescript
+* [PWA](./notes/javascript/pwa.md)
 
 ### CSS
 * [CSS](./notes/css/css.md)

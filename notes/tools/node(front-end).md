@@ -164,14 +164,23 @@ $ npm config delete registry
 $ npm config delete proxy
 $ npm config delete https-proxy
 $ npm config delete strict-ssl
+
+# 列出所有npm配置项目
+$ npm config ls -l
 ```
+
+*  `strict-ssl` 需手动修改 `.npmrc` 文件(located in \Users\ in Windows)
+    ```shell
+    # .npmrc文件中添加
+    strict-ssl=false
+    ```
 
 [其他比较详细的npm命令查看 ](http://javascript.ruanyifeng.com/nodejs/npm.html)
 
 ### 2.5 用yarn取代npm
 [Yarn](https://yarnpkg.com/) is a package manager for your code.
 
-1. 安装yarn
+1. 安装(升级)yarn
 
     ```shell
     $ npm install -g yarn
