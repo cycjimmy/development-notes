@@ -56,6 +56,7 @@ Development Notes (zh-chs)
 * Common Software
 	* [For MAC](./extra/Common_Software_For_MAC.md)
 * [Outside World](./extra/Outside_World.md)
+* [Resume Relevance](./extra/Resume_Relevance.md)
 * [Network Address](./extra/Network_Address.md)
 * Android Optimization
   * [Android 7.0 Background Ignore](./extra/Android_Optimization/Android_7.0_Background_Ignore.md)
