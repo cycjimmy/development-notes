@@ -14,3 +14,4 @@
 
 ## 参考资料
 * [在简历中使用STAR法则](http://blog.csdn.net/xiahouzuoxin/article/details/9315353)
+* [关于程序员求职简历](https://mdluo.github.io/blog/about-resume/)
