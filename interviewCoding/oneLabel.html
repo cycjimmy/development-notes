@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>单标签实现内容为空时显示“暂无内容”</title>
+  <meta charset="utf-8">
+  <style>
+    .main {
+      position: relative;
+      min-height: 120px;
+      background-color: antiquewhite;
+    }
+
+    .main:empty::after {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      content: "暂无内容";
+    }
+  </style>
+</head>
+<body>
+<div class="main"></div>
+</body>
+</html>
