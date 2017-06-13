@@ -51,6 +51,28 @@
 
 ## Javascript 
 
+### 模拟parseInt方法
+```javascript
+/**
+ * @param str
+ * @return {number}
+ */
+let mockParseInt = str => {
+  // 从非数字字符开始删除后面
+  str = str.replace(/\D.+$/g, '');
+
+  let
+    result = 0
+    , strLength = str.length;
+
+  Array.prototype.slice.call(str).forEach((sOneNum, index) => {
+    result += sOneNum * Math.pow(10, strLength - index - 1);
+  });
+
+  return result;
+};
+```
+
 ### 验证(email为例)
 ```javascript
 /**
