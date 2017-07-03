@@ -49,6 +49,10 @@ Development Notes (zh-chs)
 ### Linux
 * [Linux shell](./notes/Linux/Linux_shell.md)
 
+### collect
+* [H5 Collect](./notes/collect/H5Collect.md)
+* [snippets](./notes/collect/snippets.md)
+
 ## reading notes
 * [JavaScript高级程序设计(第三版)](./readingNotes/JavaScript高级程序设计.md)
 

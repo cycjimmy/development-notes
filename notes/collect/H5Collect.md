@@ -1,0 +1,33 @@
+# H5效果收集
+
+## lib
+* [HammerJs](https://github.com/hammerjs/hammer.js)
+* [Swiper](https://github.com/nolimits4web/swiper/)
+* [Animate.css](https://github.com/daneden/animate.css)
+* [Hilo](https://github.com/hiloteam/Hilo)
+
+## 苏州日报效果收集
+* [CSS Sprites实现图片分组动画效果DEMO演示](http://h5.subaonet.com/demo/1/)
+* [CSS3卡片鼠标悬停滑出分享按钮动画DEMO演示](http://h5.subaonet.com/demo/2/)
+* [CSS3/SVG实现鼠标滑过3D展开文字描述图层DEMO演示](http://h5.subaonet.com/demo/3/)
+* [Animated 3D Bar Chart with CSS3](http://h5.subaonet.com/demo/4/)
+* [超绚丽的HTML5地图分布动画DEMO演示](http://h5.subaonet.com/demo/5/)
+* [jQuery+HTML5实现刮刮乐抽奖特效](http://h5.subaonet.com/demo/6/)
+* [jQuery幸运大转盘抽奖活动代码](http://h5.subaonet.com/demo/7/)
+* [超炫酷CSS3图片动画DEMO演示](http://h5.subaonet.com/demo/8/)
+* [快乐九宫格](http://h5.subaonet.com/demo/9/)
+* [jquery+html5烂漫爱心表白动画](http://h5.subaonet.com/demo/10/)
+* [手机摇一摇抽奖活动页面](http://h5.subaonet.com/demo/11/)
+* [游乐园|云朵工厂- 奇趣的幻想世界](http://h5.subaonet.com/demo/12/)
+* [CSS3鼠标悬停图片动画DEMO演示](http://h5.subaonet.com/demo/14/)
+* [OSChina公司发展历程大事记时间轴](http://h5.subaonet.com/demo/15/)
+* [jQuery带小图标的Tab切换焦点图DEMO演示](http://h5.subaonet.com/demo/16/)
+* [带小图标的jQuery/CSS3响应式滑块动画插件DEMO演示](http://h5.subaonet.com/demo/18/)
+* [CSS3/jQuery自定义弹出窗口DEMO演示](http://h5.subaonet.com/demo/19/)
+* [jQuery五彩Tab选项卡动画DEMO演示](http://h5.subaonet.com/demo/20/)
+* [jQuery瀑布流布局 可拖拽交换元素DEMO演示](http://h5.subaonet.com/demo/21/)
+* [jQuery书本翻页动画 支持手机触屏DEMO演示](http://h5.subaonet.com/demo/22/)
+* [jQuery 3D翻转切换焦点图插件DEMO演示](http://h5.subaonet.com/demo/23/)
+* [甜美的jQuery糕点图片切换动画DEMO演示](http://h5.subaonet.com/demo/24/)
+* [强大的jQuery幻灯片播放插件DEMO演示](http://h5.subaonet.com/demo/25/)
+* [jQuery垂直列表插件DEMO演示](http://h5.subaonet.com/demo/26/)
