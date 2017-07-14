@@ -3,8 +3,12 @@
 ## lib
 * [HammerJs](https://github.com/hammerjs/hammer.js)
 * [Swiper](https://github.com/nolimits4web/swiper/)
-* [Animate.css](https://github.com/daneden/animate.css)
 * [Hilo](https://github.com/hiloteam/Hilo)
+* Animate
+  * [Animate.css](https://github.com/daneden/animate.css)
+  * [loading.io](https://loading.io/)
+  * [SpinKit](https://github.com/tobiasahlin/SpinKit)
+  * [css-loaders](https://github.com/lukehaas/css-loaders)
 
 ## 苏州日报效果收集
 * [CSS Sprites实现图片分组动画效果DEMO演示](http://h5.subaonet.com/demo/1/)
