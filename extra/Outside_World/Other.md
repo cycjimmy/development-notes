@@ -1,13 +1,4 @@
-# Outside World
-
-***
-
-## XX-Net
-基于Google Appengine的Web代理，是goagent的升级版。
-
-* 项目地址:[https://github.com/XX-net/XX-Net](https://github.com/XX-net/XX-Net)
-
-配置相对复杂，但每天可用流量高达1G
+# Outside World(other)
 
 ***
 

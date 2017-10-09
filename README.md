@@ -16,6 +16,7 @@ Development Notes (zh-chs)
 ### JavaScript
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
 * [webGL](./notes/javascript/webgl.md)
+* [three.js](./notes/javascript/threejs.md)
 * [Ajax](./notes/javascript/Ajax.md)
 * [Canvas](./notes/javascript/Canvas.md)
 * Node.js
@@ -60,7 +61,9 @@ Development Notes (zh-chs)
 ## extra
 * Common Software
 	* [For MAC](./extra/Common_Software_For_MAC.md)
-* [Outside World](./extra/Outside_World.md)
+* Outside World
+  * [XX-Net](./extra/Outside_World/XX-Net.md)
+  * [other](./extra/Outside_World/Other.md)
 * [Resume Relevance](./extra/Resume_Relevance.md)
 * [Network Address](./extra/Network_Address.md)
 * Android Optimization
