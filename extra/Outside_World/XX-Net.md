@@ -52,13 +52,13 @@ cmd
 * `ipconfig /all` 查看 Teredo Tunneling Pseudo-Interface 使用的连接（如：隧道适配器 本地连接* 1）
 * `netsh int ipv6 show int` 查看上面隧道适配器 本地连接* 1 使用的`Idx`，如`12`
 * `route DELETE ::/0` 清空一下之前的路由信息
-* `netsh int ipv6 add route ::/0 12` 添加路由(12为上面的Idx，也就是teredo 的Idx)
+* `netsh int ipv6 add route ::/0 "Teredo Tunneling Pseudo-Interface"` 添加路由
 
 可以把它写入XX-Net目录中的start.bat中
 ```shell
 @echo off
 route DELETE ::/0
-netsh int ipv6 add route ::/0 12 metric=1
+netsh int ipv6 add route ::/0 "Teredo Tunneling Pseudo-Interface"
 netsh interface ipv6 set interface "以太网" routerdiscovery=disabled
 SET PYTHONPATH="%~dp0%start.vbs" noconsole
 ```
