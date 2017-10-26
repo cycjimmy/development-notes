@@ -109,5 +109,10 @@ netsh interface ipv6 show teredo   # 正常情况下
 netsh int ipv6 show route          # 是否有 ::/0 的记录
 ```
 
+## 有效IP收集(171009更新)
+```text
+119.28.87.227|119.28.84.182
+```
+
 ## 相关链接：
 * [ipv6折腾笔记](http://www.jianshu.com/p/1433dd30f45a)
