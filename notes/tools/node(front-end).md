@@ -254,3 +254,37 @@ $ SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sa
 # 或者使用淘宝镜像cnpm
 $ cnpm install node-sass 
 ```
+
+## 3 发布node模块到npm社区
+1. [npm官网](https://www.npmjs.com/)注册账号，或使用命令行:
+  ```shell
+  $ npm adduser
+  ```
+
+2. 登陆账号
+  ```shell
+  # via npm
+  $ npm login
+
+  # via yarn
+  $ yarn login
+  ```
+
+3. 验证登陆
+  ```shell
+  $ npm whoami
+  ```
+
+4. 更新包版本号x.y.z, 通用版本号迭代规则:
+  * 如果只是修复bug，更新z
+  * 如果是新增了功能，但是向下兼容，更新y
+  * 如果有大变动，向下不兼容，更新x
+
+5. 发布
+  ```shell
+  # via npm
+  npm publish
+
+  # via yarn
+  yarn publish
+  ```
