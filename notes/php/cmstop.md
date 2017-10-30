@@ -23,8 +23,16 @@
 * 新建模板
   * 模板 -> 新建模板 -> zt -> 新建模板
 
+* 图片上传
+  * ...
+
+
 * 生成栏目页
   * 内容 -> 进入栏目 -> 快捷操作 -> 生成栏目页
+
+## 静态页面制作注意点
+* 标题要加链接
+* ...
 
 ## 代码片段收集
 ### 头条(手动)
@@ -96,12 +104,12 @@
 
 ```php
 <!--{content catid="3910" weight="70" order="published desc" size="2"}-->
-  <div class="pic-news-wrapper">
+  <div class="">
     <a href="{$r[url]}" target="_blank">
       <img src="{thumb($r[thumb],160,106)}" width="160" height="106" />
     </a>
     <div class="">
-      <a class="news-title" href="{$r[url]}" target="_blank">
+      <a class="" href="{$r[url]}" target="_blank">
         {str_cut($r[title],50,"")}
       </a>
       <p class="">
