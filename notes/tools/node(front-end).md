@@ -249,9 +249,13 @@ $ npm config ls -l
 
 ```shell
 # 使用淘宝镜像
-$ SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+# via npm
+$ npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 
-# 或者使用淘宝镜像cnpm
+# via yarn
+$ yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+
+# via cnpm 直接install
 $ cnpm install node-sass 
 ```
 
