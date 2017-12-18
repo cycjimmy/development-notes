@@ -720,7 +720,7 @@ Tips:
     * You may need a USB hub
   * 检查验证显示屏有boot logo
     * If not, it's not connected properly.
-* 设置你的开发板([官方设置说明](https://developer.android.com/things/hardware/imx7d.html))
+* 设置你的开发板
   1. Go to [https://partner.android.com/things/console](https://partner.android.com/things/console)
   2. Click **Menu** in the upper left, then click **Tools**.
   3. Download the **Onboarding Tool** and unzip it.
@@ -730,26 +730,546 @@ Tips:
     * NXP Pico i.MX7D
     * Use a custom image(the one you downloaded)
 
+* 设置你的开发板细节步骤(windows)([官方设置说明](https://developer.android.com/things/hardware/imx7d.html))
+  * Find your Android SDK location in Android Studio:
+    * **Configure > SDK Manager > Android SDK Location**
+  * Add it to your **PATH** environment variable
+  * Verify you can see the board in a command prompt:
+    * **fastboot devices -l**
+  * Unzip the image you downloaded from the Android Things console
+  * Run the Extracted **flash-all.bat** file:
+    * **./flash-all.bat**
+
+* Set up Wi-Fi:
+```shell
+$ adb shell am startservice \
+    -n com,google.wifisetup/.WifiSetupService \
+    -a WifiSetupService.Connect \
+    -e ssid <SSID> \
+    -e passphrase <PASSPHRASE>
+```
+
+### 在写开发代码之前先...
+* Disable Instant Run in Android Studio:
+  * Android Studio > Preferences > Build, Execution, Deployment > Instant Run
+* Make sure your board booted properly.
+* 检查显示屏有Android Things Launcher.
+
+### Coding
+```java
+dependencies {
+  compileOnly 'com.google.android.things:androidthings:...'
+}
+```
+
+```xml
+<application ...>
+  <uses-library android:name="com.google.android.things" />
+
+  <activity ...>
+    ...
+    <!-- Launch activity automatically on boot -->
+    <intent-filter>
+      <action android:name="android.intent.action.MAIN" />
+      <category android:name="android.intent.category.IOT_LAUNCHER" />
+      <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+  </activity>
+</application>
+```
+
+```java
+// Open a peripheral connection
+PeripheralManagerService service = new PeripheralManagerService();
+Gpio button = service.openGpio(GPIO_PIN_NAME);
+
+// Configure the peripheral
+button.setDirection(Gpio.DIRECTION_IN);
+button.setEdgeTriggerType(Gpio.EDGE_FALLING);
+
+// Attach callback for input events
+button.registerGpioCallback(new GpioCallback() {
+  @Override
+  public boolean onGpioEdge(Gpio gpio) {
+    Log.i(TAG, "GPIO changed");
+
+    // Return true to continue listening to events
+    return true;
+  }
+});
+```
+
+### 一些学习案例
+* [外围设备输入输出示例 Peripheral I/O](https://bit.ly/codelab-peripherals)
+  * 学习内容：
+    * 新建Android Things应用 Create a new Android Things app projects
+    * 外围设备输入输出通信 Communicate with hardware using Peripheral I/O
+    * 整合应用外围设备输入输出库的驱动器 Integrate drivers from the Peripheral Driver Library
+* [气象台示例 Weather Station](https://bit.ly/codelab-weatherstation)
+  * 学习内容：
+    * 整合应用外围设备输入输出库的驱动器 using Peripheral I/O and driver libraries
+    * 注加传感器 Registering sensors
+* TensorFlow 图像分类示例 Image Classifier
+  * Download the sample in Android Studio
+    * New > Import Sample... > "Things Tensor Flow image classifier sample"
+  * try to run the sample and see that it works.
+  * 了解更多 Explore the codelab later on your own:
+    * [https://bit.ly/codelab-classifier](https://bit.ly/codelab-classifier)
+
+### 相关社区
+* [Android Things SDK](https://developer.android.com/things)
+* [Android Things Samples](https://github.com/androidthings)
+* [Hackster.io Community](https://hackster.io/google)
+* [Google's IoT Developers Community](https://g.co/iotdev)
 
 ***
 
 ## 10:45 ~ 11:15 PWA 框架和工具(302)
+### PWA 工具的状态
+### PWA 工具的目标和理念
+* 完美的PWA
+  * 快速
+  * 可靠
+  * 有吸引力
+* 工具有何作用:
+  * 节省用户时间
+  * 节省用户带宽
+  * 浏览器定制
+### 单一页面应用
+* PWA背后的技术
+  * 清单
+  * Service Worker
+  * 优质应用
+
+### 最佳做法
+* Manifest
+  * 让浏览器和网页了解你的应用
+  * 默认生成
+  * 帮助您制定决策的工具
+* Service Worker
+```text
+                            ┌→ 已终止
+           ┌→ 激活 ←→ 空闲 ←—┤
+  —→ 安装 ←┤                 └→ 获取/销毁
+           └→ 错误
+```
+* 文件缓存
+  * 安装时/安装后
+  * 运行时
+  * 高级缓存策略
+* 推送通知
+  * 包装器函数和帮助程序
+* 代码生成
+  * 提供更快的完成工作所需的代码
+    * 天然快速
+    * 天然优质
+    * 利用原生指标构建管理
+
+### PWA 工具
+* 通用工具
+  * Chrome Dev Tool
+  * Workbox: 渐进式网页应用的JavaScript库
+    * 离线缓存
+    * 离线分析
+    * 后台同步
+  * webpack 离线插件
+    * 文件缓存
+      * 提前
+      * 延后
+      * 可选
+* 框架特定工具
+  * pinterset/service-workers: 用于创建/测试/体验 Service Worker 的工具集合
+    * 代码生成
+    * service worker 模拟环境生成器
+  * sw-precache 和 sw-toolbox: 用于构建Service Worker 的实用程序和工具
+    * 其目标和价值与Workbox相同
+    * 模块化、灵活性和可扩展性较低
+    * 被当今许多CLI和工具采用
+* 完全自定义
+
+* [HNPWA](https://hnpwa.com/): 20多家黑客新闻客户端实现PWA
+
+### PWA目标
+* 简化精神模型
+  * 缓存很难，不妨专注于用例
+  * Service Worker 的生命周期管理很困难，不妨让工具来处理
+  * 这像不像我所习惯的网页开发？
+* 处理边缘情况
+  * 如果您的应用在 Service Worker 安装期间断开连接，该怎么办？
+  * 如果您的用户拥有理想的连接，又会如何？
+  * 如果你不控制Api的缓存标题，将会如何？
+* 节省时间
+  * 大量代码
+  * 大量 DevOps
+  * 大量投入
+
+### 专用工具
+* React
+  * [create-react-app](https://github.com/facebookincubator/create-react-app)
+    * Service Worker 和网络应用清单生成
+    * 缓存优先策略
+
+  ```shell
+  $ yarn global add create-react-app
+  $ create-react-app my-react-app
+  $ cd my-react-app
+  $ yarn build
+  ```
+
+* Preact
+  * [preact-cli](https://github.com/developit/preact-cli)
+    * 应用创建
+    * index.html App Shell 生成
+    * 自动为浏览器列表添加前缀
+    * 针对服务器推送的firebase配置
+    * 由sw-precache驱动
+
+  ```shell
+  $ yarn global add preact-cli
+  $ preact create my-preact-app
+  $ cd my-preact-app
+  $ yarn build
+  ```
+
+* Polymer
+  * [polymer-cli](https://github.com/Polymer/polymer-cli)
+    * 清单生成和可选的Service Worker
+    * 三种发行版
+      * es5-bundled
+      * es6-bundled
+      * es6-unbundled
+    * PRPL模式
+
+  ```shell
+  $ yarn global add bower polymer-cli
+  $ mkdir my-polymer-app
+  $ cd my-polymer-app
+  $ polymer init
+    > polymer-2-starter-kit
+  $ polymer build
+  ```
+
+* Vue
+  * [vue-cli](https://github.com/vuejs/vue-cli) 和 [vuejs-templates/pwa](https://github.com/vuejs-templates/pwa)
+    * 应用创建
+    * 清单、ServiceWorker 和 App Shell 生成
+    * 智能加载所需的Javascript、CSS和网页字体
+
+  ```shell
+  $ yarn global add vue-cli
+  $ vue init pwa my-vue-project
+
+  # Guided setup
+  $ cd my-vue-project
+  $ yarn
+  $ yarn build
+  ```
+
+* Angular
+  * [@angular-cli](https://github.com/angular/angular-cli)
+    * 应用创建
+    * Service Worker 生成
+    * 声明的基于json的配置
+    * 推送通知和声明周期事件
+
+  ```shell
+  $ yarn global add @angular-cli
+  $ ng new my-angular-app --service-worker
+  $ cd my-angular-app
+  $ ng build -prod
+  ```
+
+* 其他重要项目
+  * PWA.rocks
+  * PWA Builder
+  * Angular - ng-pwa-tools
+
+### 一些建议
+* 务必勾选Application标签
+  * Service Worker是一款功能强大的API，不仅可以及时刷新页面，更能提升页面性能，它可以超越您对省时省事 + 刷新的期望
+  * 查阅 Rob Dodson 的指南: [https://bit.ly/debugging-sw](https://bit.ly/debugging-sw)
+* 使用工具处理
+  * 这些工具可以为您漂亮地完成工作，请尽可能使用他们的设计功能
+* 不要单纯依靠开发工具
+  * 限制并不够
+  * 离线复选框不会影响WebSockets
+* 端对端的 Service Worker 测试
+  * 考虑测试 Service Worker 的状态有可能很重要
+  * 请查阅
+    * [https://bit.ly/pinterest-sw-mock](https://bit.ly/pinterest-sw-mock)
+    * [https://bit.ly/angular-pwa-harness](https://bit.ly/angular-pwa-harness)
+* 保持最新
 
 ***
 
 ## 12:30 ~ 01:00 开放源代码框架 TensorFlow(301)
+> 共同目标: 机器学让未来变得更美好
+
+> TensorFlow的目标: 使机器学习收益与所有人
+
+### 目前的TensorFlow
+* TensorFlow 的命名
+  * Tensor 多维数组
+  * Flow 流动
+* TensorFlow: 开放的机器学习平台
+  * 快速，灵活，支持生产环境的开源机器学习软件包
+  * 可用在科研以及生产系统内
+  * 可以在CPU、GPU、Cloud TPU、Android、iOS、Raspberry Pi上运作，并不断支持更多硬件平台
+  * Apache 2.0 License
+
+### TensorFlow 性能
+* 性能数字
+  * 运用 Intel MKL-DNN 训练卷积神经网络(CNN)**速度提高 3.6x, 推断速度提高2x**
+  * 递归神经指导网络(RNN tutorial model) + CuDNN **速度提高 2.8x**
+  * 谷歌翻译(Google Translate)**推断速度提高 2.6x**
+* 第二代TPU: 适用于神经网络训练与推断
+  * 每秒180万亿次浮点运算, 64千兆的内存
+  * 多个TPU设计连接在一起
+
+### TensorFlow 适用性
+```text
+ ┌———————————————————————┐
+ |   Canned Estimators   | ←— Models in a box
+ └———————————————————————┘
+ ┌———————————┐┌——————————┐
+ | Estimator || tf.keras | ←—┐
+ └———————————┘└——————————┘   ├— Build models
+ ┌———————————————————————┐   |
+ |       tf.layers       | ←—┘
+ └———————————————————————┘
+ ┌———————————————————————┐┌——————————————┐┌—————┐
+ |    Python Frontend    || C++ Frontend || ... |
+ └———————————————————————┘└——————————————┘└—————┘
+ ┌——————————————————————————————————————————————┐
+ |   TensorFlow Distributed Execution Engine    |
+ └——————————————————————————————————————————————┘
+——————————————————————————————————————————————————
+ ┌———————┐┌———————┐┌———————————┐┌———————┐┌——————┐
+ |  CPU  ||  GPU  ||  Android  ||  iOS  || ...  |
+ └———————┘└———————┘└———————————┘└———————┘└——————┘
+```
+
+### [TensorFlow Serving](https://github.com/tensorflow/serving)
+> TensorFlow Serving is a flexible, high-performance serving system for machine learning models, designed for production environments.
+
+* Datasets 接口
+  * Data sources and functional transformations
+
+### TensorFlow Lite:
+> A lightweight machine learning library for mobile and embedded devices.
+
+* Easier
+* Faster
+* Smaller
+
+### TensorFlow Eager Execution: TensorFlow 模型运行的方式
+
+### Future directions of ML: learn2learn
+有了百倍的机器能量，我们没有理由固守我们的成见
+
+### 一些资源
+* [Tutorials and code](https://www.tensorflow.org/)
+* Intro to Deep Learning with TensorFlow
+  * [Udacity class](https://goo.gl/iHssII)
+* [Stanford's CS231n](https://cs231n.github.io)
+* [Udacity's Machine Learning Nanodegree](https://goo.gl/ODpXj4)
+* Totally new to ML?
+  * [Recipes](https://goo.gl/KewA03)
 
 ***
 
 ## 01:15 ~ 01:45 Google Cloud Platform 基础知识：导览(302)
+Google Cloud: 利用Google的创新应对您的挑战
+
+* 网络、基础设施
+  * 分层深度防御安全性
+  * 硬件基础设施: 从堆叠底部一直到顶部
+    * 用途特定的芯片
+    * 用途特定的服务器
+    * 用途特定的储存设施
+    * 用途特定的网络
+    * 用途特定的数据中心
+  * 我们从头构建网络
+    * 利用全球网络，但是只需要为您需要的内容付费
+    * 分层深度防御
+    * 借助行业领先的基础设施加快创新速度
+* 利用 Google Cloud 进行机器学习
+  * 使用我们的模型
+    * 利用 Google 的领域专业知识
+    * 不需要工具或者专业知识
+    * 利用 Google 的投资
+      * Cloud Translate API
+      * Cloud Speech API
+      * Cloud Natural Language API
+      * Cloud Video Intelligence
+      * Cloud Vision API
+        * 面部检测
+        * 徽标识别
+        * 标签识别
+        * 露骨内容检测
+        * OCR
+        * 地标识别
+      * Cloud Jobs API
+      * Cloud Machine Learning Engine: 完全托管式机器学习基础设施
+    * 开放源代码提供技术支持: TensorFlow
+      * 由 Google Brain 团队创建
+      * 多种部署选项
+        * 移动设备, 桌面设备, 服务器, 云
+        * CPU, GPU, Raspberry Pi
+      * 张量处理单元(TPU)
+  * 训练您的模型
+    * 自行构建专门的领域专业知识
+    * 使用 Google 工具构建和训练模型
+* 应用开发
+  * 应用开发为什么这么困难？
+  * 让开发者专注于编写代码
+    * 原型
+    * 生产
+    * 全球规模
+      * 大规模提供容器和无服务器解决方案
+        * 全球规模的平台即服务: AppEngine
+        * 容器化应用管理: Kubernetes Engine
+        * 无服务器应用、Google 基础设施: Cloud Functions
+  * 我们编写操作书籍, 并且..**不加修饰**
 
 ***
 
 ## 02:00 ~ 02:30 TensorFlow Lite: TensorFlow for Mobile(302)
+### Why small devices?
+* Challenges
+  * Resources
+    * Bandwidth
+    * Memory
+    * Computation
+  * Heterogeneity
+    * GPUs
+    * CPUs
+    * DSPs
+    * ...
+
+### What is TensorFlow Lite?
+> TensorFlow works well on **large** devices.
+> TensorFlow Lite is focused on **small** devices.
+
+
+* 其他序列化的数据库
+  * [FlatBuffers](https://github.com/google/flatbuffers)
+    * Open source Google project
+    * Originally designed for video games
+    * Similar to protobufs except:
+      * More memory efficient
+      * No-unmarshalling step(mmap)
+      * Less code
+
+* What is TensorFlow Lite?
+  * Core builtin ops
+    * NEON on ARM
+    * Float & quantized
+    * Many kernels optimized for our mobile apps
+  * Pre-fused activations and biases
+  * C API for custom ops
+* NeuralNetwork API
+  * Part of Android Framework
+
+### How do I use it?
+#### Coding
+* TensorFlow Lite @ Training
+```c
+# Standard TensorFlow graph build
+input = tf.placeholder(name="image", ...)
+# ...
+output = tf.identity(curr, name="class")
+
+# Test that model is mobile compatible
+_ = tflite.Convert(sess.graph_def, [input1], [output])
+
+# Training Loop
+# ...
+
+# Save model
+# ...
+
+# Output the model
+tflite_model = tflite.Convert(sess.graph_def, [input1], [output])
+open("awesome_model.tflite", "w").write(tflite_model)
+```
+
+* Android - App Gradle File
+```java
+application {
+  ...
+  aaptoptions {
+    noCompress 'tflite'
+  }
+}
+
+repositories {
+  maven {
+    url 'https://google.bintray.com/tensorflow'
+  }
+}
+
+dependencies {
+  ...
+  compile 'org.tensorflow-lite:+'
+}
+
+```
+
+* C++ API
+```c++
+// Mmap the model.
+auto model = FlatBufferModel::BuildFromFile("awesome_model.tflite");
+// Builtin operator op -> kernel resolver
+tflite::ops::builtin::BuiltinOpResolver builtins;
+// build an interpreter for the model.
+auto std::unique_ptr<tflite::Interpreter> interpreter;
+tflite::InterpreterBuilder(*model, builtins)(&interpreter);
+
+interpreter->ResizeInputTensor(0, {1, 240, 240, 3});
+interpreter->AllocateTensors();
+// Fill buffer
+if(float* input_buffer =
+    interpreter->type_tensor<float>(interpreter->inputs()[0])) {
+}
+
+// Run the inference
+interpreter->Invoke();
+// Read the output
+if(float* one_hot_output =
+    interpreter->type_tensor<float>(interpreter->outputs()[0])) {
+  // map to label, etc.
+}
+```
+
+* Java API
+```java
+import org.tensorflow.lite.Interpreter;
+
+try (Interpreter tflite = new Interpreter("/tmp/awesome_model.tflite")) {
+  Object[] inputs = {imageByteArray};
+  Map<Integer, Object> outputs = new HashMap<Integer, Object>();
+  outputs.put(0, outputClassByteArray);
+  tflite.run(inputs, outputs);
+}
+```
+
+* TensorFlow Lite C Extension API
+```c
+void* (*init)(TfLiteContext* context, const char* buffer, size_t length);
+void (*free)(TfLiteContext* context, void* buffer);
+TfLiteStatus (*prepare)(TfLiteContext* centext, TfLiteNode* node);
+TfLiteStatus (*invoke)(TfLiteContext* context, TfLiteNode* node);
+```
+
+### 相关链接
+* [Code @](https://github.com/tensorflow/tensorflow)
+* [Documentation @](https://www.tensorflow.org)
 
 ***
 
 ## 03:00 ~ 03:30 机器学习 API 介绍及实况演示(301)
+
 
 ***
 
