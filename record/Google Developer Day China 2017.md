@@ -597,7 +597,7 @@ func setAppearance() {
 
 #### <amp-list> 使用
 * 数据json
-  ```json
+  ```javascript
   {
     "items": [
       {
@@ -1285,7 +1285,7 @@ Google Cloud: 利用Google的创新应对您的挑战
 * 功能
   * 标签检测
   * 面部检测
-    ```json
+    ```javascript
     "faceAnnotations": [{
       "detectionConfidence": 0.93,
       "boundingPoly": {
@@ -1309,7 +1309,7 @@ Google Cloud: 利用Google的创新应对您的挑战
   * OCR
   * 露骨内容检测
   * 地标检测
-    ```json
+    ```javascript
     "landmarkAnnotations": [{
       "mid": "/m/0348s6",
       "description": "Paris Hotel and Casino",
@@ -1352,7 +1352,7 @@ Google Cloud: 利用Google的创新应对您的挑战
   * [Cloud Speech API](https://cloud.google.com/speech/)
 
 * 语音时间戳 在音频中搜索文本
-  ```json
+  ```javascript
   {
     "transcript": "Hello GDD China!",
     "confidence": 0.96596134,
@@ -1391,7 +1391,7 @@ Google Cloud: 利用Google的创新应对您的挑战
 1. 提取实体
 > **Joanne "Jo" Rowling**, 笔名 **J.K. Rowling** 和 **Robert Galbraith**, 是一位**英国**小说家、编剧家和电影制片人，其著作以《哈利·波特》魔幻系列作品最为著名
 
-```json
+```javascript
 {
   "name": "Joanne 'Jo' Rowling",
   "type": "PERSON",
@@ -1401,7 +1401,7 @@ Google Cloud: 利用Google的创新应对您的挑战
   }
 }
 ```
-```json
+```javascript
 {
   "name": "British",
   "type": "LOCATION",
@@ -1414,7 +1414,7 @@ Google Cloud: 利用Google的创新应对您的挑战
 2. 分析态度
 > 菜很好吃，我肯定还会再来！
 
-```json
+```javascript
 {
   "documentSentiment": {
     "score": 0.8,
@@ -1447,7 +1447,7 @@ app ——→ Google Sheets ←—→ Natural Language API
   ```
 
 * Video API 响应: 标签检测
-  ```json
+  ```javascript
   {
     "description": "Bird's-eye view",
     "language_code": "en-us",
