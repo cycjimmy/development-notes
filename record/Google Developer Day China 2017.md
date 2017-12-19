@@ -1174,93 +1174,92 @@ Google Cloud: 利用Google的创新应对您的挑战
 ### How do I use it?
 #### Coding
 * TensorFlow Lite @ Training
-```c
-# Standard TensorFlow graph build
-input = tf.placeholder(name="image", ...)
-# ...
-output = tf.identity(curr, name="class")
+  ```c
+  # Standard TensorFlow graph build
+  input = tf.placeholder(name="image", ...)
+  # ...
+  output = tf.identity(curr, name="class")
 
-# Test that model is mobile compatible
-_ = tflite.Convert(sess.graph_def, [input1], [output])
+  # Test that model is mobile compatible
+  _ = tflite.Convert(sess.graph_def, [input1], [output])
 
-# Training Loop
-# ...
+  # Training Loop
+  # ...
 
-# Save model
-# ...
+  # Save model
+  # ...
 
-# Output the model
-tflite_model = tflite.Convert(sess.graph_def, [input1], [output])
-open("awesome_model.tflite", "w").write(tflite_model)
-```
+  # Output the model
+  tflite_model = tflite.Convert(sess.graph_def, [input1], [output])
+  open("awesome_model.tflite", "w").write(tflite_model)
+  ```
 
 * Android - App Gradle File
-```java
-application {
-  ...
-  aaptoptions {
-    noCompress 'tflite'
+  ```java
+  application {
+    ...
+    aaptoptions {
+      noCompress 'tflite'
+    }
   }
-}
 
-repositories {
-  maven {
-    url 'https://google.bintray.com/tensorflow'
+  repositories {
+    maven {
+      url 'https://google.bintray.com/tensorflow'
+    }
   }
-}
 
-dependencies {
-  ...
-  compile 'org.tensorflow-lite:+'
-}
-
-```
+  dependencies {
+    ...
+    compile 'org.tensorflow-lite:+'
+  }
+  ```
 
 * C++ API
-```c++
-// Mmap the model.
-auto model = FlatBufferModel::BuildFromFile("awesome_model.tflite");
-// Builtin operator op -> kernel resolver
-tflite::ops::builtin::BuiltinOpResolver builtins;
-// build an interpreter for the model.
-auto std::unique_ptr<tflite::Interpreter> interpreter;
-tflite::InterpreterBuilder(*model, builtins)(&interpreter);
+  ```c++
+  // Mmap the model.
+  auto model = FlatBufferModel::BuildFromFile("awesome_model.tflite");
+  // Builtin operator op -> kernel resolver
+  tflite::ops::builtin::BuiltinOpResolver builtins;
+  // build an interpreter for the model.
+  auto std::unique_ptr<tflite::Interpreter> interpreter;
+  tflite::InterpreterBuilder(*model, builtins)(&interpreter);
 
-interpreter->ResizeInputTensor(0, {1, 240, 240, 3});
-interpreter->AllocateTensors();
-// Fill buffer
-if(float* input_buffer =
-    interpreter->type_tensor<float>(interpreter->inputs()[0])) {
-}
+  interpreter->ResizeInputTensor(0, {1, 240, 240, 3});
+  interpreter->AllocateTensors();
+  // Fill buffer
+  if(float* input_buffer =
+      interpreter->type_tensor<float>(interpreter->inputs()[0])) {
+  }
 
-// Run the inference
-interpreter->Invoke();
-// Read the output
-if(float* one_hot_output =
-    interpreter->type_tensor<float>(interpreter->outputs()[0])) {
-  // map to label, etc.
-}
-```
+  // Run the inference
+  interpreter->Invoke();
+  // Read the output
+  if(float* one_hot_output =
+      interpreter->type_tensor<float>(interpreter->outputs()[0])) {
+    // map to label, etc.
+  }
+  ```
 
 * Java API
-```java
-import org.tensorflow.lite.Interpreter;
+  ```java
+  import org.tensorflow.lite.Interpreter;
 
-try (Interpreter tflite = new Interpreter("/tmp/awesome_model.tflite")) {
-  Object[] inputs = {imageByteArray};
-  Map<Integer, Object> outputs = new HashMap<Integer, Object>();
-  outputs.put(0, outputClassByteArray);
-  tflite.run(inputs, outputs);
-}
-```
+  try (Interpreter tflite = new Interpreter("/tmp/awesome_model.tflite")) {
+    Object[] inputs = {imageByteArray};
+    Map<Integer, Object> outputs = new HashMap<Integer, Object>();
+    outputs.put(0, outputClassByteArray);
+    tflite.run(inputs, outputs);
+  }
+  ```
 
 * TensorFlow Lite C Extension API
-```c
-void* (*init)(TfLiteContext* context, const char* buffer, size_t length);
-void (*free)(TfLiteContext* context, void* buffer);
-TfLiteStatus (*prepare)(TfLiteContext* centext, TfLiteNode* node);
-TfLiteStatus (*invoke)(TfLiteContext* context, TfLiteNode* node);
-```
+  ```c
+  void* (*init)(TfLiteContext* context, const char* buffer, size_t length);
+  void (*free)(TfLiteContext* context, void* buffer);
+  TfLiteStatus (*prepare)(TfLiteContext* centext, TfLiteNode* node);
+  TfLiteStatus (*invoke)(TfLiteContext* context, TfLiteNode* node);
+  ```
 
 ### 相关链接
 * [Code @](https://github.com/tensorflow/tensorflow)
@@ -1269,14 +1268,675 @@ TfLiteStatus (*invoke)(TfLiteContext* context, TfLiteNode* node);
 ***
 
 ## 03:00 ~ 03:30 机器学习 API 介绍及实况演示(301)
+> 机器学习是从**范例**和**经验**中学习
 
+### 我们可以通过两种方法来帮助您从机器学习中获益
+* 使用您自己的数据训练模型
+  * TensorFlow
+  * Cloud 机器学习引擎
+* 以API形式使用机器学习
+  * Cloud Vision API
+  * Cloud Speech API
+  * Cloud Natural Language API
+  * Cloud Translation API
+  * 云视频智能
+
+### Cloud Vision API
+* 功能
+  * 标签检测
+  * 面部检测
+    ```json
+    "faceAnnotations": [{
+      "detectionConfidence": 0.93,
+      "boundingPoly": {
+        "vertices": [{
+          "x": 743,
+          "y": 449
+        }, ...]
+      },
+      "panAngle": 4.1,
+      "tiltAngle": -19.4,
+      "landmark": [{
+        "type": "LEFT_EYE",
+        "position": {...}
+      }, ...],
+      "joyLikelihood": "VERY_LIKELY"
+      //  ↑
+      // Also detects: surprise, anger, sorrow, headwear, blur, exposure
+
+    }, ...]
+    ```
+  * OCR
+  * 露骨内容检测
+  * 地标检测
+    ```json
+    "landmarkAnnotations": [{
+      "mid": "/m/0348s6",
+      "description": "Paris Hotel and Casino",
+      "score": 80,
+      "boundingPoly": {
+        "vertices": [{
+          "x": 117,
+          "y": 479
+        }, ...]
+      },
+      "locations": [{
+        "latLng": {
+          "latitude": 36.11221,
+          "longitude": -115.172596
+        }
+        //  ↑
+        // This is the location of Las Vegas
+      }]
+
+
+    }]
+    ```
+  * 徽标检测
+
+* Vision Api 更多特征
+  * 裁剪提示: 建议的照片裁剪尺寸
+  * 网页注释: 从互联网上搜索图像的更多详情
+  * 文档文本注释: 改善对大文本块的OCR
+
+* 使用您自己的图像在浏览器中试一试:
+  * [Cloud ML Vision API](https://cloud.google.com/vision/)
+
+### Cloud Speech API
+* 使用Cloud Speech API的案例
+  * Azar: 200亿次人际配对
+  * google 翻译
+  * airbnb
+
+* 在浏览器中试一试:
+  * [Cloud Speech API](https://cloud.google.com/speech/)
+
+* 语音时间戳 在音频中搜索文本
+  ```json
+  {
+    "transcript": "Hello GDD China!",
+    "confidence": 0.96596134,
+    "words": [{
+      "word": "Hello",
+      "startTime": "1.400s",
+      "endTime": "1.800s"
+    },{
+      "word": "GDD",
+      "startTime": "1.800s",
+      "endTime": "2.300s"
+    }, ...]
+  }
+  ```
+
+* 调用API
+  ```java
+  from google.cloud import translate
+
+  translate_client = translate.Client()
+
+  result = translate_client.translate(
+    "I'd like the fried octopus please",
+    target_language="ja")
+
+  print("Translation: " + result['translatedText'])
+  # Translation: 私は揚げたタコをお願いします
+  ```
+
+* **神经网络机器**翻译(循环神经网络)
+  * 了解详情: [bit.ly/nyt-ai-awakening](https://bit.ly/nyt-ai-awakening)
+
+### Natural Language API
+> 从文本中提取实体、态度和语法
+#### 实现
+1. 提取实体
+> **Joanne "Jo" Rowling**, 笔名 **J.K. Rowling** 和 **Robert Galbraith**, 是一位**英国**小说家、编剧家和电影制片人，其著作以《哈利·波特》魔幻系列作品最为著名
+
+```json
+{
+  "name": "Joanne 'Jo' Rowling",
+  "type": "PERSON",
+  "metadata": {
+    "mid": "/m/042xh",
+    "wikipedia_url": "http://en.wikipedia.org/wiki/J._K._Rowling"
+  }
+}
+```
+```json
+{
+  "name": "British",
+  "type": "LOCATION",
+  "metadata": {
+    "mid": "/m/07ssc",
+    "wikipedia_url": "http://en.wikipedia.org/wiki/United_Kingdom"
+  }
+}
+```
+2. 分析态度
+> 菜很好吃，我肯定还会再来！
+
+```json
+{
+  "documentSentiment": {
+    "score": 0.8,
+    "magnitude": 0.8
+  }
+}
+```
+
+3. 分析语法(目前支持英语、西班牙语、日语)
+
+#### 使用Cloud Natural Language API 和 Apps Script 分析 Google Sheet 中的文本
+```text
+app ——→ Google Sheets ←—→ Natural Language API
+```
+* [相关资料](https://cloud.google.com/blog/big-data/2017/12/analyzing-text-in-a-google-sheet-using-cloud-natural-language-api-and-apps-script)
+
+#### 使用您自己的文本在浏览器中试一试:
+* [Cloud Natural Language API](https://cloud.google.com/natural-language/)
+
+### Video Intelligence API
+> 以镜头、帧或者视频层级理解视频的实体
+
+* 工作原理
+  ```text
+                 ┌—————————————→  基于构建的前端  ←—————————————┐
+                 |                 App Engine                 |
+                 |                              视频元数据      |
+  视频内容 ——→ 云端储存 ——→  Cloud    ——→ 智能视频 ———————————→ 云端存储
+             (全长视频)    Functions                        (视频注释JSON)
+  ```
+
+* Video API 响应: 标签检测
+  ```json
+  {
+    "description": "Bird's-eye view",
+    "language_code": "en-us",
+    "locations": {
+      "segment": {
+        "start_time_offset": 74905212,
+        "end_time_offset": 73740392,
+      },
+      "confidence": 0.96653205
+    }
+  }
+  ```
+
+* 使用您自己的图像在浏览器中试一试:
+  * [Cloud Video Intelligence API](https://cloud.google.com/video-intelligence/)
+
+### 相关链接
+* 在浏览器中试用API
+  * [Vision](https://cloud.google.com/vision/)
+  * [Speech](https://cloud.google.com/speech/)
+  * [Natural Language](https://cloud.google.com/natural-language/)
+  * [Translation](https://cloud.google.com/translation/)
+  * [Video](https://cloud.google.com/video-intelligence/)
+* [演示代码](https://github.com/sararob/ml-talk-demos)
+* [Video API 演示应用](https://github.com/sararob/video-intelligence-demo)
 
 ***
 
 ## 03:45 ~ 04:15 什么是网络的未来潮流？(301)
+或者说探索 [about://flags](about://flags)
+
+### 渐进式网页应用
+* 沉浸式全屏PWA
+  * 在屏幕上向PWA提供应有的显示空间
+  * 案例: 手机访问 [Paper Planes](https://paperplanes.world/)
+  * 现在您可以在PWA的网络应用清单中将`display`属性设为`"fullscreen"`
+  * [bit.ly/display-fullscreen](https://bit.ly/display-fullscreen)
+* 改进了“添加到主屏幕”
+  * 手机上的“真正”应用
+  * 现在用户可以在应用抽屉式导航栏中或通过搜索应用来找到PWA，应用图标和应用名称均可以更新
+  * 根据网络应用清单的范围，我们为PWA创建了一个Android Intent过滤器来定义应当在上面时机打开网络应用
+
+### Web Share API
+> 分享即关爱
+
+* 原生的分享对话框
+  ```javascript
+  navigator.share({
+    title: document.title,
+    text: 'Hello World',
+    url: window.location
+  })
+  .then(() => console.log('Successful share'))
+  .catch(error => console.log('Error sharing: ', error));
+  ```
+
+* [相关资料](https://bit.ly/web-share)
+
+### 网络推送通知
+在 macOS 上不再是“异族”，现已融入 macOS 通知中心
+
+* 通过 Notifications API 发送的网络推送通知直接在 macOS 原生通知中心内显示
+* 更好的实现与平台的集成，遵循 macOS 系统勿扰模式设置的规则
+* [相关资料](https://bit.ly/macos-notifications)
+
+### 导航预加载
+无需等待 Service Worker 启动
+
+* Service Worker 导航预加载: 初始试用更快速的PWA
+  * 导航预加载是一项全新的实验性功能，利用这项功能，您可以实现：用户发出GET导航请求时，系统在Service Worker启动的同时启动网络请求
+  * 虽然这不能避免启动延迟，但却可以消除网络请求受阻的现象，从而让用户能够更快获取内容
+
+* coding
+  ```javascript
+  addEventListener('activate', event => {
+    event.waitUntil(async function() {
+      // Feature-detect
+      if (self.registration.navigationPreload) {
+        // Enable navigation preloads!
+        await self.registration.navigationPreload.enable();
+      }
+    }());
+  });
+
+  addEventListener('fetch', event => {
+    event.respondWith(async function() {
+      // Respond from the cache if we can
+      const cachedResponse = await caches.match(event.request);
+      if (cachedResponse) return cachedResponse;
+
+      // Else, use the preloaded response, if it's there
+      const response = await event.preloadResponse;
+      if (response) return response;
+
+      // Else try the network.
+      return fetch(event.request);
+    }());
+  });
+  ```
+
+* [相关资料](https://bit.ly/navigation-preload)
+
+### 一键注册 自动登陆
+> 只需点按一下就能创建账户
+> 之前登陆过的用户可以自动登陆
+
+* 注册意味着“麻烦事”
+  * 登陆步骤繁琐 注册更加繁琐
+  * 如果您忘记了所选的服务商，联盟也爱莫能助
+  * 用户选择安全系数低的密码，要不然可能会忘记密码
+* 一键注册 API
+  * 在所有浏览器上都有效
+  * 在移动网络上创建账号有新方法了，只需点按一下即可基于 OpenYOLO，使用Google 电子邮箱地址创建账户
+  * 支持使用之前选择的信息实现回访用户自动登陆，从而立竿见影的进行个性化
+* coding
+  ```javascript
+  const options = {
+    supportedAuthMethods: [
+      'https://accounts.google.com',
+      'smartlock://id-and-password'
+    ],
+    supportedIdTokenProviders: [{
+      url: 'https://accounts.google.com',
+      clientId: ID
+    }]
+  };
+
+  const handleResult = (credentials) => {
+    authenticateWithToken(credentials.idToken);
+    // Send to server, sign in/up, issue session, else auto-fill data in form
+    // Use cancel() to dismiss
+  };
+
+  // Auto sign-in, use disableAutoSignIn() when user signs out
+  googleyolo.retrieve(options).then(handleResult);
+
+  // Auto sign-up
+  googleyolo,hint(options).then(handleResult);
+  ```
+* [相关资料](https://developers.google.com/identity/one-tap/)
+
+### 存储空间评估(了解存储空间使用情况)
+开发者经常遇到这个问题: 存储空间是否足够支持我执行目前的操作？现在这个问题已经得到解决
+```javascript
+navigator.storage.estimate()
+  .then((estimate) => {
+    console.log(`You are currently using an estimated ${estimate.usage} of your total ${estimate.quota}.`);
+  });
+```
+* [相关资料](https://bit.ly/storage-estimation)
+
+### 与媒体相关的API
+#### Image Capture API
+更改相机设置 放大重要内容
+
+* Image Capture API 可以捕捉静止图像，以及配置缩放级别等相机硬件设置。
+* coding
+  ```javascript
+  const track = mediaStream.getVideoTracks()[0];
+  const capabilities = track.getCapabilities();
+  const settings = track.getSettings();
+  const input = document.querySelector('input[type="range"]');
+
+  input.min = capabilities.zoom.min;
+  input.max = capabilities.zoom.max;
+  input.step = capabilities.zoom.step;
+  input.value = settings.zoom;
+  input.oninput = (event) => {
+    track.applyConstraints({
+      advanced: [
+        {zoom: event.target.value}
+      ]
+    });
+  };
+  ```
+* 相关资料
+  * [bit.ly/image-capture](https://bit.ly/image-capture)
+  * [bit.ly/image-capture-api](https://bit.ly/image-capture-api)
+
+#### Shape Detection API 让手机摄像头的智能程度登峰造极
+利用 Shape Detection API， 您可以检测面孔、读取条形码，以及运行光学字符识别技术(OCR)
+
+```javascript
+// The <video>'s srcObject is a MediaStream
+const faceDetector = new FaceDetector({fastMode: true});
+const textDetector = new TextDetector();
+const barcodeDetector = new BarcodeDetector();
+
+Promise.all([
+  faceDetector.detect(video),
+  textDetector.detect(video),
+  barcodeDetector.detect(video)
+])
+  .then(([
+    detectedFaces = [],
+    detectedTexts = [],
+    detectedBarcodes = []
+  ]) => {
+    detectedFaces.forEach((detectedFace) => console.log(detectedFace));
+    detectedTexts.forEach((detectedText) => console.log(detectedText));
+    detectedBarcodes.forEach((detectedBarcode) => console.log(detectedBarcode));
+  });
+
+```
+
+* 相关资料
+  * [wicg.github.io/shape-detection-api](https://wicg.github.io/shape-detection-api)
+  * [arnellebalane.com/shape-detection-api](https://arnellebalane.com/shape-detection-api)
+
+#### Media Session API 让您的媒体会话变得更有意义
+* 向用户显示媒体元数据信息
+  * 现在您可以利用 Media Session API 提供应用所播放媒体的元数据，从而对媒体通知进行自定义。
+  * 另外，您也可以利用此API处理与媒体相关的事件，例如定位播放位置或更改轨道(这些实践可能来自通知或媒体键)。
+
+* coding
+  ```javascript
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: 'Never Gonna Give You Up',
+    artist: 'Rick Astley',
+    album: 'Whenever You Need Somebody',
+    artwork: [
+      { src: 'https://dummyimage.com/96x96',   sizes: '96x96',   type: 'image/png' },
+      { src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png' },
+      { src: 'https://dummyimage.com/192x192', sizes: '192x192', type: 'image/png' },
+      { src: 'https://dummyimage.com/512x512', sizes: '512x512', type: 'image/png' },
+    ]
+  });
+
+  navigator.mediaSession.setActionHandler('play', function() {});
+  navigator.mediaSession.setActionHandler('pause', function() {});
+  navigator.mediaSession.setActionHandler('seekbackward', function() {});
+  navigator.mediaSession.setActionHandler('seekforward', function() {});
+  navigator.mediaSession.setActionHandler('previoustrack', function() {});
+  navigator.mediaSession.setActionHandler('nexttrack', function() {});
+  ```
+* [相关资料](https://bit.ly/media-session-api)
+
+#### Media Capabilities API
+> 不要为了片面追求4K视频，烧坏用户的电池
+
+* 让媒体在流畅播放的同时实现高能效
+  * 利用 Media Capabilities API，网站能够获取与设备解码功能相关的更多信息。
+  * 这能够帮助网站开发者在为用户选择媒体流时做出最佳决策。
+* coding
+  ```javascript
+  navigator.mediaCapabilities.query({
+    type: 'file',
+    video: {
+      type: 'video/webm codec=vp9.0',
+      height: 1080,
+      width: 1920,
+      framerate: 24,
+      bitrate: 2826848
+    },
+    audio: {
+      type: 'audio/webm codec=opus',
+      channels: '2.1',
+      samplerate: 44100,
+      bitrate: 255236
+    }
+  })
+    .then(res => console.log(res.isSupported, res.isSmoothPlayback, res.isPowerEfficient));
+  ```
+* [相关资料](https://wicg.github.io/media-capabilities)
+
+#### WebVR
+> 需求在真正的现实中得不到满足
+
+* 在浏览器中营造引人入胜的虚拟现实体验
+  * WebVR是一种开放标准，让用户能够在您的浏览器中获得虚拟现实体验
+  * WebVR的目标是，让所有人，无论用什么设备，都能更轻松地享受虚拟现实体验
+* [相关资料](https://w3c.github.io/webvr)
+
+### 与性能相关的API
+#### 网络信息 了解速度极限
+* 实时获取有意义的网络信息
+  * 用例包括: 动态请求慢速网络上的低分辨率资源，这可以与媒体查询相矛盾
+    ```javascript
+    navigator.connection.addEventListener('change', logNetworkInfo);
+
+    function logNetworkInfo() {
+      console.log('type: ' + navigator.connection.type);                         // Network type that browser uses
+      console.log('downlink: ' + navigator.connection.downlink + 'Mb/s');        // Effective bandwidth estimate
+      console.log('rtt: ' + navigator.connection.rtt + 'ms');                    // Effective round-trip time estimate
+      console.log('downlinkMax: ' + navigator.connection.downlinkMax + 'Mb/s');  // Upper bound on the downlink
+      console.log('effectiveType: ' + navigator.connection.effectiveType);       // Effective connection type
+    };
+    ```
+  * 媒体查询结果可能显示您的手机支持“Retina”图像，但是在采用2G连接时，获取非“Retina”图像才能提供更好的体验
+    ```javascript
+    const useRetina = () => {
+      const supportsRetina = window.matchMedia(
+        '(min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
+      ).matches;
+
+      if (supportsRetina && navigator.connection.effectiveType === '4g') {
+        // Use Retina graphics
+      } else {
+        // Use non-Retina graphics
+      }
+    };
+
+    navigator.connection.onchange = useRetina;
+    ```
+
+* [相关资料](https://wicg.github.io/netinfo)
+
+#### Performance API
+您一定对页面加载期间究竟发生了什么甚为关心
+
+* Navigation Timing API 获取总体性能数据
+  ```javascript
+  const perfData = window.performance.timing;
+  const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+  const connectTime = perfData.responseEnd - perfData.requestStart;
+  const renderTime = perfData.domComplete - perfData.domLoading;
+
+  console.table([
+    ['Page load time', pageLoadTime],
+    ['Connect time', connectTime],
+    ['Render time', renderTime]
+  ])
+  ```
+* Paint Timing API 了解您的网络在向真实用户呈现内容时的渲染速度
+  ```javascript
+  performance.getEntriesByType('paint').forEach(console.log);
+
+  const observer = new PerformanceObserver((list, obj) => {
+    const entries = list.getEntries();
+
+    for (let i = 0; i < entries.length; i++) {
+      // Process 'paint' events
+    }
+  });
+
+  observer.observe({
+    entryTypes: ['paint']
+  });
+  ```
+* [相关资料](https://bit.ly/performance-api)
+
+#### Client Hints
+了解用户设备的功能
+
+* 根据用户设备调整体验
+  * 低内存设备（内存低于512MB的设备和内存在512MB到1GB之间的设备）在新兴市场中的应用非常广泛。根据Chrome的遥测数据，此类设备前台标签上发生的内存不足崩溃事件的数量非常庞大。
+  * 提供精简版网页不仅能够改善用户体验，甚至对于确保网页的可用性也是非常有必要的举措
+  * 服务器可以通过使用 Accept-CH 响应标头或通过包含 http-equiv 属性的等效元标记来通告对 Client Hints 的支持:
+    ```text
+    Accept-CH = Device - Memory
+    ```
+  * Device-Memory 请求标头变量是一个代表客户端设备内存的数字，即内存的估算大小（以GiB为单位）:
+    ```text
+    Device-Memory = 0.5
+    ```
+  * 网站可以通过 Javascript APIs 读取这些信息并进行相应调整，例如从服务器请求较淡的纹理。
+    ```javascript
+    console.log(navigator.deviceMemory);        // 0.5
+    console.log(navigator.hardwareConcurrency); // 2
+    ```
+* [相关资料](http://httpwg.org/http-extensions/draft-ietf-httpbis-client-hints.html)
+
+### 新 Javascript 功能
+#### 动态模块导入: 延迟加载 Javascript 代码
+在运行时动态加载代码。可用于仅在需要时延迟加载脚本，从而提升应用的性能。
+```javascript
+button.addEventListener('click', event => {
+  import('./dialogBox.js')
+  .then(dialogBox => dialogBox.open())
+  .catch(error => {
+    // Error handling
+  });
+});
+```
+
+#### 异步生成器函数: 简化流式传输数据的消耗或实现
+异步迭代器可用于 for-of 循环以及通过异步迭代器工厂创建自定义异步迭代器
+```javascript
+async function* getChunkSizes (url) {
+  const response = await fetch(url);
+  const b = response.body;
+  fot await (const chunk of magic(b)) {
+    yield chunk.length;
+  }
+}
+```
+
+#### `Promise` 中的 `Finally` 方法
+确保系统无论在什么情况下都执行您需要的操作
+
+`Finally`方法现在可以在Promise实例中使用，并且可以在`Promise`被实现或拒绝后调用。
+
+```javascript
+const fetchAndDisplay = ({url, element}) => {
+  showLoadingSpinner();
+  fetch(url)
+    .then((response) => response.text())
+    .catch((error) => error.message)
+    .finally((text) => {
+      element.textContent = text;
+      hideLoadingSpinner();
+      // ...
+    });
+};
+```
+
+### 与硬件相关的API
+#### Web Bluetooth 与附近的蓝牙设备安全通信
+* 利用Web Bluetooth API，网站能够通过Generic Attribute Profile(GATT)服务发现附件的蓝牙设备并与这些设备通信
+* 目前，该API已在Chrome中得到了部分实现，涉及的操作系统包括Android M+、 Linux、 macOS 和 Chrome OS。
+* [相关资料](https://bit.ly/web-bluetooth-api)
+
+#### WebUSB 让USB设备服务在网络上公开
+* 专门为网络设备设计的访问控制
+  * 在网络上使用的设备要经过专门设计，这并不是要公开所有USB设备。
+  * 仅限 HTTPS, 必须由用户启动。
+  * 已在Chrome中得到了实现，涉及的操作系统包括Android M+、 Linux、 macOS 和 Chrome OS。
+* [相关资料](https://bit.ly/web-usb)
+
+### 关注最新消息：
+[https://developers.google.com/web/updates/](https://developers.google.com/web/updates/)
 
 ***
 
-## 04:30 ~ 05:00 为数十亿用户打造产品(301)
-
+## 04:30 ~ 05:00 为数十亿用户打造产品(Android)(301)
+1. 连接
+  * 优化网络连接
+    * 规定流量的优先顺序: 文本优先
+    * 网络请求去重
+    * 根据网络连接性能调整行为
+  * 优化图像
+    * 在适宜时提供SVG
+    * 否则提供 WebP 图像
+    * 提供动态图像大小
+  * 有用的离线体验
+    * 缓存
+    * 图像加载库
+2. 设备能力
+  * 屏幕尺寸
+    * 专为中小屏幕构建
+    * 针对中低密度屏幕进行优化
+    * 通过模拟器配置进行测试
+  * 高效利用内存
+    * 按可用的RAM调整占用的空间
+      ```java
+      ActivityManager.isLowRamDevice()
+      ActivityManager.getMemoryClass()
+      ```
+    * 避免长时间运行的进程
+    * 使用Android Studio 内存监视器 监测内存使用情况
+    * 使用智能存储
+      * 有界缓存
+        ```java
+        getCacheDir()
+        ```
+      * 允许安装至SD卡
+      * 通过应用设置进行衡量
+  * 向后兼容性
+    * E.g.
+      * `targetSdkVersion 27`
+      * `minSDKVersion 15`
+    * Android 支持库
+    * Google Play 服务
+3. 流量费用
+  * APK大小
+    * 图像消耗的数据流量最多
+    * 降低代码大小, 使用ProGuard
+    * 在 `build.gradle` 中进行以下设置
+      ```java
+      minifyEnable = true
+      shrinkResources = true
+      ```
+    * 将多个APK作为一个选项
+  * 允许用户配置数据流量的使用
+4. 电池消耗
+  * 避免不需要的唤醒
+  * 批处理网络请求
+  * 使用 Firebase JobDispatcher
+5. 内容
+  * 快速自适应式界面
+    * 处处提供触摸反馈
+    * 界面始终可交互
+    * 始终达到 60fps
+    * 考虑启动屏幕
+  * 页面最佳做法
+    * 符合 Material Design
+    * 使用设计支持库
+  * 本地化
+    * 支持用户的语言区域
+    * 使用适宜的字体（例如：Noto）
+6. [相关资料](https://d.android.com/billions)
 
