@@ -51,6 +51,9 @@ Development Notes (zh-chs)
 * [Linux shell](./notes/Linux/Linux_shell.md)
 * [Install Nodejs On Windows Bash](./notes/Linux/install_nodejs_on_windows_bash.md)
 
+### SQL
+* [SQL Server](./notes/sql/SQLServer.md)
+
 ### collect
 * [H5 Collect](./notes/collect/H5Collect.md)
 * [snippets](./notes/collect/snippets.md)
