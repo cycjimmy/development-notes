@@ -13,12 +13,22 @@ CREATE TABLE Student
 ```
 
 ### 数据查询
+* 基本语法
 ```sql
-SELECT [列]
+SELECT [table fields list]
+FROM [table names list]
+WHERE [row constraints specification]
+GROUP BY [grouping specification]
+HAVING [grouping SELECTion specification]
+ORDER BY [order rules specification]
+
+-- TOP语句 指定查询前X条结果
+SELECT TOP [x] [列]
 FROM [表]
+```
 
-GO
-
+* 通用例子
+```sql
 SELECT cr.Name AS CountryRegion, sp.Name StateProvinceName, a.*
 FROM Person.Address a
 INNER JOIN Person.StareProvince sp --内联接
@@ -27,11 +37,117 @@ INNER JOIN Person.CountryRegion cr
 ON cr.CountryRegionCode = sp.CountryRegionCode
 WHERE a.city = 'Bothell'
 
-GO
+-- The classical T-SQL query!!!
+SELECT SalesPersonID,OrderDate,Max(TotalDue) as MaximumTotalSales
+FROM [Sales].[SalesOrderHeader]
+WHERE SalesPersonID is not null and OrderDate >='2007/1/1'
+ORDER BY SalesPersonID,OrderDate
+HAVING Max(TotalDue)>150000
+ORDER BY OrderDate DESC
+```
 
--- TOP语句 指定查询前X条结果
-SELECT TOP [x] [列]
-FROM [表]
+* `WHERE`相关
+```sql
+SELECT * FROM [Sales].[SalesOrderHeader]
+WHERE SalesPersonID=275
+
+SELECT * FROM [Sales].[SalesOrderHeader]
+WHERE SalesOrderNumber='so43670'
+
+SELECT * FROM [Sales].[SalesOrderHeader]
+WHERE TotalDue>5000
+
+SELECT SalesOrderID,OrderDate,SalesPersonID,TotalDue as TotalSales
+FROM [Sales].[SalesOrderHeader]
+WHERE SalesPersonID=275 AND TotalDue>5000 --Comparison conditions: =,>,<,>=,<=,<>
+
+SELECT SalesOrderID,OrderDate,SalesPersonID,TotalDue as TotalSales
+FROM [Sales].[SalesOrderHeader]
+WHERE SalesPersonID=275 AND TotalDue>5000 AND Orderdate between '2005-08-01' AND '1/1/2006'
+
+SELECT SalesOrderID,OrderDate,SalesPersonID,TotalDue as TotalSales
+FROM [Sales].[SalesOrderHeader]
+WHERE SalesPersonID=275 AND TotalDue>5000 AND Orderdate >= '2005-08-01' AND Orderdate < '1/1/2006'
+
+SELECT * FROM [Production].[Product]
+WHERE name ='Mountain-100 Silver, 38'
+
+SELECT * FROM [Production].[Product]
+WHERE name like'Mountain'
+
+SELECT * FROM [Production].[Product]
+WHERE name like'%Mountain%' --Wildcard % matches any zero or more characters
+
+SELECT * FROM [Production].[Product]
+WHERE name like'mountain%' -- "_" matches any single character
+
+SELECT * FROM [Production].[Product]
+WHERE name like'_ountain%'
+
+SELECT * FROM [Production].[Product]
+WHERE color in ('red','white','black')
+
+SELECT * FROM [Production].[Product]
+WHERE size in ('60','61','62')
+
+SELECT * FROM [Production].[Product]
+WHERE class not in ('H') -- same as using: <> 'H'
+
+SELECT * FROM [Production].[Product]
+WHERE size is null
+
+SELECT * FROM [Production].[Product]
+WHERE size is not null
+
+SELECT * FROM [Production].[Product]
+WHERE color ='white'OR color ='black'
+
+SELECT * FROM [Production].[Product]
+WHERE color ='white'AND color ='black'
+
+SELECT SalesOrderID,OrderDate,SalesPersonID,TotalDue as TotalSales
+FROM [Sales].[SalesOrderHeader]
+WHERE (SalesPersonID=275 OR SalesPersonID=278) AND TotalDue>5000
+```
+
+* 一些函数
+```sql
+-- ISNULL() 
+SELECT ProductID, ISNULL(Color,'') as Color123, --using an alias
+FROM Production.Product
+
+-- CONVERT() 转换
+SELECT ProductID, Name as ProductName, --using an alias
+'The list price for ' + ProductNumber + ' is $ ' + CONVERT(varchar,ListPrice) +'.' , --using the concatenation to join character end-to-end.
+'The list price for ' + ProductNumber + ' is $ ' + CONVERT(varchar,ListPrice) +'.' as [Description] --using brackets to let SQL server conside the strin as a column name
+FROM Production.Product
+
+-- COUNT() 返回目标个数
+SELECT COUNT(SalesPersonID)
+FROM [Sales].[SalesOrderHeader]
+WHERE SalesPersonID IS NOT NULL
+
+-- DISTINCT() 返回不重复的目标个数
+SELECT DISTINCT(SalesPersonID)
+FROM [Sales].[SalesOrderHeader]
+WHERE SalesPersonID IS NOT NULL
+
+-- Math函数
+SELECT BusinessEntityID
+,rate*40*52 as AnnualSalary
+,round(rate*40*52,1) as AnnualSalary
+,round(rate*40*52,0) as AnnualSalary
+FROM [HumanResources].[EmployeePayHistory]
+
+SELECT AVG(TotalDue) as AverageTotalSales
+,MIN(TotalDue) as MinimumTotalSales
+,MAX(TotalDue) as MaximumTotalSales
+,SUN(TotalDue) as SummaryTotalSales
+FROM [Sales].[SalesOrderHeader]
+
+SELECT BusinessEntityID
+,(rate+5)*40*52 as AnnualSalary
+FROM [HumanResources].[EmployeePayHistory]
 ```
 
 ### 数据更改
@@ -105,8 +221,13 @@ WHERE ContactTypeID>20
 ```
 
 ### 数据排序
-* 
 ```sql
+-- 查询返回
+SELECT ProductID, Name, ProductNumber, Color, Size, ListPrice
+FROM Production.Product
+ORDER BY listprice DESC,Name  --desc=descending order; asc=ascending order
+
+
 -- 使用RANK()函数排序
 SELECT *,
 	RANK()                    -- 使用RANK函数进行排名
