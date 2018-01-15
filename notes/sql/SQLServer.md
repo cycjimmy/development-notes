@@ -153,23 +153,23 @@ FROM [HumanResources].[EmployeePayHistory]
 ### 数据更改
 * `INSERT`插入数据
 ```sql
-INSERT INFO Person.ContactType(Name, ModifiedDate)
+INSERT INTO Person.ContactType(Name, ModifiedDate)
 VALUES('Test1', '2008-1-1')
 
 GO
 
-INSERT INFO Person.ContactType                     -- 不带列名的插入
+INSERT INTO Person.ContactType                     -- 不带列名的插入
 VALUES('Test2', '2008-1-1')
 
 GO
 
-INSERT INFO Person.ContactType(ModifiedDate, Name) -- 重新排列了列名
+INSERT INTO Person.ContactType(ModifiedDate, Name) -- 重新排列了列名
 VALUES('2008-1-1', 'Test3')
 
 GO
 
 -- INSERT和SELECT结合 将查询出的结果插入到表中
-INSERT INFO Person.ContactType
+INSERT INTO Person.ContactType
 (
 	Name, 
 	ModifiedDate
@@ -233,7 +233,7 @@ SELECT *,
 	RANK()                    -- 使用RANK函数进行排名
 	OVER(              
 		PARTITION BY ClassID    -- 使用ClassID进行分组
-		ORDER BY Mark DESE      -- 使用Mark进行排序
+		ORDER BY Mark DESC      -- 使用Mark进行排序
 	) AS [Rank]
 FROM Student
 
@@ -244,7 +244,7 @@ SELECT *,
 	DENSE_RANK()              -- 使用使用DENSE_RANK函数进行排名
 	OVER(              
 		PARTITION BY ClassID    -- 使用ClassID进行分组
-		ORDER BY Mark DESE      -- 使用Mark进行排序
+		ORDER BY Mark DESC      -- 使用Mark进行排序
 	) AS [Rank]
 FROM Student
 
@@ -252,7 +252,7 @@ FROM Student
 SELECT *,
 	NTILE(2)             -- 按照Mark排序 分成2组
 	OVER(              
-		ORDER BY Mark DESE 
+		ORDER BY Mark DESC
 	) AS NewClass
 FROM Student
 
@@ -262,7 +262,7 @@ GO
 SELECT *,
 	ROW_NUMBER()
 	OVER(              
-		ORDER BY Mark DESE 
+		ORDER BY Mark DESC
 	) AS OrderID
 FROM Student
 ```
