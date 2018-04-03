@@ -27,6 +27,9 @@ Development Notes (zh-chs)
 * [CSS](./notes/css/css.md)
 * [LESS](./notes/css/less.md)
 
+### Java
+* [Beginning](./notes/java/beginning.md)
+
 ### framework
 * angular 
     * [AngularJS](./notes/framework/AngularJS.md)
@@ -45,6 +48,7 @@ Development Notes (zh-chs)
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
 * [brackets](./notes/code_editor/brackets.md)
 * [WebStorm](./notes/code_editor/Web_Storm.md)
+* [IntelliJ IDEA](./notes/code_editor/IDEA.md)
 * [Visual Studio](./notes/code_editor/Visual_Studio.md)
 
 ### Linux

@@ -12,7 +12,7 @@
   4.把时间调回当前时间不影响webstrom的使用
 * ~~方法2: 选择 `license server` 输入： `http://idea.imsxm.com/`~~
 * ~~方法3: 选择 `license server` 输入： `http://idea.iteblog.com/key.php`~~
-* 方法4: 选择 `license server` 输入： `http://idea.ibdyr.com`
+* 方法4: 选择 `license server` 输入： `http://idea.codebeta.cn`
 
 ## win64位的问题
 1. 首先安装64位jdk
