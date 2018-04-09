@@ -70,3 +70,49 @@ Unified Modeling Language 又称统一建模语言或标准建模语言。是一
 * Rational Rose
 * PowerDesign
 
+## 集合
+数组长度固定，集合长度可变。集合可以通过任意类型查找所映射的具体对象。
+
+* `Collection`
+  * `List`
+    * `ArrayList`
+    * `LinkedList`
+  * `Queue`
+    * `LinkedList`
+  * `Set`
+    * `HashSet`
+* `Map` -> Entry类<Key,Value>键值对
+  * `HashMap`
+
+### (Collection接口)[https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html]
+
+#### List接口及其实现类——ArrayList
+* List是元素有序并且可以重复的集合，被称为序列
+* List可以精确的控制每个元素的插入位置，或删除某个位置元素
+* ArrayList——数组序列，是List的一个重要实现类
+* ArrayList底层是由数组实现的
+
+#### 泛型
+* 集合中的元素，可以是任意类型的对象(对象的引用)
+  * 如果把某个对象放入集合，则会忽略它的类型，而把他当作Object处理。
+* 泛型则是规定了某个集合只可以存放特定类型的对象
+  * 会在编译期间进行类型检查
+  * 可以直接按指定类型获取集合元素
+  * 泛型不能是基本类型，可以使用包装类型
+
+#### Set接口及其实现类——HashSet
+* Set是元素**无序**并且**不可重复**的集合，被称为集
+* HashSet——哈希集，是Set的一个重要实现类
+
+### Map接口
+* Map提供了一种映射关系，其中的元素是以键值对(key-value)的形式储存的，能够实现根据key快速查找value
+* Map中的键值对以Entry类型的对象实例形式存在
+* 键(key值)不可重复，value值可以，每个键最多只能映射到一个值
+* Map接口提供了分别返回key值集合、value值集合以及Entry(键值对)集合的方法
+* Map支持泛型，形势如：Map\<K,V\>
+
+#### HashMap类
+* HashMap 是Map的一个重要实现类，也是最常用的，基于哈希表实现
+* HashMap 中的 Entry 对象是无序排列的
+* Key 值和 value 值都可以为`null`，但一个 HashMap 只能有一个 key 值为 `null` 的映射( key 值不可重复)
+
