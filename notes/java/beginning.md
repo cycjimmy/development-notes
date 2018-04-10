@@ -116,3 +116,14 @@ Unified Modeling Language 又称统一建模语言或标准建模语言。是一
 * HashMap 中的 Entry 对象是无序排列的
 * Key 值和 value 值都可以为`null`，但一个 HashMap 只能有一个 key 值为 `null` 的映射( key 值不可重复)
 
+### `Comparable` 和 `Comparator`
+* `Comparable` 接口 —— 可比较的
+  * 实现该接口表示：这个类的实例可以比较大小，可以进行自然排序(`Collections.sort()`)
+  * 定义了默认的比较规则
+  * 其实现类需实现 `compareTo()` 方法
+  * `compareTo()` 方法返回正数表示大，负数表示小，`0` 表示相等
+* `Comparator` 接口 —— 比较工具接口
+  * 用于定义**临时**比较规则，而不是默认比较规则
+  * 其实现类需要实现 `compare()` 方法
+  * `Comparator` 和 `Comparable` 都是 Java 集合框架的成员
+
