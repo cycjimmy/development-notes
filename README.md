@@ -30,6 +30,9 @@ Development Notes (zh-chs)
 ### Java
 * [Beginning](./notes/java/beginning.md)
 
+### Android
+* [Beginning](./notes/android/beginning.md)
+
 ### framework
 * angular 
     * [AngularJS](./notes/framework/AngularJS.md)
@@ -49,6 +52,7 @@ Development Notes (zh-chs)
 * [brackets](./notes/code_editor/brackets.md)
 * [WebStorm](./notes/code_editor/Web_Storm.md)
 * [IntelliJ IDEA](./notes/code_editor/IDEA.md)
+* [Android Studio](./notes/code_editor/Android_Studio.md)
 * [Visual Studio](./notes/code_editor/Visual_Studio.md)
 
 ### Linux
