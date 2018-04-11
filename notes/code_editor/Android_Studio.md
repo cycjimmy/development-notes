@@ -20,5 +20,7 @@
 * 使用方法:
   * Setting -> HTTP Proxy -> auto proxy
 
-
+## C盘减负
+* 修改全局 Gradle 服务目录
+  * `setting` -> `Gradle` -> `Global Gradle Setting` -> `Service directory path`
 
