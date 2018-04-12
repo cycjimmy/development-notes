@@ -21,6 +21,10 @@
   * Setting -> HTTP Proxy -> auto proxy
 
 ## C盘减负
-* 修改全局 Gradle 服务目录
+* 修改全局 Gradle 服务目录(目前有点问题)
   * `setting` -> `Gradle` -> `Global Gradle Setting` -> `Service directory path`
+
+## 简单排错
+* 清除IDE缓存 `Invalidate Caches / Restart ...`
+* 清除构建工程缓存 `Build` -> `Clean Project`
 
