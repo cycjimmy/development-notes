@@ -77,6 +77,8 @@ Development Notes (zh-chs)
   * [other](./extra/Outside_World/Other.md)
 * [Resume Relevance](./extra/Resume_Relevance.md)
 * [Network Address](./extra/Network_Address.md)
+* Wechat
+  * [Grab Stickers](./extra/Wechat/Grab_Stickers.md)
 * Android Optimization
   * [Android 7.0 Background Ignore](./extra/Android_Optimization/Android_7.0_Background_Ignore.md)
   * [Hidden System Program](./extra/Android_Optimization/Hidden_System_Program.md)
