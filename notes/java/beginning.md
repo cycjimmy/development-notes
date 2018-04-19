@@ -30,12 +30,79 @@ $ javac HelloWorld.java
 $ java HelloWorld
 ```
 
+## 变量与数据类型
+### 变量
+(略)
+
+### 包装类
+* 常用包装类常量和方法
+  * `Integer.MIN_VALUE`: int类型最小值 `-2^31`
+  * `Integer.MAX_VALUE`: int类型最大值 `2^31 - 1`
+  * `int Integer.parseInt(String sInteger)`: 将字符串类型的整数转换为int类型的数据
+  * `String Integer.toBinaryString(int value)`: 将十进制转化为二进制，返回结果 `String` 类型
+  * `String Integer.toHexString(int value)`: 将十进制转化为十六进制，返回结果 `String` 类型
+  * ...
+
+### 二进制补码
+* 计算机中正数与负数的关系的取反加1
+* 补码运算是封闭的，运算结果保留在补码范围之内，超范围就溢出
+* 4位二进制补码最多能表示2^4(16)个数，数的范围是-8~7
+* 8位二进制补码最多能表示2^8(256)个数，数的范围是-128~127
+* 16位二进制补码最多能表示2^16(65536)个数，数的范围是-32768~32767
+* 32位二进制补码最多能表示2^32个数，数的范围是-2^31~2^31-1
+
+### 整数类型
+* Java有四种整数类型：byte、short、int、long
+* Java默认整数计算结果是int类型
+* 整数的字面量是int类型
+* 若字面量超过int类型的最大值，则字面量是long类型，后面要用l表示该值是long类型
+* Java底层byte和short按照32位(int类型)计算
+
+### 浮点类型
+* Java的浮点类型有float和double两种
+* Java默认浮点类型计算结果是double类型，字面量也是double类型
+* 若要给float类型的变量赋字面量的值，则要在字面量后加f
+* float类型
+  * float类型共32位，1位为符号位，指数8位，尾数23位。
+  * float的精度是23位，超过则被截取
+  * float存储数据的范围大于int类型，但精度比int小
+* double类型
+  * 1位符号位，11位指数，52位尾数
+  * double存储数据的范围大于long类型，但精度比long小
+
+### 字符类型
+* char类型的字面量可以是一个英文字母，字符或一个汉字，并且由单引号包括
+* Java底层使用一个16位的整数来处理字符类型，该数值是一个字符的unicode编码值。
+* 转义符
+  * 转义字符是 `\`，通过转义字符，可表示一些特殊的字符。
+    * `\n`: 回车
+    * `\n`: 制表位字符
+    * `\\`: 表示`\`
+    * `\'`: 表示`'`
+    * `\"`: 表示`"`
+    * `\u4e2d`: 表示unicode编码对应的字符(汉字：中)
+
+### 布尔类型
+* boolean类型用来表示肯定或否定两种可能
+* 常用在分支语句、循环语句中
+
+## Scanner类
+* Scanner类用于扫描从控制台输入的数据，可以接收字符串和基本数据类型的数据
+* Scanner类位于 `java.util.Scanner` 包中
+* 常用方法：
+  * `String next()`: 接收控制台输入的一个字符串
+  * `String nextLine()`: 接收控制台输入的一个字符串
+  * `int nexInt()`: 接收控制台输入的一个int类型的数据
+  * `double nextDouble()`: 接收控制台输入的一个double类型的数据
+  * `boolean nextBoolean()`: 接收控制台输入的一个boolean类型的数据
+
 ## 面向对象
 ### 封装
 * 步骤
   * 修改属性的可见值 `private`
   * 创建 `getter` / `setter` 方法，用于属性的读写
   * 在 `getter` / `setter` 方法中加入属性控制语句，对属性值的合法性进行判断
+
 ### 继承
 ```java
 class Dog extends Animal {
