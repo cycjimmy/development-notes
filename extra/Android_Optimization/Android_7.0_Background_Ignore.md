@@ -26,6 +26,11 @@
     ```shell
     $ adb shell cmd appops set [package_name] RUN_IN_BACKGROUND allow
     ```
+
+  * 如出现`more than one device and emulator`错误，可用`-s`指定执行设备，如:
+    ```shell
+    $ adb -s [device_name] shell cmd appops set [package_name] RUN_IN_BACKGROUND ignore
+    ```
     
 ## 其他可用操作
 * 安装绿色守护app，开启全自动化休眠，比较简单，如不清楚可以看下面的相关链接查看具体步骤
