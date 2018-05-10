@@ -29,6 +29,11 @@
 
   * 如出现`more than one device and emulator`错误，可用`-s`指定执行设备，如:
     ```shell
+    // 查看设备
+    $ adb devices
+
+    // 指定设备执行
+    $ adb -s [device_name] shell 'pm list packages -3'
     $ adb -s [device_name] shell cmd appops set [package_name] RUN_IN_BACKGROUND ignore
     ```
     
