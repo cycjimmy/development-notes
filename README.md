@@ -3,24 +3,24 @@ Development Notes (zh-chs)
 
 ## Notes list：
 ### Markdown
-* [markdown syntax & local editor](./notes/markdown/markdown.md)
+* [Markdown syntax & local editor](./notes/markdown/markdown.md)
 
 ### Git
-* [git command 常用命令](./notes/git/git_command.md)
-* [gitignore](./notes/git/gitignore.md)
-* [github](./notes/git/github.md)
+* [Git command 常用命令](./notes/git/git_command.md)
+* [Gitignore](./notes/git/gitignore.md)
+* [Github](./notes/git/github.md)
 
 ### HTML
 * [HTML5](./notes/html/html5.md)
 
 ### JavaScript
 * [DOM Optimization（DOM优化）](./notes/javascript/DOM_Optimization.md)
-* [webGL](./notes/javascript/webgl.md)
-* [three.js](./notes/javascript/threejs.md)
+* [WebGL](./notes/javascript/webgl.md)
+* [Three.js](./notes/javascript/threejs.md)
 * [Ajax](./notes/javascript/Ajax.md)
 * [Canvas](./notes/javascript/Canvas.md)
 * Node.js
-* typescript
+* Typescript
 * [PWA](./notes/javascript/pwa.md)
 
 ### CSS
@@ -37,15 +37,16 @@ Development Notes (zh-chs)
 * angular 
     * [AngularJS](./notes/framework/AngularJS.md)
     * [Angular2](./notes/framework/Angular2.md)
-* [requireJS](./notes/framework/requireJS.md)
+* [RequireJS](./notes/framework/requireJS.md)
 * [BigPipe](./notes/framework/BigPipe.md)
 * [Weex](./notes/framework/weex.md)
 * VelocityJS fekit
 
 ### tools
-* [node & npm 自用前端实用工具总结](./notes/tools/node(front-end).md)
+* [Node & npm 自用前端实用工具总结](./notes/tools/node(front-end).md)
 * [Grunt-beginner前端自动化工具](./notes/tools/grunt.md)
-* [gulp](./notes/tools/gulp.md)
+* [Gulp](./notes/tools/gulp.md)
+* [Localtunnel](./notes/tools/localtunnel.md)
 
 ### code editor
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
@@ -64,7 +65,7 @@ Development Notes (zh-chs)
 
 ### collect
 * [H5 Collect](./notes/collect/H5Collect.md)
-* [snippets](./notes/collect/snippets.md)
+* [Snippets](./notes/collect/snippets.md)
 
 ## reading notes
 * [JavaScript高级程序设计(第三版)](./readingNotes/JavaScript高级程序设计.md)
@@ -74,7 +75,7 @@ Development Notes (zh-chs)
 	* [For MAC](./extra/Common_Software_For_MAC.md)
 * Outside World
   * [XX-Net](./extra/Outside_World/XX-Net.md)
-  * [other](./extra/Outside_World/Other.md)
+  * [Other](./extra/Outside_World/Other.md)
 * [Resume Relevance](./extra/Resume_Relevance.md)
 * [Network Address](./extra/Network_Address.md)
 * Wechat
