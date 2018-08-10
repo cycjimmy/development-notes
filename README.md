@@ -37,6 +37,7 @@ Development Notes (zh-chs)
 * angular 
     * [AngularJS](./notes/framework/AngularJS.md)
     * [Angular2](./notes/framework/Angular2.md)
+* [React](./notes/framework/React.md)
 * [RequireJS](./notes/framework/requireJS.md)
 * [BigPipe](./notes/framework/BigPipe.md)
 * [Weex](./notes/framework/weex.md)
