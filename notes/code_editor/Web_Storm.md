@@ -10,7 +10,7 @@
   2.点击打开软件，点击**“Evaluate for free for 30 days”**，激活成功。
   3.接下来就可以进入使用了
   4.把时间调回当前时间不影响使用
-* 方法2: 选择 `license server` 输入： `http://active.chinapyg.com/`
+* ~~方法2: 选择 `license server` 输入： `http://active.chinapyg.com/`~~
 
 ## win64位的问题
 1. 首先安装64位jdk
@@ -32,5 +32,5 @@
 2. 设置内存
   * 找到文件中的Xms和Xmx，将后面的数据修改为大点的数据。
 
-
-
+## win下设定默认换行符
+* `File` -> `Settings` -> `Editor` -> `Code Style` -> `Line separator:` -> `Unix and OS X(\n)`
