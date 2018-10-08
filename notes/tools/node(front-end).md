@@ -214,7 +214,11 @@ $ npm config ls -l
     
     # npm cache clean =>
     $ yarn cache clean
-    
+
+    # npm update =>
+    $ yarn upgrade [--latest]
+    $ yarn upgrade-interactive [--latest]
+
     # 针对国内的设置
     $ yarn config set registry https://registry.npm.taobao.org
     

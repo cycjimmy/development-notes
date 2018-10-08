@@ -42,6 +42,7 @@ Development Notes (zh-chs)
 * [BigPipe](./notes/framework/BigPipe.md)
 * [Weex](./notes/framework/weex.md)
 * VelocityJS fekit
+* [Egret](./notes/framework/Egret.md)
 
 ### tools
 * [Node & npm 自用前端实用工具总结](./notes/tools/node(front-end).md)
