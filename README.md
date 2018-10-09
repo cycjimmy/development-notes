@@ -68,6 +68,7 @@ Development Notes (zh-chs)
 ### collect
 * [H5 Collect](./notes/collect/H5Collect.md)
 * [Snippets](./notes/collect/snippets.md)
+* [chrome模拟微信浏览器](./notes/collect/chromeFakeWechatBrowser.md)
 
 ## reading notes
 * [JavaScript高级程序设计(第三版)](./readingNotes/JavaScript高级程序设计.md)
