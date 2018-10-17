@@ -65,6 +65,7 @@ $ sudo chown -R $USER /usr/local
     # 指定使用Node版本
     $ nvm use [version]
     ```
+4. [更详细的说明](./nvm-windows.md)
 
 ## 2 管理 npm 模块管理器
 ### 2.1 升级 npm 的版本 
