@@ -2,6 +2,7 @@
 > 以手机微信浏览器作为H5主容器进行视觉设计
 
 ![h5-design-template.png][template-image]
+
 [template-image]: https://cycjimmy.github.io/staticFiles/images/docs/h5-design-template.png
 
 ## 设计稿总尺寸(或画布尺寸): `750 x 1500`
