@@ -123,8 +123,11 @@ $ npm set init-license 'MIT'
 # 使用 -y 可以跳过提问阶段，直接生成package.json文件
 $ npm init -y
 
-# 列出当前项目安装的所有模块包
-$ npm ls --depth=0
+# 列出当前项目安装的模块包
+$ npm list --depth=0
+
+# 列出全局安装的模块包
+$ npm list -g --depth 0
 
 # npm install默认会安装dependencies字段和devDependencies字段中的所有依赖包
 $ npm i
