@@ -267,6 +267,19 @@ $ yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 $ cnpm install node-sass 
 ```
 
+### 2.7 windows下node-sass编译错误解决方案
+主要是windows平台缺少编译环境，先卸载安装好的node-sass，再按下面步骤
+
+```shell
+# 安装node-gyp
+$ npm i -g node-gyp
+
+# 安装windows-build-tools(需要管理员权限)
+$ npm i -g windows-build-tools
+```
+
+完成上述步骤后，重新安装node-sass即可成功编译
+
 ## 3 发布node模块到npm社区
 1. [npm官网](https://www.npmjs.com/)注册账号，或使用命令行:
   ```shell
