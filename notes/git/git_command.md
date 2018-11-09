@@ -88,3 +88,11 @@ $ git push <remote> <branch>               # 上传代码及快速合并
 $ git push <remote> :<branch/tag-name>     # 删除远程分支或标签
 $ git push --tags                          # 上传所有标签
 ```
+
+## 排错
+```shell
+# .gitignore is not working
+$ git rm -r --cached .
+$ git add .
+$ git commit -m "fixed untracked files"
+```
