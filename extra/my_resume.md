@@ -27,7 +27,7 @@
 | ------- |
 | 在集团融媒改革后，工作以编写移动H5宣传页面为主，工作学习侧重点也变成了前端特效等方面，H5案例比较多，不多做赘述，如有兴趣可后期详谈。|
 
-***
+<br>
 
 ### 苏州奥莱维信息技术有限责任公司 （ 2015年6月 ~ 2017年7月 ）
 > 创业型的小公司，只要能做的事几乎都做。主要做PC和移动web端UI设计和前端开发工作，另外也做一些创意设计类工作（平面设计，VI设计，影视制作）。【UI设计/web设计师/前端工程师/node/平面设计】
@@ -36,18 +36,18 @@
 | ------- |
 | 独立完成平板web端页面设计和前端单页应用制作。这是一个超前使用PWA的案例，当时PWA还没有被很多浏览器兼容。开发中期，客户提出页面最好能封装成app形式看起来更大气，了解到用户酒店所配备的都是安卓平板后，果断采用了PWA方式。|
 
-***
+<br>
 
 ### 苏州八岛数码设计有限公司 （ 2012年9月 ~ 2015年4月 ）
 > 主要做日本旅游杂志的设计排版，与目标职位跨度比较大，不多做赘述【视觉设计师】
 
-***
+<br>
 
 ## 开源项目
 - [h5-webpack-starter](https://github.com/cycjimmy/h5-webpack-starter)： 进入苏州日报社后，根据其做H5的需求，量身打造的H5模板。
 - [weixin-share](https://github.com/cycdpo/weixin-share)：一个更简单的微信分享方式，为H5分享服务。
 - [swiper-animation](https://github.com/cycdpo/swiper-animation)：基于swiper的动画插件，为H5页面动画服务。
-- [jsmpeg-player](https://github.com/cycdpo/jsmpeg-player)：基于JSMpeg解码器的TS视频格式播放器，为了满足微信H5页面中视频的内联播放（不被强制视频全屏或页面全屏）。
+- [jsmpeg-player](https://github.com/cycdpo/jsmpeg-player)：基于JSMpeg解码器的TS视频格式播放器，为了满足微信H5页面中视频的内联播放（即使在安卓的微信浏览器中也能不被强制视频全屏或页面全屏）。
 - [h5-video-player](https://github.com/cycdpo/h5-video-player)：一个简单的H5全屏视频播放器。
 - [h5-audio-controls](https://github.com/cycdpo/h5-audio-controls)：一个简单的H5页面音乐控件。
 
