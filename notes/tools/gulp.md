@@ -32,6 +32,7 @@ $ yo [generator_name] [project_name]
 
 ```
 
-## 目前自己的gulp项目
-[gulp-temp](https://github.com/cycjimmy/gulp-temp)
+## gulp 4 相关
+* [升级到 gulp 4.0](https://blog.skk.moe/post/update-gulp-to-4/)
+* [Gulp error: The following tasks did not complete](https://stackoverflow.com/questions/36897877/gulp-error-the-following-tasks-did-not-complete-did-you-forget-to-signal-async)
 
