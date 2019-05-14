@@ -1,5 +1,7 @@
-# 苏州日报H5(非平台类)成品整理
+# 苏州日报H5成品整理
 (时间倒序排列)
+
+## 非平台类
 ### 2019年
 * [苏州解放70周年知识竞答，测测你能得几分](http://wxzt.subaonet.com/h5/2019/70AnniOfSuzhouLiberation/)
 * [热烈庆祝中新合作苏州工业园区建设25周年！](http://wxzt.subaonet.com/h5/2019/25thAnniversaryOfSIP/)
@@ -48,4 +50,8 @@
 * [曲福田市长的苏州印迹](http://wxzt.subaonet.com/h5/2017/qufutian/)
 * [在苏州，听说普契尼](http://wxzt.subaonet.com/h5/2017/puccini/)
 * [人民军队十级考试 测测你能不能当"司令"](http://wxzt.subaonet.com/h5/2017/armyday/)
+
+## 第三方平台类
+* [改革开放四十年瞰苏州巨变](https://file3254460e48a1.iamh5.cn/v3/idea/ha9UUKMT)
+* [跟着大戚 重走国境线](https://file3254460e48a1.iamh5.cn/v3/idea/qhFWon4n#suid=ohAJ7wfMCDM7Yp41z11uFEFvQVac)
 
