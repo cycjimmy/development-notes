@@ -14,3 +14,11 @@
 | 案例分析 | 3道案例分析（每题25分） | 1.5小时(13:30-15:00) | 45分 |
 | 论文 | 二选一，2800字左右 | 2小时(15:20-17:20) | 45分 |
 
+## 案例重点准备
+* [2019年上半年个人准备](./Key_Of_Case.md)
+
+## 论文范文准备
+* [项目整体管理](./Sample_Essay/Integration_Management.md)
+* [项目范围管理](./Sample_Essay/Scope_Management.md)
+* [项目进度管理](./Sample_Essay/Schedule_Management.md)
+* [项目人力资源管理](./Sample_Essay/Human_Resource_Management.md)
