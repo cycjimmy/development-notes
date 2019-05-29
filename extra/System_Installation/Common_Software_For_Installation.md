@@ -12,7 +12,7 @@
 * 其他
   * [Chrome](https://www.google.com/chrome/?system=true&standalone=1)
     * [SwitchyOmega 插件](https://github.com/FelisCatus/SwitchyOmega/releases)
-      * [自用SwitchyOmega设置备份](./files/myOmegaOptions.bak)
+      * [自用SwitchyOmega设置备份](../files/myOmegaOptions.bak)
   * [微信](https://weixin.qq.com/)
   * [QQ TIM](http://tim.qq.com/download.html)
   * Office 系列
