@@ -3,6 +3,8 @@
 
 ## 非平台类
 ### 2019年
+* [市情体验人才专线](http://wxzt.subaonet.com/h5/2019/urbanTourism/)
+* [测测你可以在苏州日报做什么](http://wxzt.subaonet.com/h5/2019/subao70AnniversaryTest/)
 * [苏州解放70周年知识竞答，测测你能得几分](http://wxzt.subaonet.com/h5/2019/70AnniOfSuzhouLiberation/)
 * [热烈庆祝中新合作苏州工业园区建设25周年！](http://wxzt.subaonet.com/h5/2019/25thAnniversaryOfSIP/)
 * [一元停车费的“兴亡史”(引力播)](http://wxzt.subaonet.com/h5/2019/oneYuanParkingFee/)
