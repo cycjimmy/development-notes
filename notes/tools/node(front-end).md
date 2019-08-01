@@ -308,8 +308,9 @@ $ npm i -g windows-build-tools
 5. 发布
   ```shell
   # via npm
-  npm publish
+  $ npm publish
+  $ npm publish --access public  # 以公共包形式发布
 
   # via yarn
-  yarn publish
+  $ yarn publish
   ```
