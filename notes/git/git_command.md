@@ -89,6 +89,12 @@ $ git push <remote> :<branch/tag-name>     # 删除远程分支或标签
 $ git push --tags                          # 上传所有标签
 ```
 
+## 自由修改提交树
+```shell
+$ git cherry-pick <ref> [ <ref>...]     # 复制一些提交到HEAD指针下 
+¥ git rebase --interactive(-i) <ref>    # 交互式rebase
+```
+
 ## 排错
 ```shell
 # .gitignore is not working
