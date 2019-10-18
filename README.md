@@ -66,6 +66,9 @@ Development Notes (zh-chs)
 ### SQL
 * [SQL Server](./notes/sql/SQLServer.md)
 
+### Workflow
+* [Use Semantic Release](./notes/workflows/USE_SEMANTIC_RELEASE.md)
+
 ### collect
 * [H5 Collect](./notes/collect/H5Collect.md)
 * [Snippets](./notes/collect/snippets.md)
