@@ -5,12 +5,32 @@
 ### 使用 Commitizen
 安装
 ```shell
-$ npm install -g commitizen
+$ npm install -g commitizen cz-conventional-changelog
+```
+
+在项目目录里，运行下面的命令，使其支持 Angular 的 Commit message 格式
+```shell
+$ commitizen init cz-conventional-changelog --save --save-exact
 ```
 
 用以下命令代替 `git commit -m` 命令
 ```shell
 $ git cz
+```
+
+配置好 commitizen 后的新流程为:
+```shell
+# 事先拉取更新
+$ git pull
+
+# 开发修改，完成后git add
+$ git add .
+
+# 提交代码
+$ git cz
+
+# 推送代码
+$ git push
 ```
 
 ### Commit Message 格式
@@ -133,6 +153,8 @@ Couple of typos fixed:
 docs: fix grammar
 docs: corrections and further clarifications 
 docs: update broken link
+docs(README): update version number
+docs(README): place badge
 ```
 
 ##### style
@@ -155,12 +177,14 @@ perf(*): Update network configuration
 ##### test
 ```text
 test: clarify variables name
+test(testRelease): set schedule test
 ```
 
 ##### chore
 ```text
 chore(package): update xo to version 0.25.0
 chore(package): remove commitizen from our dependencies
+chore(*): transfer repo to cycjimmy
 ```
 
 ##### revert
