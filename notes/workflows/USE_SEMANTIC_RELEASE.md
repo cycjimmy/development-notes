@@ -1,6 +1,26 @@
 # 使用 Semantic Release
 ## 部署[semantic-release-action](https://github.com/cycjimmy/semantic-release-action)
 
+## 老仓库使用 Semantic Release
+手动将上次发布的版本打上tag
+例如, 发布分支为 `master`, 上一次发布的版本为 `1.1.0`，该版本的提交sha值为 `1234567`，确认该提交已经打上 `v1.1.0` 的标签
+```shell
+# Make sure the commit 1234567 is in the release branch history
+$ git branch --contains 1234567
+
+# If the commit is not in the branch history it means that either:
+# - you use a different branch than the one your release from before
+# - or the commit sha has been rewritten (with git rebase)
+# In both cases you need to configure your repository to have the last release commit in the history of the release branch
+
+# List the tags for the commit 1234567
+$ git tag --contains 1234567
+
+# If v1.1.0 is not in the list you add it with
+$ git tag v1.1.0 1234567
+$ git push origin v1.1.0
+```
+
 ## [代码提交规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)
 ### 使用 Commitizen
 安装
@@ -155,6 +175,7 @@ docs: corrections and further clarifications
 docs: update broken link
 docs(README): update version number
 docs(README): place badge
+docs(inputs): remove redundant defaults
 ```
 
 ##### style
