@@ -148,6 +148,17 @@ $ npm update <package name> -S
 # npm update只更新顶层依赖包，而不更新依赖的依赖，如果想递归更新取，使用下面的命令
 $ npm --depth 9999 update
 
+# 安装"npm-check-updates"模块
+$ npm install -g npm-check-updates
+
+# 安装后，检查可更新的模块
+$ ncu
+# 或
+$ npm-check-updates
+
+# 更新package.json的依赖包到最新版本
+$ ncu -u
+
 # 卸载依赖包
 $ npm uninstall [package name]
 $ npm uninstall [package name] -global
