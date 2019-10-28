@@ -28,7 +28,12 @@ $ git push origin v1.1.0
 $ npm install -g commitizen cz-conventional-changelog
 ```
 
-在项目目录里，运行下面的命令，使其支持 Angular 的 Commit message 格式
+全局配置，创建一个 `.czrc` 文件在你的 `home` 目录，并将 `path` 指向上面所安装的 commitizen 适配器，使其支持 Angular 的 Commit message 格式
+```shell
+$ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+```
+
+如需项目级别配置，可在项目目录里，运行下面的命令
 ```shell
 $ commitizen init cz-conventional-changelog --save --save-exact
 ```
