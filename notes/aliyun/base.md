@@ -124,3 +124,32 @@ Docker常用命令
 * `-p` 端口映射，格式为：主机端口（80）:容器端口（8080）
 * `-d` 后台运行容器，并返回容器ID
 
+### 安装 Git
+```shell script
+# 卸载旧版本Git
+[cyc]$ sudo yum remove git
+
+# 安装 Git
+[cyc]$ sudo yum install git
+```
+
+### 安装 Nginx
+```shell script
+# 安装 Nginx
+[cyc]$ sudo yum install nginx
+
+# 启动 Nginx
+[cyc]$ sudo nginx
+
+# 验证 Nginx
+[cyc]$ sudo nginx -t
+
+# 配置 Nginx
+[cyc]$ vim /etc/nginx/nginx.conf
+# server_name: 域名
+# location / root: 首页地址
+
+# 重启 Nginx
+[cyc]$ sudo nginx -s reload
+```
+
