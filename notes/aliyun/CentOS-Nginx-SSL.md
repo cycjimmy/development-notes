@@ -23,11 +23,11 @@
 ```
 
 将`nginx.conf`的 TLS server 部分改成以下的样子
-```config
+```apacheconf
 server {
   listen       443 ssl http2 default_server;
   listen       [::]:443 ssl http2 default_server;
-  server_name  cycjimmy.tech;
+  server_name  www.cycjimmy.tech;
   root         /usr/www;
   
   ssl_certificate "/etc/nginx/cert/cycTech.pem";
@@ -45,6 +45,15 @@ server {
 }
 ```
 
+如果要让用户用http协议访问时自动跳转https，则还需加上如下配置：
+```apacheconf
+server {
+  listen 80;
+  server_name www.cycjimmy.tech;
+  return 301 https://$server_name$request_uri;
+}
+```
+
 ```shell script
 # 重启 Nginx
 [cyc]$ sudo nginx -s reload
@@ -52,6 +61,5 @@ server {
 # 查看443端口是否启动
 [cyc]$ netstat -tlnp
 ```
-
 
 最后在阿里云安全组规则开通443端口即可

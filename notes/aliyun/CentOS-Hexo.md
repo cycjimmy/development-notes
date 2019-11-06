@@ -11,11 +11,11 @@
 ```
 
 将 nginx.conf 的server部分改成以下的样子
-```config
+```apacheconf
 server {
     listen       80 default_server;
     listen       [::]:80 default_server;
-    server_name  cycjimmy.tech; # 域名
+    server_name www.cycjimmy.tech; # 域名
     index index.html;
     root         /usr/www; # 网站根目录
     
