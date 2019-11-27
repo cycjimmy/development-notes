@@ -67,7 +67,7 @@ Development Notes (zh-chs)
 * [SQL Server](./notes/sql/SQLServer.md)
 
 ### Workflow
-* [Use Semantic Release](./notes/workflows/USE_SEMANTIC_RELEASE.md)
+* [Use Github Actions For Semantic Release](notes/workflows/USE_GITHUB_ACTIONS_FOR_SEMANTIC_RELEASE.md)
 
 ### collect
 * [H5 Collect](./notes/collect/H5Collect.md)
