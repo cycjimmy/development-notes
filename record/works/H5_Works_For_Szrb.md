@@ -3,6 +3,8 @@
 
 ## 非平台类
 ### 2019年
+* [苏州日报历史数据库——焕然一"芯"](https://wxzt.subaonet.com/h5/2019/digitalNewspaperInstructions/)
+* [共享农庄LOGO里的秘密，你找到了几个？](https://wxzt.subaonet.com/h5/2019/sharedFarmLogo/)
 * [苏州“初心馆”，看了一遍又一遍](https://wxzt.subaonet.com/h5/2019/startedMuseum/)
 * [同升国旗 同唱国歌](http://wxhd.subaonet.com/2019/sq/index.htm)
 * [我的苏州70年](https://wxzt.subaonet.com/h5/2019/nationalDay70Anni/)
