@@ -1,25 +1,27 @@
 # 将 Socks 代理转化为 Http 代理
 
-**本文所在环境为 macOS，其他平台类似**
+**本文所在环境为 macOS, 其他平台类似**
 
-## 步骤
-* 安装 polipo (请确保系统安装了brew)
-```shell script
+## 使用
+* 安装 polipo (请确保系统安装了 brew)
+```shell
 $ brew install polipo
 ```
 
-* 运行 polipo,设置上级socks代理的端口号.
+* 运行 polipo, 设置上级 socks 代理的端口号.
 ```shell script
-# 我的socks代理的端口号是5555，您需要把它改成您自己的
+# 我的 socks 代理的端口号是 5555, 您需要把它改成您自己的
 $ polipo socksParentProxy=127.0.0.1:5555
 
-# 看到下面的提示说明启动成功了，polipo默认在8123端口启动了http代理，您现在可以使用8123端口进行网络配置了
+# 看到下面的提示说明启动成功了,
+# polipo 默认在 8123 端口启动了 http 代理,
+# 您现在可以使用 8123 端口进行网络配置了.
 Established listening socket on port 8123.
 ```
 
-## Npm 使用 Http 代理
+### Npm 使用 Http 代理
 ```shell script
-# 设置http代理
+# 设置 http 代理
 $ npm config set proxy http://127.0.0.1:8123
 $ npm config set https-proxy http://127.0.0.1:8123
 $ npm config set strict-ssl false -g
@@ -30,9 +32,9 @@ $ npm config delete https-proxy
 $ npm config delete strict-ssl
 ```
 
-## Yarn 使用 Http 代理
+### Yarn 使用 Http 代理
 ```shell script
-# 设置http代理
+# 设置 http 代理
 $ yarn config set proxy http://127.0.0.1:8123
 $ yarn config set https-proxy http://127.0.0.1:8123
 $ yarn config set strict-ssl false -g
