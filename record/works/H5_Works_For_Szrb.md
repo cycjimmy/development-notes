@@ -2,6 +2,9 @@
 (时间倒序排列)
 
 ## 非平台类
+### 2020年
+* [看一个激情燃烧的新时代](https://wxzt.subaonet.com/h5/2020/newAgePip/)
+
 ### 2019年
 * [苏州日报历史数据库——焕然一"芯"](https://wxzt.subaonet.com/h5/2019/digitalNewspaperInstructions/)
 * [共享农庄LOGO里的秘密，你找到了几个？](https://wxzt.subaonet.com/h5/2019/sharedFarmLogo/)
