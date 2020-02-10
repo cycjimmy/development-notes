@@ -3,6 +3,7 @@
 
 ## 非平台类
 ### 2020年
+* [特殊时期，为爱逆行！抗击疫情，我有承诺！(苏州无偿献血预约平台)](https://wxzt.subaonet.com/h5/2020/bloodDonationAppoint/)
 * [看一个激情燃烧的新时代](https://wxzt.subaonet.com/h5/2020/newAgePip/)
 
 ### 2019年
