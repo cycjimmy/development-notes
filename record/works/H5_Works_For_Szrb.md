@@ -3,6 +3,9 @@
 
 ## 非平台类
 ### 2020年
+* [“云”逛绣丽金阊](https://wxzt.subaonet.com/h5/2020/suzhouFolkFestival/)
+* [寻找苏州创新标杆](https://wxzt.subaonet.com/h5/2020/unicorn/)
+* [苏州战疫图](https://wxzt.subaonet.com/h5/2020/suzhouFightEpidemic2d/)
 * [“为爱携手 春暖苏州”学习雷锋志愿服务系列云活动启动](https://wxzt.subaonet.com/h5/2020/volunteersAssociation/)
 * [特殊时期，为爱逆行！抗击疫情，我有承诺！(苏州无偿献血预约平台)](https://wxzt.subaonet.com/h5/2020/bloodDonationAppoint/)
 * [看一个激情燃烧的新时代](https://wxzt.subaonet.com/h5/2020/newAgePip/)
