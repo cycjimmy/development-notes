@@ -26,6 +26,7 @@ Development Notes (zh-chs)
 ### CSS
 * [CSS](./notes/css/css.md)
 * [LESS](./notes/css/less.md)
+* [Grid Layout](./notes/css/gridLayout.md)
 
 ### Java
 * [Beginning](./notes/java/beginning.md)
