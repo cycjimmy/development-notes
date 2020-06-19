@@ -3,6 +3,9 @@
 
 ## 非平台类
 ### 2020年
+* [“三大法宝”沉浸式实境教学线上打卡(限微信端)](https://wxzt.subaonet.com/h5/2020/travelRoutePunch/client/api/login)
+* [实境云课学法宝(限微信端)](https://wxzt.subaonet.com/h5/2020/partyVideoAnswer/client/api/login)
+* [扔垃圾的正确姿势，你GET到了吗？(2020版)](https://wxzt.subaonet.com/h5/2020/refuseSorting/)
 * [“云”逛绣丽金阊](https://wxzt.subaonet.com/h5/2020/suzhouFolkFestival/)
 * [寻找苏州创新标杆](https://wxzt.subaonet.com/h5/2020/unicorn/)
 * [苏州战疫图](https://wxzt.subaonet.com/h5/2020/suzhouFightEpidemic2d/)
@@ -24,7 +27,7 @@
 * [一元停车费的“兴亡史”(引力播)](https://wxzt.subaonet.com/h5/2019/oneYuanParkingFee/)
 * [“书记主播”让基层党建“网红”起来(引力播)](https://wxzt.subaonet.com/h5/2019/secretaryAnchor/)
 * [今年3·15点点手机就能举报投诉](https://wxzt.subaonet.com/h5/2019/315ReportTutorial/)
-* [唐播虎接财神，好运接不停](https://wxzt.subaonet.com/h5/2019/catchGold/api/login)
+* [唐播虎接财神，好运接不停(限微信端)](https://wxzt.subaonet.com/h5/2019/catchGold/api/login)
 
 ### 2018年
 * [新时代的青春——姑苏晚报25岁啦](https://wxzt.subaonet.com/h5/2018/gswb25thAnniversary/)
@@ -32,14 +35,14 @@
 * [扔垃圾的正确姿势，你GET到了吗？](https://wxzt.subaonet.com/h5/2018/refuseSorting/)
 * [太湖风光美，精华在吴中](https://wxzt.subaonet.com/h5/2018/autumnWorks/)
 * [苏州大米上市啦，六招教你挑好米！](https://wxzt.subaonet.com/h5/2018/suzhouRicePick/)
-* [记者节，点赞大战爆发啦](https://wxzt.subaonet.com/h5/2018/journalistDayCatchLike/api/login)
+* [记者节，点赞大战爆发啦(微信端)](https://wxzt.subaonet.com/h5/2018/journalistDayCatchLike/api/login)
 * [2018第五届“创青春”全国赛邀你来战](https://wxzt.subaonet.com/h5/2018/youthEntrepreneurship/)
 * [苏州大米是怎么种出来的](https://wxzt.subaonet.com/h5/2018/suzhouRiceProcess/)
 * [中海·免费夹月饼，一玩就上瘾](https://wxzt.subaonet.com/h5/2018/graspingMooncake_static/)
 * [苏报定制 苏报融媒爆款产品推介](https://wxzt.subaonet.com/h5/2018/ourWorks/)
 * [解放思想大讨论，苏州进行时](https://wxzt.subaonet.com/h5/2018/mindDiscuss/)
 * [世界杯的冠军，竟然内定了…](https://wxzt.subaonet.com/h5/2018/worldCupGuess/)
-* [唐伯虎抓秋香，越抓越嗨森](https://wxzt.subaonet.com/h5/2018/graspingDolls/api/login)
+* [唐伯虎抓秋香，越抓越嗨森(限微信端)](https://wxzt.subaonet.com/h5/2018/graspingDolls/api/login)
 * [探秘苏州地下管廊！太壮观了](https://wxzt.subaonet.com/h5/2018/pipeWell/)
 * [苏州人注意！百位书画家现场送春联，就在本周五](https://wxzt.subaonet.com/h5/2018/springFestivalCouplets/)
 
