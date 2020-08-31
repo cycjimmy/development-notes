@@ -4,7 +4,7 @@
 ## 非平台类
 ### 2020年
 * [珍惜食物 拒绝浪费](https://wxzt.subaonet.com/h5/2020/clearYourPlate/)
-* [开放再出发——苏州自贸片区一周年巡游记](https://wxzt.subaonet.com/h5/2020/FTZ_Anniversary/)
+* [开放再出发——苏州自贸片区一周年巡游记(限微信端)](https://wxzt.subaonet.com/h5/2020/FTZ_Anniversary/)
 * [“三大法宝”沉浸式实境教学线上打卡(限微信端)](https://wxzt.subaonet.com/h5/2020/travelRoutePunch/client/api/login)
 * [实境云课学法宝(限微信端)](https://wxzt.subaonet.com/h5/2020/partyVideoAnswer/client/api/login)
 * [扔垃圾的正确姿势，你GET到了吗？(2020版)](https://wxzt.subaonet.com/h5/2020/refuseSorting/)
