@@ -102,3 +102,25 @@ $ git rm -r --cached .
 $ git add .
 $ git commit -m "fixed untracked files"
 ```
+
+## 删除Git仓库中的大文件
+```shell
+# 查看空间占用
+$ git count-objects -v    # 查看 git 相关文件占用的空间
+$ du -sh .git             # 查看 .git 文件夹占用磁盘空间
+
+# 找到仓库记录中的大文件
+$ git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -10 | awk '{print$1}')"
+
+# 重写这些大文件涉及到的所有提交
+$ git filter-branch --index-filter "git rm --cached --ignore-unmatch '<file/dir>'" -- --all
+
+# 删除引用并重新打包
+$ rm -Rf .git/refs/original
+$ rm -Rf .git/logs
+$ git gc
+$ git prune
+
+# 同步远程仓库
+$ git push origin --force --all
+```
