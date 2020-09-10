@@ -124,3 +124,36 @@ $ git prune
 # 同步远程仓库
 $ git push origin --force --all
 ```
+
+## 清空历史记录只保留最终版本(一般在归档前使用)
+### 存至原仓库
+```shell
+# 丢掉历史记录并提交
+$ git checkout --orphan latest_branch
+$ git add -A
+$ git commit -m "archive"
+
+# 删除主分支
+$ git branch -D master
+
+# 将当前分支重命名
+$ git branch -m master
+
+# 强制更新存储库
+$ git push -f origin master
+```
+
+### 存至新仓库
+```shell
+# 丢掉历史记录并提交
+$ git checkout --orphan latest_branch
+$ git add -A
+$ git commit -m "archive"
+
+# 建立新仓库，并新增远程地址，执行推送
+$ git remote add upstream https://github.com/yourName/yourRepositoryUrl.git
+$ git push upstream latest_branch:master
+
+# 删除远程地址
+$ git remote remove upstream
+```
