@@ -45,5 +45,9 @@ $ docker run --name mssql -m 512m -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(
 
 # 启动之前关闭的容器
 $ docker start mssql
+
+# 修改SA密码
+$ docker exec -it mssql bash
+$ /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "yourOld(!)Password" -Q 'ALTER LOGIN SA WITH PASSWORD="yourStrong(!)Password"'
 ```
 
