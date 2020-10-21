@@ -3,6 +3,8 @@
 
 ## 非平台类
 ### 2020年
+* [全面建成小康社会知识竞赛(限微信端)](https://wxzt.subaonet.com/h5/2020/partyHistoryAnswer/client/api/login)
+* [《苏州市精神卫生条例》知多少(限微信端)](https://wxzt.subaonet.com/h5/2020/mentalHealth/client/api/login)
 * [月圆之夜，决战新闻大厦之巅(限微信端)](https://wxzt.subaonet.com/h5/2020/midAutumnTapLike/client/api/login)
 * [苏报中秋诗词大会(2021年中秋预定)](https://wxzt.subaonet.com/h5/2020/midAutumnPoetry/)
 * [珍惜食物 拒绝浪费](https://wxzt.subaonet.com/h5/2020/clearYourPlate/)
