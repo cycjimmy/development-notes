@@ -3,6 +3,7 @@
 
 ## 非平台类
 ### 2020年
+* [“药”学法普法有奖竞答(限微信端)](https://wxzt.subaonet.com/h5/2020/drugLawAnswer/client/api/login)
 * [全面建成小康社会知识竞赛(限微信端)](https://wxzt.subaonet.com/h5/2020/partyHistoryAnswer/client/api/login)
 * [《苏州市精神卫生条例》知多少(限微信端)](https://wxzt.subaonet.com/h5/2020/mentalHealth/client/api/login)
 * [月圆之夜，决战新闻大厦之巅(限微信端)](https://wxzt.subaonet.com/h5/2020/midAutumnTapLike/client/api/login)
