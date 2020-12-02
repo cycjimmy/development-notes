@@ -73,6 +73,10 @@ Development Notes (zh-chs)
 ### Workflow
 * [Use Github Actions For Semantic Release](notes/workflows/USE_GITHUB_ACTIONS_FOR_SEMANTIC_RELEASE.md)
 
+### Design
+* [h5DesignSize](./notes/design/h5DesignSize.md)
+* [maya](./notes/design/3d/maya.md)
+
 ### collect
 * [H5 Collect](./notes/collect/H5Collect.md)
 * [Snippets](./notes/collect/snippets.md)
