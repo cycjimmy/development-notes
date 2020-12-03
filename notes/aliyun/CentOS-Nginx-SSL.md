@@ -33,7 +33,7 @@ server {
   ssl_certificate "/etc/nginx/cert/cycTech.pem";
   ssl_certificate_key "/etc/nginx/cert/cycTech.key";
   ssl_session_cache shared:SSL:1m;
-  ssl_session_timeout  10m;
+  ssl_session_timeout 10m;
   ssl_ciphers HIGH:!aNULL:!MD5;
   ssl_prefer_server_ciphers on;
   
