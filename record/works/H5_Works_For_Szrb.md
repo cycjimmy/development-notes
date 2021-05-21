@@ -2,6 +2,14 @@
 (时间倒序排列)
 
 ## 非平台类
+### 2021年
+* [党史学习教育沉浸式主题党日实境课程](https://wxzt.subaonet.com/h5/2021/partyRedLines/)
+* [履行健康公约，争做健康市民(限微信端)](https://wxzt.subaonet.com/h5/2021/healthKnowledgeCompetition/client/api/login)
+* [实境云课学党史(限微信端)](https://wxzt.subaonet.com/h5/2021/partyVideoAnswer/client/api/login)
+* [红色云博展厅(限微信端)](https://wxzt.subaonet.com/h5/2021/fourHistoryMuseum/client/api/login)
+* [苏州和家乡一起牛！](https://wxzt.subaonet.com/h5/2020/lsgn/)
+* [接住苏惠保！有惊喜！](https://wxzt.subaonet.com/h5/2021/shbCatchGold/)
+
 ### 2020年
 * [“药”学法普法有奖竞答(限微信端)](https://wxzt.subaonet.com/h5/2020/drugLawAnswer/client/api/login)
 * [全面建成小康社会知识竞赛(限微信端)](https://wxzt.subaonet.com/h5/2020/partyHistoryAnswer/client/api/login)
