@@ -3,7 +3,7 @@
 
 ## 安装
 ```shell script
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ## 使用阿里云镜像
@@ -31,6 +31,12 @@ $ brew install PKG_NAME
 $ brew info PKG_NAME
 $ brew uninstall PKG_NAME
 $ brew cask install APP_NAME
+```
+
+## 临时使用代理
+```shell script
+$ export ALL_PROXY=socks5://127.0.0.1:5555
+$ brew upgrade
 ```
 
 ## 一些应用安装的坑
