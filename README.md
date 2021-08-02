@@ -54,6 +54,8 @@ Development Notes (zh-chs)
 * [Gulp](./notes/tools/gulp.md)
 * [Docker](./notes/tools/docker.md)
 * [LocalTunnel](./notes/tools/localtunnel.md)
+* [Homebrew](./notes/tools/homebrew.md)
+* [wget](./notes/tools/wget.md)
 
 ### code editor
 * [Sublime Text](./notes/code_editor/Sublime_Text_3.md)
