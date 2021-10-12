@@ -3,6 +3,8 @@
 
 ## 非平台类
 ### 2021年
+* [跨时空的对话——致敬英雄](https://wxzt.subaonet.com/h5/2021/lettersAcrossTime/)
+* [我们走在大路上——苏州历次党代会回眸](https://wxzt.subaonet.com/h5/2021/partyCongressesInSuzhou)
 * [姑苏晚报10000期，爱拼就会赢！(限微信端)](https://wxzt.subaonet.com/h5/2021/eveningPaperPuzzle)
 * [走向复兴——红星照耀下的苏城100年简史](https://wxzt.subaonet.com/h5/2021/suzhouRenaissance/)
 * [党史学习教育沉浸式主题党日实境课程](https://wxzt.subaonet.com/h5/2021/partyRedLines/)
