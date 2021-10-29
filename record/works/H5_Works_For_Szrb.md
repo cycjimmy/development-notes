@@ -3,6 +3,8 @@
 
 ## 非平台类
 ### 2021年
+* [把张家港寄给ta](https://wxzt.subaonet.com/h5/2021/letterFromZJG/client/send)
+* [献礼建党百年！苏州日报七一特刊 《走向复兴》](https://wxzt.subaonet.com/h5/2021/papersForPartyCentenary)
 * [跨时空的对话——致敬英雄](https://wxzt.subaonet.com/h5/2021/lettersAcrossTime/)
 * [我们走在大路上——苏州历次党代会回眸](https://wxzt.subaonet.com/h5/2021/partyCongressesInSuzhou)
 * [姑苏晚报10000期，爱拼就会赢！(限微信端)](https://wxzt.subaonet.com/h5/2021/eveningPaperPuzzle)
