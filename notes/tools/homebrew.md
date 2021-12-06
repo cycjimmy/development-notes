@@ -55,6 +55,9 @@ $ vim .bash_profile
 # .bash_profile增加下面这两行
 export NVM_DIR="$HOME/.nvm"
 source $(brew --prefix nvm)/nvm.sh
+
+# 更新 nvm
+$ brew upgrade nvm
 ```
 
 ## 参考
