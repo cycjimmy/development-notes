@@ -3,6 +3,7 @@
 
 ## 非平台类
 ### 2021年
+* [戴无恙——给你的头像戴个口罩吧(限微信端)](https://wxzt.subaonet.com/h5/2021/avatarMask/client/api/login)
 * [把张家港寄给ta](https://wxzt.subaonet.com/h5/2021/letterFromZJG/client/send)
 * [献礼建党百年！苏州日报七一特刊 《走向复兴》](https://wxzt.subaonet.com/h5/2021/papersForPartyCentenary)
 * [跨时空的对话——致敬英雄](https://wxzt.subaonet.com/h5/2021/lettersAcrossTime/)
