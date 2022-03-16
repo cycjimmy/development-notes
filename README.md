@@ -50,6 +50,7 @@ Development Notes (zh-chs)
 
 ### tools
 * [Node & npm 自用前端实用工具总结](./notes/tools/node(front-end).md)
+* [pnpm软件包管理器](./notes/tools/pnpm.md)
 * [Grunt-beginner前端自动化工具](./notes/tools/grunt.md)
 * [Gulp](./notes/tools/gulp.md)
 * [Docker](./notes/tools/docker.md)
