@@ -2,7 +2,8 @@
 
 ## 安装
 * [iisnode](https://github.com/Azure/iisnode/)
-* [NodeJs](https://nodejs.org/)
+* ~~[NodeJs](https://nodejs.org/)~~
+* [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
 * [Url-rewrite](http://www.iis.net/downloads/microsoft/url-rewrite)
 * [Git](https://git-scm.com/)
 * [Sublime](https://www.sublimetext.com/)
